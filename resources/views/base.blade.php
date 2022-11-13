@@ -1,22 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Vacantes Universitarias</title>
+        @yield('titulo')
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+        rel="stylesheet" type="text/css" />
         <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+        rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/estilos.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        </head>
+        <style>
+        .breadcrumb{
+            display: inline;
+            color:black;
+        }
+        .breadcrumb:hover{
+            display: inline;
+            color: blue;
+            text-decoration: inline;
+        }
+        .breadcrumb:active{
+            display: inline;
+            color: blue;
+            text-decoration: inline;
+        }
+        </style>
+    </head>
     <body>
         <!-- Masthead-->
         <header class="masthead">
@@ -35,14 +53,14 @@
         <nav class="navbar navbar-light bg-light static-top shadow">
             <div class="container">
                 <div class="row-6 text-center">
-                    <a class="navbar-brand" href="/maquetas/index.html">Inicio</a>
-                    <a class="navbar-brand" href="#!">Universidades</a>
-                    <a class="navbar-brand" href="/maquetas/vacantes.html">Vacantes actuales</a>
-                    <a class="navbar-brand" href="/maquetas/FAQ.html">Preguntas frecuentes</a>
+                    <a class="navbar-brand" href="/">Inicio</a>
+                    <a class="navbar-brand" href="#">Universidades</a>
+                    <a class="navbar-brand" href="/vacantes">Vacantes actuales</a>
+                    <a class="navbar-brand" href="/faq">Preguntas frecuentes</a>
                 </div>
                 <div class="row-4 text-left">
-                    <a class="btn btn-primary" href="#">Ingresar</a>
-                    <a class="btn btn-secondary" href="/maquetas/registrarse.html">Registrarse</a>
+                    <a class="btn btn-primary" href="/login">Ingresar</a>
+                    <a class="btn btn-secondary" href="/registrarse">Registrarse</a>
                 </div>
                 </div>
             </div>
@@ -52,60 +70,8 @@
         <!-- Body -->
 
         <div class="container w-75 bg-white shadow mt-5 mb-5">
-            <div class="col p-2">
-                <div class="input-group">
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <button type="button" class="btn btn-outline-primary">search</button>
-                </div>
-                <div class="row p-2">
-                    <div class="col ">
-                        <div class="card card-border">
-                            <div class="card-body">
-                                <div class="row">
-                                    <a href="/maquetas/infovacante.html">
-                                        <h6 class="card-title">Vacante</h6>
-                                    </a>
-                                    <div class="col">
-                                        <p>Descripción breve</p>
-                                    </div>
-                                    <div class="col-md-auto p-2">
-                                        <button type="button" class="btn btn-outline-primary">Postularse</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-border">
-                            <div class="card-body">
-                                <div class="row">
-                                    <a href="/maquetas/infovacante.html">
-                                        <h6 class="card-title">Vacante</h6>
-                                    </a>
-                                    <div class="col">
-                                        <p>Descripción breve</p>
-                                    </div>
-                                    <div class="col-md-auto p-2">
-                                        <button type="button" class="btn btn-outline-primary">Postularse</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="card card-border">
-                            <div class="card-body">
-                                <div class="row">
-                                    <a href="/maquetas/infovacante.html">
-                                        <h6 class="card-title">Vacante</h6>
-                                    </a>
-                                    <div class="col">
-                                        <p>Descripción breve</p>
-                                    </div>
-                                    <div class="col-md-auto p-2">
-                                        <button type="button" class="btn btn-outline-primary">Postularse</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @yield('breadcrumb')
+            @yield('contenido')
         </div>
 
         <!-- Body -->
@@ -125,7 +91,9 @@
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="#!">Política de privacidad</a></li>
                         </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; Vacantes Universitarias 2022. Todos los derechos reservados.</p>
+                        <p class="text-muted small mb-4 mb-lg-0">
+                            &copy; Vacantes Universitarias 2022. Todos los derechos reservados.
+                        </p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
@@ -152,5 +120,6 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        @yield('scripts')
     </body>
 </html>

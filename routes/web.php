@@ -14,37 +14,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('principal.index');
 });
 
-Route::get('/detallemerito', function () {
-    return view('detallemerito');
+Route::get('/ordenmerito/detallemerito', function () {
+    return view('meritos.detallemerito');
 });
 
 Route::get('/faq', function () {
-    return view('FAQ');
+    return view('info.FAQ');
 });
 
-Route::get('/infovacante', function () {
-    return view('infovacante');
+Route::get('/vacantes/infovacante', function () {
+    return view('vacantes.infovacante');
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('usuario.login');
 });
 
 Route::get('/ordenmerito', function () {
-    return view('ordenmerito');
+    return view('meritos.ordenmerito');
 });
 
 Route::get('/registrarse', function () {
-    return view('registrarse');
+    return view('usuario.registrarse');
 });
 
-Route::get('/registrovacante', function () {
-    return view('registrovacante');
+Route::get('/vacantes/registrovacante', function () {
+    return view('vacantes.registrovacante');
 });
 
 Route::get('/vacantes', function () {
-    return view('vacantes');
+    return view('vacantes.vacantes');
 });
+
