@@ -1,7 +1,7 @@
 header.masthead {
     position: relative;
     background-color: #343a40;
-    background: url("../maquetas/bg-masthead.jpg") no-repeat center center;
+    background: url("/img/bg-masthead.jpg") no-repeat center center;
     background-size: cover;
     padding-top: 8rem;
     padding-bottom: 8rem;
@@ -34,4 +34,3 @@ footer.footer {
     padding-bottom: 4rem;
   }
 
-  

@@ -24,6 +24,8 @@ class User extends Authenticatable
         'nombre',
         'apellido',
         'direccion',
+        'tipodoc',
+        'ndoc',
         'privilegio'
     ];
 
