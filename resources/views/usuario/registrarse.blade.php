@@ -18,56 +18,91 @@
         </div>
         <div class="row p-2 ">
             <div class="col-md-10 mx-auto ">
-                <form>
+                <form method="POST" action="/registrarse">
+                    @csrf
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
-                            <label for="inputFirstname">Primer nombre</label>
-                            <input type="text" class="form-control" id="inputFirstname" placeholder="Primer nombre">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" name="nombre"
+                            minlength="5" placeholder="Primer nombre" required>
                         </div>
                         <div class="col-sm-6 p-2">
-                            <label for="inputFirstname">Segundo nombre</label>
-                            <input type="text" class="form-control" id="inputFirstname" placeholder="Segundo nombre">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-6 p-2">
-                            <label for="inputLastname">Apellidos</label>
-                            <input type="text" class="form-control" id="inputLastname" placeholder="Apellidos">
-                        </div>
-                        <div class="col-sm-6 p-2">
-                            <label for="inputCity">Titulo?</label>
-                            <input type="text" class="form-control" id="inputCity" placeholder="Provincia">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" class="form-control" name="apellido"
+                            minlength="5" placeholder="Apellidos" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                            <input type="text" class="form-control" name="email" placeholder="Email">
                         </div>
                         <div class="col-sm-6 p-2">
-                            <label for="inputContactNumber">Teléfono</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="Teléfono">
-                        </div>
-                    <div class="form-group row">
-                        <div class="col-sm-6 p-2">
-                            <label for="inputWebsite">Sitio Web</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="LinkedIn, Instagram...">
-                        </div>
-                        <div class="col-sm-6 p-2">
-                            <label for="inputCurriculum">Curriculum</label>
-                            <input type="file" class="form-control" id="inputCurriculum">
+                            <label for="telefono">Teléfono</label>
+                            <input type="number" class="form-control" name="telefono"
+                            minlength="7" placeholder="Teléfono" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
-                            <label for="inputPassword">Contraseña</label>
-                            <input type="password" class="form-control" id="inputPassword" placeholder="contraseña">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" class="form-control" name="direccion"
+                            minlength="5" placeholder="direccion" required>
                         </div>
                         <div class="col-sm-6 p-2">
-                            <label for="inputPasswordConfirm">Confirmar Contraseña</label>
-                            <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="contraseña">
+                            <label for="privilegio">Privilegio</label>
+                            <input type="number" class="form-control"
+                            name="privilegio" value="1" hidden>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 p-2">
+                            <label for="password">Contraseña</label>
+                            <input type="password" class="form-control" id="password" placeholder="contraseña">
+                        </div>
+                        <div class="col-sm-6 p-2">
+                            <label for="password_confirmacion">Confirmar Contraseña</label>
+                            <input type="password" class="form-control"
+                            name="password_confirmacion" placeholder="contraseña">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6 p-2">
+                            <label for="titulos">Titulos</label>
+                            <textarea name="titulos" class="form-control" rows="5">
+                            </textarea>
+                        </div>
+                        <div class="col-sm-6 p-2">
+                            <label for="experiencia">Experiencia</label>
+                            <textarea name="experiencia" class="form-control" rows="5">
+                            </textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-sm-6 p-2">
+                            <label for="con_asignatura">Conocimiento</label>
+                            <textarea class="form-control" name="con_asignatura" placeholder="" rows="5"> </textarea>
+                        </div>
+                        <div class="col-sm-6 p-2">
+                            <label for="educacion">Educacion</label>
+                            <textarea class="form-control" name="educacion" rows="5"> </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6 p-2">
+                            <label for="publicacion">Publicaciones</label>
+                            <textarea class="form-control" name="publicacion" placeholder="" rows="5"> </textarea>
+                        </div>
+                        <div class="col-sm-6 p-2">
+                            <label for="investigaciones">Investigaciones</label>
+                            <textarea class="form-control" name="investigaciones" rows="5"> </textarea>
+                        </div>
+                    </div>
+
                     <button type="button" class="btn btn-primary px-4">Guardar</button>
                 </form>
             </div>

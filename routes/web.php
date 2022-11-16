@@ -41,6 +41,8 @@ Route::get('/registrarse', function () {
     return view('usuario.registrarse');
 });
 
+Route::post('/registrarse', [RegistroController::class, 'registrarse']);
+
 Route::get('/vacantes/registrovacante', function () {
     return view('vacantes.registrovacante');
 });
