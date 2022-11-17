@@ -26,10 +26,14 @@ class RegistroRequest extends FormRequest
         return [
             'email' => 'required|unique:users,email',
             'password' => 'required|min:8',
+            'password_confirmacion'=>'required|same:password',
             'nombre' => 'required',
             'apellido' => 'required',
             'direccion' => 'required',
             'privilegio' => 'required',
+            'telefono'=>'required',
+            'tipodoc'=>'required',
+            'ndoc'=>'required'
         ];
     }
 }

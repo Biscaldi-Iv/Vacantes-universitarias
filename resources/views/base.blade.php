@@ -59,13 +59,14 @@
                     <a class="navbar-brand" href="/faq">Preguntas frecuentes</a>
                 </div>
                 <div class="row-4 text-left">
-                @if(session('user'))
+                @auth
                     <a class="btn btn-primary" href="#">Editar perfil</a>
                     <a class="btn btn-danger" href="/logout">Cerrar sesion</a>
-                @else
+                @endauth
+                @guest
                     <a class="btn btn-primary" href="/login">Ingresar</a>
                     <a class="btn btn-secondary" href="/registrarse">Registrarse</a>
-                @endif
+                @endguest
                 </div>
             </div>
         </nav>
@@ -77,6 +78,8 @@
             @yield('breadcrumb')
             @if (session('error'))
                 <h5 class="alert alert-danger">{{ session('error') }}</h5>
+            @elseif(session('success'))
+                <h5 class="alert alert-success">{{ session('success') }}</h5>
             @endif
             @yield('contenido')
         </div>
