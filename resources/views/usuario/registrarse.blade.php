@@ -70,12 +70,12 @@
                         <div class="col-sm-6 p-2">
                             <label for="password">Contraseña</label>
                             <input type="password" class="form-control" onchange="checkpass()"
-                            name="password" id="password" placeholder="contraseña">
+                            name="password" id="password" placeholder="contraseña" minlength="8" maxlength="16">
                         </div>
                         <div class="col-sm-6 p-2">
                             <label for="password_confirmacion">Confirmar Contraseña</label>
                             <input type="password" class="form-control" onchange="checkpass()"
-                            name="password_confirmacion" id="password_confirmacion" placeholder="contraseña">
+                            name="password_confirmacion" id="password_confirmacion" placeholder="contraseña" minlength="8" maxlength="16">
                         </div>
                     </div>
                     <h6 class="alert alert-success" id="success" hidden></h6>
