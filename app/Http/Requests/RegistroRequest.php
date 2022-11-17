@@ -24,9 +24,8 @@ class RegistroRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:usuarios, email',
+            'email' => 'required|unique:users,email',
             'password' => 'required|min:8',
-            'password_confirmacion' => 'required|same:password',
             'nombre' => 'required',
             'apellido' => 'required',
             'direccion' => 'required',
