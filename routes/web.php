@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +52,6 @@ Route::get('/vacantes/registrovacante', function () {
 Route::get('/vacantes', function () {
     return view('vacantes.vacantes');
 });
+
+Route::get('/logout', [LogoutController::class,'cerrar']);
 

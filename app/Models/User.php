@@ -23,6 +23,7 @@ class User extends Authenticatable
         'nombre',
         'apellido',
         'direccion',
+        'telefono',
         'tipodoc',
         'ndoc',
         'privilegio'

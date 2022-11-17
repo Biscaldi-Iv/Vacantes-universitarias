@@ -59,9 +59,13 @@
                     <a class="navbar-brand" href="/faq">Preguntas frecuentes</a>
                 </div>
                 <div class="row-4 text-left">
+                @if(session('user'))
+                    <a class="btn btn-primary" href="#">Editar perfil</a>
+                    <a class="btn btn-danger" href="/logout">Cerrar sesion</a>
+                @else
                     <a class="btn btn-primary" href="/login">Ingresar</a>
                     <a class="btn btn-secondary" href="/registrarse">Registrarse</a>
-                </div>
+                @endif
                 </div>
             </div>
         </nav>
@@ -71,6 +75,9 @@
 
         <div class="container w-75 bg-white shadow mt-5 mb-5">
             @yield('breadcrumb')
+            @if (session('error'))
+                <h5 class="alert alert-danger">{{ session('error') }}</h5>
+            @endif
             @yield('contenido')
         </div>
 
