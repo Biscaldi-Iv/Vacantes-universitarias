@@ -14,14 +14,15 @@
 @section('contenido')
     <div class="container mt-4 shadow"
     style="width:30%; padding:auto; margin-top: 30%; margin-bottom: 10%; border-radius:10px;">
-        <form>
+        <form action="/login" method="POST">
+            @csrf
             <div class="mb-3">
-                <label for="usuario" class="form-label">Usuario</label>
-                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario">
+                <label for="email" class="form-label">Correo electronico</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Correo electronico">
             </div>
             <div class="mb-3">
-                <label for="contra" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" name="contra" id="contra" placeholder="Contraseña">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
             </div>
             <button type="submit" class="btn btn-primary w-100">Iniciar sesion</button>
             <button type="button" class="btn btn-white w-100">Registrarse</button>
