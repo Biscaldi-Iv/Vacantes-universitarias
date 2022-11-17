@@ -13,9 +13,12 @@
 @section('contenido')
     <div class="col p-2">
         <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search"
-            aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-primary">search</button>
+            <form>
+                @csrf
+                <input type="search" class="form-control rounded" placeholder="Search"
+                aria-label="Search" aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-primary">search</button>
+            </form>
         </div>
         <div class="row p-2">
             <div class="col ">
