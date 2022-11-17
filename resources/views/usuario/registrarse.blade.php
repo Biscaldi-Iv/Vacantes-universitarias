@@ -78,8 +78,7 @@
                             name="password_confirmacion" id="password_confirmacion" placeholder="contraseña">
                         </div>
                     </div>
-                    <h6 class="alert alert-success" id="success" hidden>Las contraseñas coinciden!</h6>
-                    <h6 class="alert alert-danger" id="danger" hidden>Las contraseñas no coinciden!</h6>
+                    <h6 class="alert alert-success" id="success" hidden></h6>
 
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
@@ -126,10 +125,24 @@
 
 @section('scripts')
 <script>
-const danger=document.getElementById("danger");
+//const danger=document.getElementById("danger");
 const success=document.getElementById("success");
 const c1=document.getElementById("password");
 const c2=document.getElementById("password_confirmacion");
+
+function checkpass(){
+    success.removeAttribute("hidden");
+    if(c1.value==c2.value){
+        success.setAttribute("class", "alert alert-success");
+        success.innerHTML = "Las contraseñas coinciden";
+        return true;
+    }
+    else{
+        success.setAttribute("class", "alert alert-danger");
+        success.innerHTML = "Las contraseñas NO coinciden";
+        return false;
+    }
+}
 
 var form = document.getElementById("form-validation");
  form.addEventListener("submit", function(event) {
@@ -145,17 +158,11 @@ var form = document.getElementById("form-validation");
       form.classList.add("was-validated");
     }, false);
 
-function checkpass(){
-    if(c1.value==c2.value){
-        success.setAttribute("hidden", "false");
-        danger.setAttribute("hidden", "true");
-        return true;
-    }
-    else{
-        success.setAttribute("hidden", "true");
-        danger.setAttribute("hidden", "false");
-        return false;
-    }
-}
+
 </script>
 @endsection
+
+<!--
+<h6 class="alert alert-success" id="success" hidden>Las contraseñas coinciden!</h6>
+<h6 class="alert alert-danger" id="danger" hidden>Las contraseñas no coinciden!</h6>
+-->
