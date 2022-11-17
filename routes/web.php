@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,19 @@ use App\Http\Controllers\LogoutController;
 
 Route::get('/', function () {
     return view('principal.index');
-});
+})->name('principal');
+
+Route::get('/login', [LoginController::class,'show']);
+
+Route::post('/login', [LoginController::class,'login']);
+
+Route::get('/logout', [LogoutController::class,'logout']);
+
+Route::get('/registrarse', function () {
+    return view('usuario.registrarse');
+})->name('registrarse');
+
+Route::post('/registrarse', [RegistroController::class, 'register']);
 
 Route::get('/ordenmerito/detallemerito', function () {
     return view('meritos.detallemerito');
@@ -31,19 +44,9 @@ Route::get('/vacantes/infovacante', function () {
     return view('vacantes.infovacante');
 });
 
-Route::get('/login', function () {
-    return view('usuario.login');
-});
-
 Route::get('/ordenmerito', function () {
     return view('meritos.ordenmerito');
 });
-
-Route::get('/registrarse', function () {
-    return view('usuario.registrarse');
-});
-
-Route::post('/registrarse', [RegistroController::class, 'registrarse']);
 
 Route::get('/vacantes/registrovacante', function () {
     return view('vacantes.registrovacante');
@@ -52,6 +55,4 @@ Route::get('/vacantes/registrovacante', function () {
 Route::get('/vacantes', function () {
     return view('vacantes.vacantes');
 });
-
-Route::get('/logout', [LogoutController::class,'cerrar']);
 
