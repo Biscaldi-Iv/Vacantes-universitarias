@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostulanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::post('/registrarse', [RegistroController::class, 'register']);
 Route::get('/ordenmerito/detallemerito', function () {
     return view('meritos.detallemerito');
 });
+
+Route::get('/datospostulante', [PostulanteController::class, 'edit']);
 
 Route::get('/faq', function () {
     return view('info.FAQ');
