@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('titulo')
-    <title>Registrarse</title>
+    <title>Datos para postulacion</title>
 @endsection
 
 @section('breadcrumb')
@@ -18,7 +18,7 @@
         </div>
         <div class="row p-2 ">
             <div class="col-md-10 mx-auto ">
-                <form method="POST" action="/registrarse" id="form-validation">
+                <form method="POST" action="/datospostulante" id="form-validation">
                     @csrf
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
@@ -37,7 +37,7 @@
                         <div class="col-sm-6 p-2">
                             <label for="email">Email</label>
                             <input type="text" class="form-control" name="email" placeholder="Email"
-                            value="{{ auth()->user()->email }}">
+                            value="{{ auth()->user()->email }}" readonly>
                         </div>
                         <div class="col-sm-6 p-2">
                             <label for="telefono">Teléfono</label>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-sm-6 p-2">
                             <label for="ndoc">Documento</label>
-                            <select name="tipodoc" class="form-grup-text">
+                            <select name="tipodoc" id="tipodoc" class="form-grup-text">
                                 <option value="DNI">DNI</option>
                                 <option value="ID">ID</option>
                                 <option value="LC">LC</option>
@@ -113,8 +113,8 @@
 
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
-                            <label for="publicacion">Publicaciones</label>
-                            <textarea class="form-control" name="publicacion" placeholder="" rows="5"> </textarea>
+                            <label for="publicaciones">Publicaciones</label>
+                            <textarea class="form-control" name="publicaciones" placeholder="" rows="5"> </textarea>
                         </div>
                         <div class="col-sm-6 p-2">
                             <label for="investigaciones">Investigaciones</label>
@@ -175,8 +175,3 @@ var form = document.getElementById("form-validation");
 
 </script>
 @endsection
-
-<!--
-<h6 class="alert alert-success" id="success" hidden>Las contraseñas coinciden!</h6>
-<h6 class="alert alert-danger" id="danger" hidden>Las contraseñas no coinciden!</h6>
--->

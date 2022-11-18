@@ -11,14 +11,14 @@ class Usuario extends User
     use HasFactory;
 
     protected $fillable = [
-        'iduser',
+        'fkiduser',
         'titulos',
         'experiencia',
         'con_asignatura',
         'disponibilidad',
         'congresos',
         'educacion',
-        'publicacion',
+        'publicaciones',
         'investigaciones',
         'con_profesionales'
     ];

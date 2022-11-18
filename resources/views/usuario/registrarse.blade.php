@@ -81,42 +81,6 @@
                     </div>
                     <h6 class="alert alert-success" id="success" hidden></h6>
 
-                    <div class="form-group row">
-                        <div class="col-sm-6 p-2">
-                            <label for="titulos">Titulos</label>
-                            <textarea name="titulos" class="form-control" rows="5">
-                            </textarea>
-                        </div>
-                        <div class="col-sm-6 p-2">
-                            <label for="experiencia">Experiencia</label>
-                            <textarea name="experiencia" class="form-control" rows="5">
-                            </textarea>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <div class="col-sm-6 p-2">
-                            <label for="con_asignatura">Conocimiento</label>
-                            <textarea class="form-control" name="con_asignatura" placeholder="" rows="5"> </textarea>
-                        </div>
-                        <div class="col-sm-6 p-2">
-                            <label for="educacion">Educacion</label>
-                            <textarea class="form-control" name="educacion" rows="5"> </textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-sm-6 p-2">
-                            <label for="publicacion">Publicaciones</label>
-                            <textarea class="form-control" name="publicacion" placeholder="" rows="5"> </textarea>
-                        </div>
-                        <div class="col-sm-6 p-2">
-                            <label for="investigaciones">Investigaciones</label>
-                            <textarea class="form-control" name="investigaciones" rows="5"> </textarea>
-                        </div>
-                    </div>
-
                     <button type="sumbit" class="btn btn-primary px-4">Guardar</button>
                 </form>
             </div>
@@ -163,8 +127,3 @@ var form = document.getElementById("form-validation");
 
 </script>
 @endsection
-
-<!--
-<h6 class="alert alert-success" id="success" hidden>Las contraseñas coinciden!</h6>
-<h6 class="alert alert-danger" id="danger" hidden>Las contraseñas no coinciden!</h6>
--->

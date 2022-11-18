@@ -60,8 +60,18 @@
                 </div>
                 <div class="row-4 text-left">
                 @auth
-                    <a class="btn btn-primary" href="#">Editar perfil</a>
-                    <a class="btn btn-danger" href="/logout">Cerrar sesion</a>
+                    <div class="dropdown open">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Cuenta
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="triggerId">
+                            @if (auth()->user()->privilegio==1)
+                                <a class="dropdown-item" href="/datospostulante">Editar perfil</a>
+                            @endif
+                            <a class="dropdown-item bg-danger text-white" href="/logout">Cerrar sesion</a>
+                        </div>
+                    </div>
                 @endauth
                 @guest
                     <a class="btn btn-primary" href="/login">Ingresar</a>
