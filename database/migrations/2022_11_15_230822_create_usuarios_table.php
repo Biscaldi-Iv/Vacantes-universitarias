@@ -15,17 +15,18 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
-            $table->integer('iduser');
-            $table->tinyText('titulos');
-            $table->tinyText('experiencia');
-            $table->tinyText('con_asignatura');
-            $table->tinyText('disponibilidad');
-            $table->tinyText('congresos');
-            $table->text('publicaciones');
-            $table->text('con_profesionales');
-            $table->text('educacion');
-            $table->text('investigaciones');
+            $table->bigInteger('fkiduser')->unsigned();
+            $table->tinyText('titulos')->nullable();
+            $table->tinyText('experiencia')->nullable();
+            $table->tinyText('con_asignatura')->nullable();
+            $table->tinyText('disponibilidad')->nullable();
+            $table->tinyText('congresos')->nullable();
+            $table->text('publicaciones')->nullable();
+            $table->text('con_profesionales')->nullable();
+            $table->text('educacion')->nullable();
+            $table->text('investigaciones')->nullable();
             $table->timestamps();
+            $table->foreign('fkiduser')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
