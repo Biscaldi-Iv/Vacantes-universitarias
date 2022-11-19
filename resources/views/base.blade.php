@@ -67,7 +67,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="triggerId">
                             @if (auth()->user()->privilegio==1)
-                                <a class="dropdown-item" href="/datospostulante">Editar perfil</a>
+                                <a class="dropdown-item" href="/datospostulante">Editar perfil profesional</a>
                             @endif
                             <a class="dropdown-item bg-danger text-white" href="/logout">Cerrar sesion</a>
                         </div>

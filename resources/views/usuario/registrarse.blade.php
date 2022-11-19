@@ -24,35 +24,35 @@
                         <div class="col-sm-6 p-2">
                             <label for="nombre">Nombre</label>
                             <input type="text" class="form-control" name="nombre"
-                            minlength="2" placeholder="Primer nombre" required>
+                            minlength="2" placeholder="Primer nombre" value="{{ old('nombre') }}" required>
                         </div>
                         <div class="col-sm-6 p-2">
                             <label for="apellido">Apellido</label>
                             <input type="text" class="form-control" name="apellido"
-                            minlength="5" placeholder="Apellidos" required>
+                            minlength="5" placeholder="Apellidos" value="{{ old('apellido') }}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" name="email" placeholder="Email">
+                            <input type="text" class="form-control" name="email" value="{{ old('email') }}"
+                            placeholder="Email">
                         </div>
                         <div class="col-sm-6 p-2">
                             <label for="telefono">Teléfono</label>
                             <input type="number" class="form-control" name="telefono"
-                            minlength="7" placeholder="Teléfono" required>
+                            minlength="7" placeholder="Teléfono" value="{{ old('telefono') }}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
                             <label for="direccion">Dirección</label>
                             <input type="text" class="form-control" name="direccion"
-                            minlength="5" placeholder="direccion" required>
+                            minlength="5" placeholder="direccion" value="{{ old('direccion') }}" required>
                         </div>
                         <div class="col-sm-6 p-2" hidden>
                             <label for="privilegio">Privilegio</label>
-                            <input type="number" class="form-control"
-                            name="privilegio" value="1">
+                            <input type="number" class="form-control" name="privilegio" value="1">
                         </div>
                         <div class="col-sm-6 p-2">
                             <label for="ndoc">Documento</label>
@@ -63,20 +63,21 @@
                                 <option value="LE">LE</option>
                                 <option value="CI">CI</option>
                             </select>
-                            <input type="number" class="form-control" name="ndoc" required>
+                            <input type="number" class="form-control" name="ndoc" value="{{ old('ndoc') }}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
                             <label for="password">Contraseña</label>
-                            <input type="password" class="form-control" oninput="checkpass()"
-                            name="password" id="password" placeholder="contraseña" minlength="8" maxlength="16">
+                            <input type="password" class="form-control" oninput="checkpass()" name="password"
+                            value="{{ old('password') }}" id="password" placeholder="contraseña"
+                            minlength="8" maxlength="16">
                         </div>
                         <div class="col-sm-6 p-2">
                             <label for="password_confirmacion">Confirmar Contraseña</label>
                             <input type="password" class="form-control" oninput="checkpass()"
                             name="password_confirmacion" id="password_confirmacion" placeholder="contraseña"
-                            minlength="8" maxlength="16">
+                            value="{{ old('password_confirmacion') }}" minlength="8" maxlength="16">
                         </div>
                     </div>
                     <h6 class="alert alert-success" id="success" hidden></h6>

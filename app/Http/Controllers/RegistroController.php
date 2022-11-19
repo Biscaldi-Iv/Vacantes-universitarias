@@ -23,6 +23,8 @@ class RegistroController extends Controller
         $user = User::create($request->validated());
         Usuario::create(['fkiduser'=>$user->id]);
         auth()->login($user);
-        return redirect()->route('principal')->with('succes','Usuario creado! Se ha iniciado sesion automaticamente');
+        return redirect()->route('datospostulante')
+        ->with('succes','Usuario creado! Se ha iniciado sesion automaticamente. \n
+        Por favor ingrese la informacion de su perfil profesional');
     }
 }

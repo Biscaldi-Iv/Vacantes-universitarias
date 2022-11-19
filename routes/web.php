@@ -37,7 +37,7 @@ Route::get('/ordenmerito/detallemerito', function () {
     return view('meritos.detallemerito');
 });
 
-Route::get('/datospostulante', [PostulanteController::class, 'edit']);
+Route::get('/datospostulante', [PostulanteController::class, 'edit'])->name('datospostulante');
 
 Route::post('/datospostulante', [PostulanteController::class, 'save']);
 

@@ -15,6 +15,19 @@ class PostulanteController extends Controller
         if(!Auth::check()) {
             return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
         }
+        $postulante=DB::table('usuarios')->select(
+            'fkiduser',
+            'titulos',
+            'experiencia',
+            'con_asignatura',
+            'disponibilidad',
+            'congresos',
+            'educacion',
+            'publicaciones',
+            'investigaciones',
+            'con_profesionales'
+            )->where('fkiduser',auth()->user()->id)->first();
+        $request->session()->flash('postulante', $postulante);
         return view('usuario.datosPostulante');
     }
 
@@ -29,7 +42,7 @@ class PostulanteController extends Controller
             'disponibilidad'=>$request->disponibilidad,
             'congresos'=>$request->congresos,
             'educacion'=>$request->educacion,
-            'publicaciones'=>$request->publicacion,
+            'publicaciones'=>$request->publicaciones,
             'investigaciones'=>$request->investigaciones,
             'con_profesionales'=>$request->con_profesionales
         ]);

@@ -24,16 +24,15 @@ class PostulanteRequest extends FormRequest
     public function rules()
     {
         return [
-            //'email' => 'required|unique:users,email',
-            'password' => 'required|min:8',
-            'password_confirmacion'=>'required|same:password',
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'direccion' => 'required',
-            'privilegio' => 'required',
-            'telefono'=>'required',
-            'tipodoc'=>'required',
-            'ndoc'=>'required',
+            'titulos' => 'string|nullable',
+            'experiencia'=>'string|nullable',
+            'con_asignatura' => 'string|nullable',
+            'disponibilidad' => 'string|nullable',
+            'congresos' => 'string|nullable',
+            'educacion' => 'string|nullable',
+            'publicaciones'=>'string|nullable',
+            'investigaciones'=>'string|nullable',
+            'con_profesionales'=>'string|nullable',
         ];
     }
 }

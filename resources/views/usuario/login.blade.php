@@ -18,7 +18,8 @@
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Correo electronico</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Correo electronico">
+                <input type="email" class="form-control" name="email" id="email"
+                value="{{ old('email') }}" placeholder="Correo electronico">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
