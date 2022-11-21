@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('direccionUniversidad');
             $table->string('telefono');
             $table->string('emailRRHH');
+            $table->string('sitioWeb');
             $table->timestamps();
         });
     }

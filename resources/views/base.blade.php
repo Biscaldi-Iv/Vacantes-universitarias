@@ -54,7 +54,7 @@
             <div class="container">
                 <div class="row-6 text-center">
                     <a class="navbar-brand" href="/">Inicio</a>
-                    <a class="navbar-brand" href="#">Universidades</a>
+                    <a class="navbar-brand" href="/universidades">Universidades</a>
                     <a class="navbar-brand" href="/vacantes">Vacantes actuales</a>
                     <a class="navbar-brand" href="/faq">Preguntas frecuentes</a>
                 </div>

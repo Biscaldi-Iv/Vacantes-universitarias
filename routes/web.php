@@ -5,6 +5,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostulanteController;
+use App\Http\Controllers\UniversidadesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,14 @@ Route::get('/registrarse', function () {
 })->name('registrarse');
 
 Route::post('/registrarse', [RegistroController::class, 'register']);
+
+Route::get('/universidades', [UniversidadesController::class, 'show'])->name('universidades');
+
+Route::post('/universidades/crear', [UniversidadesController::class, 'create']);
+
+Route::post('/universidades/actualizar', [UniversidadesController::class, 'update']);
+
+Route::post('/universidades/borrar', [UniversidadesController::class, 'delete']);
 
 Route::get('/ordenmerito/detallemerito', function () {
     return view('meritos.detallemerito');

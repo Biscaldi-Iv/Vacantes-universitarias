@@ -9,10 +9,11 @@ class Universidad extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'fkidUniversidad',
+        'idUniversidad',
         'nombreUniversidad',
         'direccionUniversidad',
         'telefono',
-        'emailRRHH'
+        'emailRRHH',
+        'sitioWeb'
     ];
 }

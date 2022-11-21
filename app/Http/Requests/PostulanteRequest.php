@@ -32,7 +32,7 @@ class PostulanteRequest extends FormRequest
             'educacion' => 'string|nullable',
             'publicaciones'=>'string|nullable',
             'investigaciones'=>'string|nullable',
-            'con_profesionales'=>'string|nullable',
+            'con_profesionales'=>'string|nullable'
         ];
     }
 }
