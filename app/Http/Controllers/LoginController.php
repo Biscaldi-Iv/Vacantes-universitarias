@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\PersonalUniversidad;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +24,10 @@ class LoginController extends Controller
         }
         $user=Auth::getProvider()->retrieveByCredentials($credenciales);
         Auth::login($user);
+        if(auth()->user()->privilegio==2){
+            $p=PersonalUniversidad::where('fkIdUser', auth()->user()->id)->select()->first();
+            session(['universidad'=>$p->fkIdUni]);
+        }
         return redirect()->route('principal')->with('succes','Se ha iniciado sesion!');
     }
 }

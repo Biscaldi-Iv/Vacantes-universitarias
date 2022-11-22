@@ -7,7 +7,13 @@
 @section('breadcrumb')
     <p>
         /<a class="breadcrumb"href="/">Página principal</a>
+        @guest
         /<a class="breadcrumb"href="/registrarse">Registrarse</a>
+        @endguest
+        @auth
+        /<a class="breadcrumb"href="/admin/registrar">Registrar usuarios con privilegio</a>
+        @endauth
+
     </p>
 @endsection
 
@@ -18,7 +24,14 @@
         </div>
         <div class="row p-2 ">
             <div class="col-md-10 mx-auto ">
-                <form method="POST" action="/registrarse" id="form-validation">
+                @auth
+                @if(auth()->user()->privilegio==3)
+                    <form method="POST" action="/admin/registrar" id="form-validation">
+                @endif
+                @endauth
+                @guest
+                   <form method="POST" action="/registrarse" id="form-validation">
+                @endguest
                     @csrf
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
@@ -44,15 +57,38 @@
                             minlength="7" placeholder="Teléfono" value="{{ old('telefono') }}" required>
                         </div>
                     </div>
+                    @auth
+                    @if (auth()->user()->privilegio==3)
+                    <div class="form-group row">
+                        <div class="col-sm-6 p-2">
+                            <label for="privilegio">Privilegio</label>
+                            <select name="privilegio" class="form-select form-select-lg" onchange="cambiar(this)">
+                                <option value="1" selected>Usuario</option>
+                                <option value="2">Personal universitario</option>
+                                <option value="3">Administrator</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 p-2" id="selUni" hidden>
+                            <label for="fkIdUni" class="form-label">Universidad</label>
+                            <select class="form-select form-select-lg" name="fkIdUni" id="fkIdUni">
+                                @foreach ($universidades as $u)
+                                <option value="{{ $u->idUniversidad }}">{{ $u->nombreUniversidad }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    @endif
+                    @endauth
+
+                    @guest
+                    <input type="number" name="privilegio" value="1" hidden>
+                    @endguest
+
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
                             <label for="direccion">Dirección</label>
                             <input type="text" class="form-control" name="direccion"
                             minlength="5" placeholder="direccion" value="{{ old('direccion') }}" required>
-                        </div>
-                        <div class="col-sm-6 p-2" hidden>
-                            <label for="privilegio">Privilegio</label>
-                            <input type="number" class="form-control" name="privilegio" value="1">
                         </div>
                         <div class="col-sm-6 p-2">
                             <label for="ndoc">Documento</label>
@@ -125,6 +161,17 @@ var form = document.getElementById("form-validation");
       //c2.parentNode.removeChild(c2);
     }, false);
 
-
+@auth
+@if(auth()->user()->privilegio==3)
+function cambiar(sel){
+    console.log("cambiar");
+    if(sel.value==2){
+        document.getElementById("selUni").hidden=false;
+    } else {
+        document.getElementById("selUni").hidden=true;
+    }
+}
+@endif
+@endauth
 </script>
 @endsection

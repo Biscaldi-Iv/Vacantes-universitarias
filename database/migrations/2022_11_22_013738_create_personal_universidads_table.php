@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('catedras', function (Blueprint $table) {
-            $table->id('idCatedra');
-            $table->bigInteger('fkIdUniversidad', false, true);
-            $table->string('nombreCatedra');
-            $table->text('descripcion')->nullable();
-            $table->foreign('fkIdUniversidad')->references('idUniversidad')->on('universidads')
+        Schema::create('personal_universidads', function (Blueprint $table) {
+            $table->id('idUP');
+            $table->bigInteger('fkIdUser')->unsigned();
+            $table->bigInteger('fkIdUni')->unsigned();
+            $table->foreign('fkIdUser')->references('id')->on('users')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('fkIdUni')->references('idUniversidad')->on('universidads')
             ->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('catedras');
+        Schema::dropIfExists('personal_universidads');
     }
 };

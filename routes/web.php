@@ -28,11 +28,13 @@ Route::post('/login', [LoginController::class,'login']);
 
 Route::get('/logout', [LogoutController::class,'logout']);
 
-Route::get('/registrarse', function () {
-    return view('usuario.registrarse');
-})->name('registrarse');
+Route::get('/registrarse', [RegistroController::class, 'show'])->name('registrarse');
 
 Route::post('/registrarse', [RegistroController::class, 'register']);
+
+Route::get('/admin/registrar', [RegistroController::class, 'showAdmin'])->name('ADMINregister');
+
+Route::post('/admin/registrar', [RegistroController::class, 'createAdmin']);
 
 Route::get('/universidades', [UniversidadesController::class, 'show'])->name('universidades');
 

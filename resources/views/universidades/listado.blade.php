@@ -12,11 +12,16 @@
 @endsection
 
 @section('contenido')
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg left" data-bs-toggle="modal"
-data-bs-target="#modalU" onClick="crear()">
-  Registrar universidad
-</button>
+
+@if (auth()->user()->privilegio==3)
+<div class="row-4 my-3">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+    data-bs-target="#modalU" onClick="crear()">
+    Registrar universidad
+    </button>
+</div>
+@endif
 
 <div class="table-responsive">
     <table class="table table-striped table-hover table-borderless table-light align-middle"

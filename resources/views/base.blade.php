@@ -58,6 +58,23 @@
                     <a class="navbar-brand" href="/vacantes">Vacantes actuales</a>
                     <a class="navbar-brand" href="/faq">Preguntas frecuentes</a>
                 </div>
+                @auth
+                    @if(auth()->user()->privilegio==3)
+                    <div class="row-2 text-left">
+                        <div class="dropdown open">
+                            <a class="navbar-brand" type="button" id="triggerUsu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Usuarios
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="triggerUsu">
+                                <a class="dropdown-item" href="/admin/registrar">
+                                    Registrar usuario con privilegio
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                @endauth
                 <div class="row-4 text-left">
                 @auth
                     <div class="dropdown open">

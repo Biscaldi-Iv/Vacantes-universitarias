@@ -21,7 +21,7 @@ class UniversidadesController extends Controller
     }
 
     public function create(UniversidadesRequest $request) {
-        if(!Auth::check()) {
+        if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
         }
         Universidad::create($request->validated());
@@ -29,7 +29,7 @@ class UniversidadesController extends Controller
     }
 
     public function update(UniversidadesRequest $request) {
-        if(!Auth::check()) {
+        if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
         }
         $idU=$request->validate(['idUniversidad'=>'required|integer|min:1']);
@@ -39,7 +39,7 @@ class UniversidadesController extends Controller
     }
 
     public function delete(Request $request) {
-        if(!Auth::check()) {
+        if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
         }
         $idU=$request->validate(['idUniversidad'=>'required|integer|min:1']);

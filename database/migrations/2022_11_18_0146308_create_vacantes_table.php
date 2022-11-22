@@ -23,7 +23,8 @@ return new class extends Migration
             $table->tinyText('horarioJornada');
             $table->dateTime('fechaPublicacion');
             $table->dateTime('fechaCierre');
-            $table->foreign('fkIdCatedra')->references('idCatedra')->on('catedras')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('fkIdCatedra')->references('idCatedra')->on('catedras')
+            ->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }
