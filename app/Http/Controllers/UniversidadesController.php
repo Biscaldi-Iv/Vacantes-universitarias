@@ -13,9 +13,6 @@ use App\Models\Universidad;
 class UniversidadesController extends Controller
 {
     public function show(Request $request) {
-        if(!Auth::check()) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
-        }
         $universidades=Universidad::all();
         return view('universidades.listado',['universidades'=>$universidades]);
     }

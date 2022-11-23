@@ -6,6 +6,8 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostulanteController;
 use App\Http\Controllers\UniversidadesController;
+use App\Http\Controllers\CatedrasController;
+use App\Http\Controllers\VacanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,8 @@ Route::get('/', function () {
     return view('principal.index');
 })->name('principal');
 
+// Usuario
+
 Route::get('/login', [LoginController::class,'show']);
 
 Route::post('/login', [LoginController::class,'login']);
@@ -36,6 +40,18 @@ Route::get('/admin/registrar', [RegistroController::class, 'showAdmin'])->name('
 
 Route::post('/admin/registrar', [RegistroController::class, 'createAdmin']);
 
+// Catedras
+
+Route::get('/catedrasU', [CatedrasController::class, 'show'])->name('catedrasU');
+
+Route::post('/universidades/catedrasU/crear', [CatedrasController::class, 'create']);
+
+Route::post('/universidades/catedrasU/actualizar',[CatedrasController::class, 'update']);
+
+Route::post('/universidades/catedrasU/borrar',[CatedrasController::class, 'delete']);
+
+// Universidades
+
 Route::get('/universidades', [UniversidadesController::class, 'show'])->name('universidades');
 
 Route::post('/universidades/crear', [UniversidadesController::class, 'create']);
@@ -44,6 +60,16 @@ Route::post('/universidades/actualizar', [UniversidadesController::class, 'updat
 
 Route::post('/universidades/borrar', [UniversidadesController::class, 'delete']);
 
+// Vacantes
+
+Route::get('/vacantes/registrovacante', [VacanteController::class, 'showcreate'])->name('crearvacante');
+
+Route::post('/vacantes/crear', [VacanteController::class, 'create']);
+
+
+
+// Postulante
+
 Route::get('/ordenmerito/detallemerito', function () {
     return view('meritos.detallemerito');
 });
@@ -51,6 +77,8 @@ Route::get('/ordenmerito/detallemerito', function () {
 Route::get('/datospostulante', [PostulanteController::class, 'edit'])->name('datospostulante');
 
 Route::post('/datospostulante', [PostulanteController::class, 'save']);
+
+// FAQ
 
 Route::get('/faq', function () {
     return view('info.FAQ');
@@ -64,11 +92,4 @@ Route::get('/ordenmerito', function () {
     return view('meritos.ordenmerito');
 });
 
-Route::get('/vacantes/registrovacante', function () {
-    return view('vacantes.registrovacante');
-});
-
-Route::get('/vacantes', function () {
-    return view('vacantes.vacantes');
-});
 

@@ -13,6 +13,7 @@
 
 @section('contenido')
 
+@auth
 @if (auth()->user()->privilegio==3)
 <div class="row-4 my-3">
     <!-- Button trigger modal -->
@@ -22,6 +23,7 @@
     </button>
 </div>
 @endif
+@endauth
 
 <div class="table-responsive">
     <table class="table table-striped table-hover table-borderless table-light align-middle"
@@ -32,10 +34,12 @@
                 <th>Universidad</th>
                 <th>Contacto</th>
 
+                @auth
                 @if (auth()->user()->privilegio==3)
                 <th><!--editar--></th>
                 <th><!--eliminar--></th>
                 @endif
+                @endauth
 
             </tr>
             </thead>
@@ -55,7 +59,7 @@
                             Email: <a href="mailto:{{ $u->emailRRHH }}">{{ $u->emailRRHH }}</a>
                         </p>
                     </td>
-
+                    @auth
                     @if (auth()->user()->privilegio==3)
 
                     <td>
@@ -76,6 +80,7 @@
                     </td>
 
                     @endif
+                    @endauth
                 </tr>
 
             @endforeach
@@ -145,6 +150,7 @@
 @endsection
 
 @section('scripts')
+@auth
 @if (auth()->user()->privilegio==3)
 <script>
     function crear(){
@@ -204,4 +210,5 @@
     }
 </script>
 @endif
+@endauth
 @endsection
