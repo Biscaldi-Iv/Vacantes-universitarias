@@ -21,8 +21,7 @@ return new class extends Migration
             $table->text('descCompleta');
             $table->tinyText('titulosRequeridos');
             $table->tinyText('horarioJornada');
-            $table->dateTime('fechaPublicacion');
-            $table->dateTime('fechaCierre');
+            $table->dateTime('fechaLimite');
             $table->foreign('fkIdCatedra')->references('idCatedra')->on('catedras')
             ->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();

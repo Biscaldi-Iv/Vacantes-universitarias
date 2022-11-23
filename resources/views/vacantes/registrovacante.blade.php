@@ -18,44 +18,78 @@
     </div>
     <div class="row p-2 ">
         <div class="col-md-10 mx-auto ">
-            <form>
+            <form action="/vacantes/crear" method="POST">
+            @csrf
                 <!-- Falta cambiar los id -->
                 <div class="form-group row">
                     <div class="col-sm-6 p-2">
-                        <label for="inputFirstname">Título vacante</label>
-                        <input type="text" class="form-control" id="inputFirstname"
-                        placeholder="Análisis matemático I">
+                        <label for="tituloVacante">Título vacante</label>
+                        <input type="text" class="form-control" id="tituloVacante"
+                        name="tituloVacante" required
+                        placeholder="Ej: Profesor de xx">
+
+                        <input type="number"
+                        class="form-control" name="fkIdUniversidad"
+                        id="fkIdUniversidad" value="{{ $idUniversidad }}" hidden>
                     </div>
                     <div class="col-sm-6 p-2">
-                        <!-- Podría ser un droplist -->
-                        <label for="inputFirstname">Universidad</label>
-                        <input type="text" class="form-control" id="inputFirstname"
-                        placeholder="Universidad Tecnológica nacional">
+                        <label for="fkIdCatedra">Cátedra</label>
+                        <select class="form-select" name="fkIdCatedra" id="fkIdCatedra">
+                        @foreach ($catedras as $c)
+                            <option value="{{ $c->idCatedra }}">{{ $c->nombreCatedra }}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12 p-2">
+                        <label for="descCorta">Breve destripción</label>
+                        <textarea class="form-control" name="descCorta" id="descCorta" rowspan="5" required
+                        placeholder="Breve descripción sobre el puesto a cubrir"></textarea>
+                    </div>
+                    <div class="col-sm-12 p-2">
+                        <label for="descCompleta">Descripcion completa</label>
+                        <textarea class="form-control" id="descCompleta" name="descCompleta" required rowspan="10"
+                        placeholder="Descripción ampliada del puesto (sugerencia: incluir responsabilidades)"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 p-2">
-                        <label for="inputLastname">Título</label>
-                        <input type="text" class="form-control" id="inputLastname"
-                        placeholder="Profesor de matemática universitaria">
+                        <label for="titulosRequeridos">Títlulos Requerido</label>
+                        <textarea class="form-control"
+                        id="titulosRequeridos" rowspan="3"
+                        name="titulosRequeridos" placeholder="Ej: Ingenieria en xx" required></textarea>
                     </div>
                     <div class="col-sm-6 p-2">
-                        <label for="inputCity">Horario</label>
-                        <input type="text" class="form-control" id="inputCity"
-                        placeholder="Lunes y miércoles de 7:15 a 9:00">
+                        <label for="horarioJornada">Horario</label>
+                        <textarea class="form-control" id="horarioJornada" rowspan="3" name="horarioJornada"
+                        placeholder="Ej: Lunes y miércoles de 7:15 a 9:00" required></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 p-2">
-                        <label for="email">Periodo</label>
-                        <input type="text" class="form-control" id="inputEmail" placeholder="3 meses">
-                    </div>
-                    <div class="col-sm-6 p-2">
-                        <label for="inputContactNumber">Otros</label>
-                        <input type="number" class="form-control" id="inputContactNumber" placeholder="Más info">
+                        <label for="fechaLimite">Fecha de límite de postulaciones</label>
+                        <!-- <input size="16" type="text" name="event_datetime" class="form-control" id="form_datetime" readonly> -->
+                        <!--script type="text/javascript">
+                        $(function () {
+                            var today = new Date();
+                            var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                            var time = today.getHours() + ":" + today.getMinutes();
+                            var dateTime = date+' '+time;
+                            $("#form_datetime").datetimepicker({
+                                format: 'yyyy-mm-dd hh:ii',
+                                autoclose: true,
+                                todayBtn: true,
+                                startDate: dateTime
+                            });
+                        });
+                        </script-->
+
+                        <input type="datetime-local"
+                        class="form-control" name="fechaLimite" id="fechaLimite">
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary px-4">Guardar</button>
+                <button type="submit" class="btn btn-primary px-4">Guardar</button>
             </form>
         </div>
     </div>
@@ -63,3 +97,4 @@
 
 @section('scripts')
 @endsection
+

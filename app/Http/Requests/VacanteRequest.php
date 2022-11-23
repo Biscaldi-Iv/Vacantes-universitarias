@@ -24,15 +24,13 @@ class VacanteRequest extends FormRequest
     public function rules()
     {
         return [
-        'idVacante' => 'required',
-        'idCatedra' => 'required',
-        'tituloVacante' => 'required',
-        'descCorta',
-        'descCompleta' => 'required',
+        'fkIdCatedra' => 'required|integer',
+        'tituloVacante' => 'required|string',
+        'descCorta' => 'string|nullable',
+        'descCompleta' => 'required|string',
         'titulosRequeridos' => 'required',
         'horarioJornada' => 'required',
-        'fechaPublicacion' => 'required',
-        'fechaCierra' => 'required',
+        'fechaLimite' => 'required'
         ];
     }
 }

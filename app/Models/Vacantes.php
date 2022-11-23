@@ -16,7 +16,6 @@ class Vacantes extends Model
         'descCompleta',
         'titulosRequeridos',
         'horarioJornada',
-        'fechaPublicacion',
-        'fechaCierre'
+        'fechaLimite'
     ];
 }
