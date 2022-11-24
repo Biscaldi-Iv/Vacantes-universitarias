@@ -11,6 +11,7 @@
         /<a class="breadcrumb"href="/registrarse">Registrarse</a>
         @endguest
         @auth
+        /<a class="breadcrumb"href="/admin/usuarios">Usuarios</a>
         /<a class="breadcrumb"href="/admin/registrar">Registrar usuarios con privilegio</a>
         @endauth
 

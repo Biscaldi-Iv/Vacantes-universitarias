@@ -33,10 +33,18 @@ class RegistroController extends Controller
 
     public function showAdmin(){
         if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
-            return redirect()->route('principal')->with('success','Usted ya ha iniciado sesion!');
+            return redirect()->route('principal')->with('error','Usted no tiene permiso para acceder a esta pagina!');
         }
         $universidades=Universidad::all();
         return view('usuario.registrarse', ['universidades'=>$universidades]);
+    }
+
+    public function listadoUsuarios() {
+        if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
+            return redirect()->route('principal')->with('error','Usted no tiene permiso para acceder a esta pagina');
+        }
+        $usuarios=User::all();
+        return view('usuario.usuarios', ['usuarios'=>$usuarios]);
     }
 
     public function createAdmin(RegistroRequest $request){

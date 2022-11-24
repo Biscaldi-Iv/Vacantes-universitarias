@@ -28,6 +28,8 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class,'show']);
 
+Route::get('/admin/usuarios', [RegistroController::class, 'listadoUsuarios']);
+
 Route::post('/login', [LoginController::class,'login']);
 
 Route::get('/logout', [LogoutController::class,'logout']);
