@@ -12,7 +12,7 @@
         @endguest
         @auth
         /<a class="breadcrumb"href="/admin/usuarios">Usuarios</a>
-        /<a class="breadcrumb"href="/admin/registrar">Registrar usuarios con privilegio</a>
+        /<a class="breadcrumb"href="/admin/usuarios/registrar">Registrar usuarios con privilegio</a>
         @endauth
 
     </p>
@@ -27,7 +27,7 @@
             <div class="col-md-10 mx-auto ">
                 @auth
                 @if(auth()->user()->privilegio==3)
-                    <form method="POST" action="/admin/registrar" id="form-validation">
+                    <form method="POST" action="/admin/usuarios/registrar" id="form-validation">
                 @endif
                 @endauth
                 @guest

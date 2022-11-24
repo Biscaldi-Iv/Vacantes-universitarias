@@ -8,6 +8,7 @@ use App\Http\Controllers\PostulanteController;
 use App\Http\Controllers\UniversidadesController;
 use App\Http\Controllers\CatedrasController;
 use App\Http\Controllers\VacanteController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,11 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class,'show']);
 
-Route::get('/admin/usuarios', [RegistroController::class, 'listadoUsuarios']);
+Route::get('/admin/usuarios', [AdminController::class, 'showUsers'])->name('listadoUsuarios');
+
+Route::post('/admin/usuarios/actualizar', [AdminController::class, 'updateUser']);
+
+Route::post('/admin/usuarios/borrar', [AdminController::class, 'deleteUser']);
 
 Route::post('/login', [LoginController::class,'login']);
 
@@ -38,9 +43,9 @@ Route::get('/registrarse', [RegistroController::class, 'show'])->name('registrar
 
 Route::post('/registrarse', [RegistroController::class, 'register']);
 
-Route::get('/admin/registrar', [RegistroController::class, 'showAdmin'])->name('ADMINregister');
+Route::get('/admin/usuarios/registrar', [AdminController::class, 'showUserCreate'])->name('ADMINregister');
 
-Route::post('/admin/registrar', [RegistroController::class, 'createAdmin']);
+Route::post('/admin/usuarios/registrar', [AdminController::class, 'createAdmin']);
 
 // Catedras
 
