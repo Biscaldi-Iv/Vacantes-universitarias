@@ -85,14 +85,17 @@ class AdminController extends Controller
             if($pu != null){
                 PersonalUniversidad::where('fkIdUser', $id)->update($pudata);
             } else {
-                PersonalUniversidad::create([
-                    'fkIdUser' => $request->id,
-                    'fkIdUni' => $request->fkIdUni
-                ]);
-
+            PersonalUniversidad::create([
+                'fkIdUser' => $request->id,
+                'fkIdUni' => $request->fkIdUni
+            ]);
             }
             
-        DB::commit();
+            DB::commit();
+
+        } elseif($request->privilegio==1){
+            $pudata=$request->validate(['fkIdUni'=>'required|integer']);
+            PersonalUniversidad::where('fkIdUser', $id)->delete();
         }
         
         User::where('id', $id)->update($data);
