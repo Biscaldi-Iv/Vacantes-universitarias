@@ -26,7 +26,7 @@
                 <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
             </div>
             <button type="submit" class="btn btn-primary w-100">Iniciar sesion</button>
-            <button type="button" class="btn btn-white w-100">Registrarse</button>
+            <a class="btn btn-light w-100" name="registrarse" href="/registrarse">Registrarse</a>
         </form>
     </div>
 @endsection

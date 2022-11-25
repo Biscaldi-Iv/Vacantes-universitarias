@@ -87,8 +87,8 @@
                     </div>
                 @endauth
                 @guest
-                    <a class="btn btn-primary" href="/login">Ingresar</a>
-                    <a class="btn btn-secondary" href="/registrarse">Registrarse</a>
+                    <a class="btn btn-primary" name="login" href="/login">Ingresar</a>
+                    <a class="btn btn-secondary" name="registrarse" href="/registrarse">Registrarse</a>
                 @endguest
                 </div>
             </div>

@@ -7,12 +7,13 @@
 @section('breadcrumb')
     <p>
         /<a class="breadcrumb"href="/">Página principal</a>
-        /<a class="breadcrumb"href="/vacantes">Vacantes</a>
-        /<a class="breadcrumb"href="/vacantes/infovacante">"Nombre de vacante"</a>
+        /<a class="breadcrumb"href="/vacantes/infovacante">"Vacante Actual"</a>
     </p>
 @endsection
 
 @section('contenido')
+
+
     <div class="col-xl-8 p-2">
         <h2 class="fw-bold text-left my-3">Vacante XXX</h2>
     </div>

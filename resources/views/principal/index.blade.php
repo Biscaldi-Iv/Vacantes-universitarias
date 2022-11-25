@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="col-md-auto p-2">
                                     @guest
-                                    <a type="button" class="btn btn-outline-primary" href="/infovacante/{{ $v->idVacante }}">
+                                    <a type="button" class="btn btn-outline-primary" href="/login">
                                         Postularse <span class="badge badge-light">+Info</span>
                                     </a>
                                     @endguest
