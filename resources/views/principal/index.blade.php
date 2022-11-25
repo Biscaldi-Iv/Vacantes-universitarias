@@ -12,12 +12,6 @@
 
 @section('contenido')
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg"
-    data-bs-toggle="modal" data-bs-target="#modalId" onclick="registrar()">
-      Registrar
-    </button>
-
-
     <div class="col p-2">
         <div class="input-group">
             <form>
@@ -29,6 +23,10 @@
     </div>
     @auth
     @if(auth()->user()->privilegio==2)
+    <button type="button" class="btn btn-primary btn-lg"
+    data-bs-toggle="modal" data-bs-target="#modalId" onclick="registrar()">
+      Registrar
+    </button>
     <a class="btn btn-outline-primary">Agregar Vacante</a>
     @endif
     @endauth

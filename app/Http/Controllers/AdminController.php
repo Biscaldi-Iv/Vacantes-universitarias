@@ -75,10 +75,20 @@ class AdminController extends Controller
             'tipodoc'=>'required',
             'ndoc'=>'required'
         ]);
+        $data['password']=Hash::make($request['password']);
         if($request->privilegio==2){
             //ver si ya era privilegio 2 y actualizar uni
             //o asignarla
+            DB::beginTransaction();
+            $pudata=$request->validate(['fkIdUni'=>'required|integer']);
+            PersonalUniversidad::create([
+                'fkIdUser' => $request->id,
+                'fkIdUni' => $request->fkIdUni
+            ]);
+            
+        DB::commit();
         }
+        
         User::where('id', $id)->update($data);
         return redirect()->route('listadoUsuarios')
         ->with('success',"Se actualizaron los datos del usuario!");
