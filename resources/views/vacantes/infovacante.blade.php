@@ -67,11 +67,17 @@
 
             @auth
             @if(auth()->user()->privilegio==1)
-            <form method="post" action="vacantes/postularse">
+            <form method="post" action="/vacantes/postularse">
                 @csrf
                 <div class="form-floating mb-3 " hidden>
                     <label for="idVacante">Id Vacante</label>
-                    <input type="number" class="form-control" name="idVacante" id="idVacante" placeholder="Id de la vacante">
+                    <input type="number" class="form-control" name="idVacante" id="idVacante"
+                    placeholder="Id de la vacante" value="{{ $vacante->idVacante }}">
+                </div>
+                <div class="form-floating mb-3 " hidden>
+                    <label for="id">Id Usuario</label>
+                    <input type="number" class="form-control" name="id" id="id"
+                    placeholder="Id de la vacante" value="{{ $request->user()->usuario->id }}">
                 </div>
                 <div style="text-align:end;">
                     <button type="sumbit" class="btn btn-primary">Postularse</button>

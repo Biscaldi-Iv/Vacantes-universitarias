@@ -24,9 +24,20 @@ class Postulacion extends Model
         'disponibilidad',
         'entrevista',
         'sueldo',
-        'ant_penales',
-        'relaciones_uni',
-        'investigaciones',
+        'investigaciones'
+    ];
+
+    protected $attributes=[
+        'titulo'=>0,
+        'experiencia'=>0,
+        'con_asignatura'=>0,
+        'publicaciones'=>0,
+        'congresos'=>0,
+        'actitud'=>0,
+        'disponibilidad'=>0,
+        'entrevista'=>0,
+        'sueldo'=>0,
+        'investigaciones'=>0
     ];
 
     public function usuario()
