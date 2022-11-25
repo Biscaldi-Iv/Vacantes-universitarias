@@ -23,7 +23,7 @@
     table-hover
     table-borderless
     table-light
-    align-middle">
+    align-middle" aria-label="Listado de usuarios">
         <thead class="table-light">
             <caption>Listado de usuarios</caption>
             <tr>

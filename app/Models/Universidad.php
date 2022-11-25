@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Catedra;
 
 class Universidad extends Model
 {
@@ -16,4 +17,9 @@ class Universidad extends Model
         'emailRRHH',
         'sitioWeb'
     ];
+
+    public function catedras()
+    {
+        return $this->hasMany(Catedra::class, 'fkIdUniversidad', 'idUniversidad');
+    }
 }

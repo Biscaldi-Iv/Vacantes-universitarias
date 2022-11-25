@@ -9,6 +9,7 @@ use App\Http\Controllers\UniversidadesController;
 use App\Http\Controllers\CatedrasController;
 use App\Http\Controllers\VacanteController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,7 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('principal.index');
-})->name('principal');
+Route::get('/', [PublicController::class, 'index'])->name('principal');
 
 // Usuario
 
@@ -69,11 +68,13 @@ Route::post('/universidades/borrar', [UniversidadesController::class, 'delete'])
 
 // Vacantes
 
-Route::get('/vacantes/registrovacante', [VacanteController::class, 'showcreate'])->name('crearvacante');
+//Route::get('/vacantes/nuevo', [VacanteController::class, 'showcreate'])->name('crearvacante');
 
-Route::post('/vacantes/crear', [VacanteController::class, 'create']);
+Route::post('/vacantes/registrar', [VacanteController::class, 'create']);
 
+Route::post('/vacantes/editar', [VacanteController::class, 'update']);
 
+Route::post('/vacantes/eliminar', [VacanteController::class, 'delete']);
 
 // Postulante
 

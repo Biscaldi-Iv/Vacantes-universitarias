@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vacantes', function (Blueprint $table) {
-            $table->id();
+            $table->id('idVacante');
             $table->bigInteger('fkIdCatedra')->unsigned();
             $table->string('tituloVacante');
             $table->text('descCorta');

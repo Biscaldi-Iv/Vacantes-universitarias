@@ -32,8 +32,8 @@ return new class extends Migration
             $table->integer('relacion_uni');
             $table->integer('investigaciones');
             $table->timestamps();
-            $table->foreign('fkIdUsuario')->references('id')->on('usuarios')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreign('fkIdVacante')->references('id')->on('vacantes')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('fkIdUsuario')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('fkIdVacante')->references('idVacante')->on('vacantes')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
