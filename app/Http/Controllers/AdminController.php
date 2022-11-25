@@ -81,10 +81,16 @@ class AdminController extends Controller
             //o asignarla
             DB::beginTransaction();
             $pudata=$request->validate(['fkIdUni'=>'required|integer']);
-            PersonalUniversidad::create([
-                'fkIdUser' => $request->id,
-                'fkIdUni' => $request->fkIdUni
-            ]);
+            $pu = PersonalUniversidad::where('fkIdUser', $id)->first();
+            if($pu != null){
+                PersonalUniversidad::where('fkIdUser', $id)->update($pudata);
+            } else {
+                PersonalUniversidad::create([
+                    'fkIdUser' => $request->id,
+                    'fkIdUni' => $request->fkIdUni
+                ]);
+
+            }
             
         DB::commit();
         }

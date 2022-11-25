@@ -11,7 +11,7 @@
 @endsection
 
 @section('contenido')
-    <!-- Button trigger modal -->
+   
     <div class="col p-2">
         <div class="input-group">
             <form>
@@ -23,11 +23,11 @@
     </div>
     @auth
     @if(auth()->user()->privilegio==2)
-    <button type="button" class="btn btn-primary btn-lg"
+     <!-- Button trigger modal -->
+     <button type="button" class="btn btn-outline-primary btn-lg"
     data-bs-toggle="modal" data-bs-target="#modalId" onclick="registrar()">
-      Registrar
+      Agregar Vacante
     </button>
-    <a class="btn btn-outline-primary">Agregar Vacante</a>
     @endif
     @endauth
     <div class="table-responsive">
