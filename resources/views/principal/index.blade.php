@@ -11,7 +11,7 @@
 @endsection
 
 @section('contenido')
-   
+
     <div class="col p-2">
         <div class="input-group">
             <form>
@@ -71,14 +71,14 @@
                                 </div>
                                 <div class="col-md-auto p-2">
                                     @guest
-                                    <a type="button" class="btn btn-outline-primary" href="/login">
+                                    <a type="button" class="btn btn-primary" href="/vacantes/infovacante/{{ $v->idVacante }}">
                                         Postularse <span class="badge badge-light">+Info</span>
                                     </a>
                                     @endguest
                                     @auth
                                     @if(auth()->user()->privilegio==1)
                                     <!--abrir modal-->
-                                    <a type="button" class="btn btn-outline-primary" href="/infovacante/{{ $v->idVacante }}">
+                                    <a type="button" class="btn btn-primary" href="/vacantes/infovacante/{{ $v->idVacante }}">
                                         Postularse <span class="badge badge-light">+Info</span>
                                     </a>
                                     @endif

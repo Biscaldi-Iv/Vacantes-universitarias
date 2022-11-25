@@ -39,4 +39,16 @@ class VacanteController extends Controller
         return redirect()->route('principal')
         ->with('success',"Se eliminaron los datos de la vacante $request->tituloVacante!");
     }
+
+    public function info(int $idVacante){
+        try{
+            $vac = Vacantes::where('idVacante', $idVacante)->select()->first();
+            return view('vacantes.infovacante', ['vacante'=>$vac]);
+        } catch(Throwable $e){
+            report($e);
+            return false;
+            //return redirect()->to('')->with('error','Se ha producido un error!');
+        }
+
+    }
 }

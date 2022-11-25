@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\Models\Usuario;
 
-class Usuario extends User
+class Postulacion extends Model
 {
     use HasFactory;
 
@@ -14,8 +14,8 @@ class Usuario extends User
         'idPostulacion',
         'fkIdUsuario',
         'fkIdVacante',
-        'fechaPostulcin',
-        'titu',
+        'fechaPostulacion',
+        'titulo',
         'experiencia',
         'con_asignatura',
         'publicaciones',
@@ -28,4 +28,10 @@ class Usuario extends User
         'relaciones_uni',
         'investigaciones',
     ];
+
+    public function usuario()
+    {
+        return $this->hasOne(Usuario::class,'fkIdUsuario','id');
+    }
+
 }

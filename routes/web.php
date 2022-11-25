@@ -10,6 +10,7 @@ use App\Http\Controllers\CatedrasController;
 use App\Http\Controllers\VacanteController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\PostulacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +77,12 @@ Route::post('/vacantes/editar', [VacanteController::class, 'update']);
 
 Route::post('/vacantes/eliminar', [VacanteController::class, 'delete']);
 
-Route::get('vacantes/infovacante', );
+Route::get('/vacantes/infovacante/{idVacante}', [VacanteController::class, 'info']);
+
+//Postulaciones
+Route::get('/vacantes/postulaciones/{idVacante}', [PostulacionesController::class, 'show']);
+
+Route::post('/vacantes/postularse', [PostulacionesController::class, 'postular']);
 
 // Postulante
 
