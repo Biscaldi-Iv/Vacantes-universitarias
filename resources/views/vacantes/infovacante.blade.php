@@ -77,14 +77,14 @@
                 <div class="form-floating mb-3 " hidden>
                     <label for="id">Id Usuario</label>
                     <input type="number" class="form-control" name="id" id="id"
-                    placeholder="Id de la vacante" value="{{ $request->user()->usuario->id }}">
+                    placeholder="Id del usuario" value="{{ $usuario->id }}">
                 </div>
                 <div style="text-align:end;">
                     <button type="sumbit" class="btn btn-primary">Postularse</button>
                 </div>
             </form>
             @elseif(auth()->user()->privilegio==2)
-                <a href="/vacantes/postulaciones/{{$vacante->idVacante}}" class="btn btn-primary">Ver ostulaciones</a>
+                <a href="/vacantes/postulaciones/{{$vacante->idVacante}}" class="btn btn-primary">Ver postulaciones</a>
             @endif
             @endauth
         </div>

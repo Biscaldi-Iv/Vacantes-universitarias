@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\VacanteRequest;
 use App\Models\Vacantes;
 use App\Models\Universidad;
+use App\Models\Usuario;
 use App\Models\Catedra;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,14 +42,12 @@ class VacanteController extends Controller
     }
 
     public function info(int $idVacante){
-        try{
+        if((Auth::check()) && (auth()->user()->privilegio==1)) {
             $vac = Vacantes::where('idVacante', $idVacante)->select()->first();
-            return view('vacantes.infovacante', ['vacante'=>$vac]);
-        } catch(Throwable $e){
-            report($e);
-            return false;
-            //return redirect()->to('')->with('error','Se ha producido un error!');
+            $us = Usuario::where('fkiduser', auth()->user()->id)->select()->first();
+            return view('vacantes.infovacante', ['vacante'=>$vac, 'usuario'=>$us]);
         }
-
+        $vac = Vacantes::where('idVacante', $idVacante)->select()->first();
+        return view('vacantes.infovacante', ['vacante'=>$vac]);
     }
 }

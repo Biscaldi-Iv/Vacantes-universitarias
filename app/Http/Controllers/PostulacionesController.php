@@ -28,11 +28,10 @@ class PostulacionesController extends Controller
         }
         $idVacante=$request->idVacante;
         //$idVacante=$request->validate(['idVacante'=>'required|integer|exists:App\Models\Vacantes,idVacante']);
-        $id= auth()->user()->getId();
-        $usuario=Usuario::where('fkiduser', $id)->select()->first();
-        Postulacion::create(['fkIdUsuario'=>$usuario->idUsuario,
+        $usuario=$request->id;
+        Postulacion::create(['fkIdUsuario'=>$usuario,
             'fkIdVacante'=>$idVacante,
             'fechaPostulacion'=>date('Y-m-d H:i:s')]);
-        return redirect()->route('principal')->with('success','Se registro con exito la postulacion a');
+        return redirect()->route('principal')->with('success','Se registro con exito la postulacion');
     }
 }

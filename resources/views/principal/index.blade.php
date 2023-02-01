@@ -37,9 +37,9 @@
         table-light
         align-middle" aria-label="Listado de vacantes">
             <thead class="table-light">
-                <caption>Vacantes</caption>
+                <caption hidden="true">Vacantes</caption>
                 <tr>
-                    <th>Vacante</th>
+                    <th hidden="true">Vacante</th>
                     @auth
                     @if(auth()->user()->privilegio==2)
                     <th>Editar</th>
@@ -110,14 +110,17 @@
         </table>
     </div>
 
-    @guest
-        {{ $vacantes->links() }}
-    @endguest
-    @auth
-    @if(auth()->user()->privilegio==1)
-        {{ $vacantes->links() }}
-    @endif
-    @endauth
+    <div class="d-flex justify-content-center">
+
+        @guest
+            {!! $vacantes->links() !!}
+        @endguest
+        @auth
+        @if(auth()->user()->privilegio==1)
+            {!! $vacantes->links() !!}
+        @endif
+        @endauth
+    </div>
 
 
     @auth
