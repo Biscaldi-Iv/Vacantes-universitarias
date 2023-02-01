@@ -42,7 +42,7 @@ class Postulacion extends Model
 
     public function usuario()
     {
-        return $this->hasOne(Usuario::class,'fkIdUsuario','id');
+        return $this->belongsTo(Usuario::class,'fkIdUsuario','id');
     }
 
 }

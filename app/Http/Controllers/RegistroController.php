@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use App\Http\Requests\RegistroRequest;
 use App\Models\User;
 use App\Models\Usuario;
@@ -23,11 +24,22 @@ class RegistroController extends Controller
     }
 
     public function register(RegistroRequest $request){
-        $user = User::create($request->validated());
-        Usuario::create(['fkiduser'=>$user->id]);
-        auth()->login($user);
-        return redirect()->route('datospostulante')
-        ->with('succes','Usuario creado! Se ha iniciado sesion automaticamente. \n
+        try{
+            $user = User::create($request->validated());
+            Usuario::create(['fkiduser'=>$user->id]);
+            auth()->login($user);
+
+        }
+        catch (QueryException $e){
+            $error_code=$e->errorInfo[1];
+            if($error_code==1062){
+                //duplicado de email
+                return redirect()->route('principal')->with('error','Es posible que el correo electrónico o identificación ya esten registrados');
+            }
+        }
+
+        return redirect()->route('datospostulante')->with('success','¡Usuario creado! Se ha iniciado sesion automaticamente. </br>
         Por favor ingrese la informacion de su perfil profesional');
+
     }
 }

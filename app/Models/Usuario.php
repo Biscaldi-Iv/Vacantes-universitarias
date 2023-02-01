@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Postulacion;
 
 class Usuario extends Model
 {
@@ -26,6 +27,11 @@ class Usuario extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class, 'id','fkiduser');
+        return $this->belongsTo(User::class,'fkiduser', 'id');
+    }
+
+    public function postulacion()
+    {
+        return $this->hasMany(Postulacion::class);
     }
 }

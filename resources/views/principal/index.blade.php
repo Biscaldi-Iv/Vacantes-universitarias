@@ -81,6 +81,10 @@
                                     <a type="button" class="btn btn-primary" href="/vacantes/infovacante/{{ $v->idVacante }}">
                                         Postularse <span class="badge badge-light">+Info</span>
                                     </a>
+                                    @elseif(auth()->user()->privilegio==2)
+                                    <a type="button" class="btn btn-primary" href="/vacantes/infovacante/{{ $v->idVacante }}">
+                                        Ver vacante
+                                    </a>
                                     @endif
                                     @endauth
                                 </div>

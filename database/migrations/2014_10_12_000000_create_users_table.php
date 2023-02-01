@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('privilegio');
             $table->rememberToken();
             $table->timestamps();
+            // $table->unique(['tipodoc', 'ndoc']);
         });
     }
 
