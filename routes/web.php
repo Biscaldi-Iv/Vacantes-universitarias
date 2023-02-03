@@ -84,6 +84,9 @@ Route::get('/vacantes/postulaciones/{idVacante}', [PostulacionesController::clas
 
 Route::post('/vacantes/postularse', [PostulacionesController::class, 'postular']);
 
+Route::post('/vacantes/puntuar', [PostulacionesController::class, 'update']);
+
+Route::post('/vacantes/infoUsuario', [PostulacionesController::class, 'infoUsuario']);
 // Postulante
 
 Route::get('/ordenmerito/detallemerito', function () {

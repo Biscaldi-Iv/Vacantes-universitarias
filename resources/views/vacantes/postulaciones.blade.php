@@ -1,4 +1,4 @@
-@extends( 'base')
+@extends('base')
 
 @section('titulo')
     <title>Listado de postulaciones</title>
@@ -35,7 +35,7 @@
         <caption>Postulaciones</caption>
         <thead class="table-light">
             <th>Postulante</th>
-            <th>Puntuar</th>
+            <th hidden>Puntuar</th>
         </thead>
             <tbody class="table-group-divider">
                 @foreach ($postulaciones as $p)
@@ -54,7 +54,12 @@
                                     <h5>Titulo: {{$usuario->titulo}}</h5>
                                 </div>
                                 <div class="col-md-auto p-2">
-                                        <button type="button" class="btn btn-primary">Puntuar</button>
+                                    <form action="/vacantes/infoUsuario" method="post">
+                                        @csrf
+                                        <input type="number" name="idVacante" id="idVacante" value="{{ $vacante->idVacante }}" hidden>
+                                        <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden>
+                                        <button type="sumbit" class="btn btn-primary">Puntuar</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
