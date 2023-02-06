@@ -33,7 +33,8 @@ class RegistroRequest extends FormRequest
             'privilegio' => 'required',
             'telefono'=>'required',
             'tipodoc'=>'required',
-            'ndoc'=>'required'
+            'ndoc'=>'required',
+            // 'ndoc' => Rule::unique(['users'])->where(fn ($query) => $query->where('tipodoc')),
         ];
     }
 }

@@ -67,6 +67,7 @@
 
             @auth
             @if(auth()->user()->privilegio==1)
+            @php($user=auth()->user())
             <form method="post" action="/vacantes/postularse">
                 @csrf
                 <div class="form-floating mb-3 " hidden>

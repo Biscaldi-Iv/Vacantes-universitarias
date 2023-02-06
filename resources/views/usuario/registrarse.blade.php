@@ -118,8 +118,11 @@
                         </div>
                     </div>
                     <h6 class="alert alert-success" id="success" hidden></h6>
-
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <button type="sumbit" class="btn btn-primary px-4">Guardar</button>
+
                 </form>
             </div>
         </div>

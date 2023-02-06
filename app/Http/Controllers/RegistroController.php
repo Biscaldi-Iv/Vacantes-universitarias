@@ -24,7 +24,7 @@ class RegistroController extends Controller
     }
 
     public function register(RegistroRequest $request){
-        try{
+    try{
             $user = User::create($request->validated());
             Usuario::create(['fkiduser'=>$user->id]);
             auth()->login($user);
@@ -34,11 +34,11 @@ class RegistroController extends Controller
             $error_code=$e->errorInfo[1];
             if($error_code==1062){
                 //duplicado de email
-                return redirect()->route('principal')->with('error','Es posible que el correo electrónico o identificación ya esten registrados');
+                return redirect()->route('registrarse')->with('error','La identificación ya esta registrada');
             }
         }
 
-        return redirect()->route('datospostulante')->with('success','¡Usuario creado! Se ha iniciado sesion automaticamente. </br>
+        return redirect()->route('datospostulante')->with('success','¡Usuario creado! Se ha iniciado sesion automaticamente.
         Por favor ingrese la informacion de su perfil profesional');
 
     }

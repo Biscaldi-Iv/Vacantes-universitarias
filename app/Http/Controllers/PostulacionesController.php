@@ -39,7 +39,7 @@ class PostulacionesController extends Controller
             $error_code=$e->errorInfo[1];
             if($error_code==1062){
                 //duplicado de postulacion
-                return redirect()->route('principal')->with('error','Ya existe una postulación para esta vacante');
+                return redirect()->route('principal')->with('error','Ya te has postulado a esta vacante');
             }
         }
         return redirect()->route('principal')->with('success','Se registro con exito la postulacion');

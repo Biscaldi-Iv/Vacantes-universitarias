@@ -24,7 +24,14 @@ class PublicController extends Controller
             return view('principal.index',
             ['vacantes'=>$vacantes, 'universidad'=>$universidad, 'catedras'=>$catedras]);
         }
-        $vacantes=Vacantes::paginate(2);
+        // dd(request('search'));
+        $vacantes=Vacantes::when(
+            request()->has('search'), 
+            fn ($query)=>$query->where('tituloVacante','like','%'.request('search').'%')
+            )
+            ->orWhere('descCorta','like','%'.request('search').'%')
+            ->paginate(2);
         return view('principal.index', ['vacantes'=>$vacantes]);
     }
+
 }
