@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\Auth;
 
 class PublicController extends Controller
 {
+    public function buscar(Request $request){
+        $vacantes=Vacantes::when(
+            request()->has('search'),
+            fn ($query)=>$query->where('tituloVacante','like','%'.request('search').'%')
+        )
+        ->orWhere('descCorta','like','%'.request('search').'%')
+        ->paginate(5);
+        return view('principal.index', ['vacantes'=>$vacantes]);
+    }
+
+
     public function index(Request $request){
         if((Auth::check()) && (auth()->user()->privilegio==2)) {
             $universidad= Universidad::where('idUniversidad', session('universidad'))->select()->first();
@@ -24,13 +35,8 @@ class PublicController extends Controller
             return view('principal.index',
             ['vacantes'=>$vacantes, 'universidad'=>$universidad, 'catedras'=>$catedras]);
         }
-        // dd(request('search'));
-        $vacantes=Vacantes::when(
-            request()->has('search'), 
-            fn ($query)=>$query->where('tituloVacante','like','%'.request('search').'%')
-            )
-            ->orWhere('descCorta','like','%'.request('search').'%')
-            ->paginate(2);
+
+        $vacantes=Vacantes::paginate(5);
         return view('principal.index', ['vacantes'=>$vacantes]);
     }
 

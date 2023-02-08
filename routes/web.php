@@ -25,6 +25,8 @@ use App\Http\Controllers\PostulacionesController;
 
 Route::get('/', [PublicController::class, 'index'])->name('principal');
 
+Route::get('/buscar', [PublicController::class, 'buscar'])->name('buscar');
+
 // Usuario
 
 Route::get('/login', [LoginController::class,'show']);
@@ -80,7 +82,7 @@ Route::post('/vacantes/eliminar', [VacanteController::class, 'delete']);
 Route::get('/vacantes/infovacante/{idVacante}', [VacanteController::class, 'info']);
 
 //Postulaciones
-Route::get('/vacantes/postulaciones/{idVacante}', [PostulacionesController::class, 'show']);
+Route::get('/vacantes/postulaciones/{idVacante}', [PostulacionesController::class, 'show'])->name('postulaciones');
 
 Route::post('/vacantes/postularse', [PostulacionesController::class, 'postular']);
 

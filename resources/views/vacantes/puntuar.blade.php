@@ -39,7 +39,7 @@
             </div>
             <div class="col-2 form-floating mb-3">
                 <input type="number" min="0" max="10"
-                class="form-control" name="titulo" id="titulo" >
+                class="form-control" name="titulo" id="titulo" value="{{ $postulacion->titulo ?? old('titulos') ??  0 }}">
             </div>
         </div>
         <div class="row">
@@ -50,7 +50,7 @@
             </div>
             <div class="col-2 form-floating mb-3">
             <input type="number" min="0" max="10"
-                class="form-control" name="experiencia" id="experiencia" >
+                class="form-control" name="experiencia" id="experiencia" value="{{ $postulacion->experiencia ?? old('experiencia') ??  0 }}" >
             </div>
         </div>
         <div class="row">
@@ -61,7 +61,7 @@
             </div>
             <div class="col-2 form-floating mb-3">
                 <input type="number" min="0" max="10"
-                class="form-control" name="con_asignatura" id="con_asignatura" >
+                class="form-control" name="con_asignatura" id="con_asignatura" value="{{ $postulacion->con_asignatura ?? old('con_asignatura') ??  0 }}">
             </div>
         </div>
         <div class="row">
@@ -72,7 +72,7 @@
             </div>
             <div class="col-2 form-floating mb-3">
                 <input type="number" min="0" max="10"
-                class="form-control" name="con_profesionales" id="con_profesionales" >
+                class="form-control" name="con_profesionales" id="con_profesionales" value="{{ $postulacion->con_profesionales ?? old('con_profesionales') ??  0 }}">
             </div>
         </div>
         <div class="row">
@@ -84,7 +84,7 @@
 
             <div class="col-2 form-floating mb-3">
             <input type="number" min="0" max="10"
-                class="form-control" name="publicaciones" id="publicaciones" >
+                class="form-control" name="publicaciones" id="publicaciones" value="{{ $postulacion->publicaciones ?? old('publicaciones') ??  0 }}">
             </div>
         </div>
         <div class="row">
@@ -95,7 +95,7 @@
             </div>
             <div class="col-2 form-floating mb-3">
                 <input type="number" min="0" max="10"
-                class="form-control" name="congresos" id="congresos" >
+                class="form-control" name="congresos" id="congresos" value="{{ $postulacion->congresos ?? old('congresos') ??  0 }}">
             </div>
         </div>
         <div class="row">
@@ -106,7 +106,7 @@
             </div>
             <div class="col-2 form-floating mb-3">
             <input type="number" min="0" max="10"
-                class="form-control" name="actitud" id="actitud" >
+                class="form-control" name="actitud" id="actitud" value="{{ $postulacion->actitud ?? old('actitud') ??  0 }}">
             </div>
         </div>
         <div class="row">
@@ -117,7 +117,7 @@
             </div>
             <div class="col-2 form-floating mb-3">
                 <input type="number" min="0" max="10"
-                class="form-control" name="disponibilidad" id="disponibilidad" >
+                class="form-control" name="disponibilidad" id="disponibilidad" value="{{ $postulacion->disponibilidad ?? old('disponibilidad') ??  0 }}">
             </div>
         </div>
         <div class="row">
@@ -128,7 +128,7 @@
             </div>
             <div class="col-2 form-floating mb-3">
                 <input type="number" min="0" max="10"
-                class="form-control" name="entrevista" id="entrevista" >
+                class="form-control" name="entrevista" id="entrevista" value="{{ $postulacion->entrevista ?? old('entrevista') ??  0 }}">
             </div>
         </div>
         <div class="row">
@@ -139,10 +139,12 @@
             </div>
             <div class="col-2 form-floating mb-3">
                 <input type="number" min="0" max="10"
-                class="form-control" name="investigaciones" id="investigaciones" >
+                class="form-control" name="investigaciones" id="investigaciones" value="{{ $postulacion->investigaciones ?? old('investigaciones') ??  0 }}">
             </div>
             <input type="number" name="idVacante" id="idVacante"
             value="{{ $vacante->idVacante }}" hidden="true">
+            <input type="number" name="idUsuario" id="idUsuario"
+            value="{{ $usuario->id }}" hidden="true">
             <div class="p-3">
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </div>

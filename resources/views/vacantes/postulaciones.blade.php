@@ -38,35 +38,39 @@
             <th hidden>Puntuar</th>
         </thead>
             <tbody class="table-group-divider">
-                @foreach ($postulaciones as $p)
-                <!-- Hay que acceder al usuario para acceder al user para acceder al nombre y apellido para acceder al infinito y más allá
-                -->
-                @php($usuario=$p->usuario)
-                @php($u=$usuario->user)
-                <tr class="table-light" >
-                    <td>
-                        <div class="card-body">
-                            <div class="row">
-                                <h3 class="card-title">{{ $u->nombre}} {{$u->apellido}}</h3>
-                                <div class="col">
-                                    <a href="mailto:{{$u->email}}">{{$u->email}}</a>
-                                    <h5>{{$u->tipodoc}}: {{$u->ndoc}}</h5>
-                                    <h5>Titulo: {{$usuario->titulo}}</h5>
-                                </div>
-                                <div class="col-md-auto p-2">
-                                    <form action="/vacantes/infoUsuario" method="post">
-                                        @csrf
-                                        <input type="number" name="idVacante" id="idVacante" value="{{ $vacante->idVacante }}" hidden>
-                                        <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden>
-                                        <button type="sumbit" class="btn btn-primary">Puntuar</button>
-                                    </form>
+                @if(count($postulaciones)>0)
+                    @foreach ($postulaciones as $p)
+                    <!-- Hay que acceder al usuario para acceder al user para acceder al nombre y apellido para acceder al infinito y más allá
+                    -->
+                    @php($usuario=$p->usuario)
+                    @php($u=$usuario->user)
+                    <tr class="table-light" >
+                        <td>
+                            <div class="card-body">
+                                <div class="row">
+                                    <h3 class="card-title">{{ $u->nombre}} {{$u->apellido}}</h3>
+                                    <div class="col">
+                                        <a href="mailto:{{$u->email}}">{{$u->email}}</a>
+                                        <h5>{{$u->tipodoc}}: {{$u->ndoc}}</h5>
+                                        <h5>Titulo: {{$usuario->titulo}}</h5>
+                                    </div>
+                                    <div class="col-md-auto p-2">
+                                        <form action="/vacantes/infoUsuario" method="post">
+                                            @csrf
+                                            <input type="number" name="idVacante" id="idVacante" value="{{ $vacante->idVacante }}" hidden>
+                                            <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden>
+                                            <button type="sumbit" class="btn btn-primary">Puntuar</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
+                        </td>
 
-                </tr>
-                @endforeach
+                    </tr>
+                    @endforeach
+                @else
+                    <p>No hay postulaciones disponibles</p>
+                @endif
             </tbody>
             <tfoot>
 

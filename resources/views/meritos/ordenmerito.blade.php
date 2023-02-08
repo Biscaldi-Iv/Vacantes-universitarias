@@ -31,35 +31,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-border">
-                    <div class="card-body">
-                        <div class="row">
-                            <h6 class="card-title">Postulante</h6>
-                            <div class="col">
-                                <p>Puntaje total</p>
-                            </div>
-                            <div class="col-md-auto p-2">
-                                <a href="/maquetas/detallemerito.html">
-                                    <button type="button" class="btn btn-outline-primary">Detalles</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="card card-border">
-                    <div class="card-body">
-                        <div class="row">
-                            <h6 class="card-title">Postulante</h6>
-                            <div class="col">
-                                <p>Puntaje total</p>
-                            </div>
-                            <div class="col-md-auto p-2">
-                                <a href="/maquetas/detallemerito.html">
-                                    <button type="button" class="btn btn-outline-primary">Detalles</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

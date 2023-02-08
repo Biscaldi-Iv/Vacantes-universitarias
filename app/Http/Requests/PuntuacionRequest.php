@@ -13,7 +13,7 @@ class PuntuacionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,18 +24,16 @@ class PuntuacionRequest extends FormRequest
     public function rules()
     {
         return [
-            'fkIdVacante'=>'required|integer|min:1',
-            'fkIdUsuario'=>'required|integer|min:1',
-            'titulo'=>'nullable|between:0,10|integer',
-            'experiencia'=>'nullable|between:0,10|integer',
-            'con_asignatura'=>'nullable|between:0,10|integer',
-            'publicaciones'=>'nullable|between:0,10|integer',
-            'congresos'=>'nullable|between:0,10|integer',
-            'actitud'=>'nullable|between:0,10|integer',
-            'disponibilidad'=>'nullable|between:0,10|integer',
-            'entrevista'=>'nullable|between:0,10|integer',
-            'sueldo'=>'nullable|between:0,10|integer',
-            'investigaciones'=>'nullable|between:0,10|integer'
+            'titulo'=>'nullable|integer',
+            'experiencia'=>'nullable|integer',
+            'con_asignatura'=>'nullable|integer',
+            'publicaciones'=>'nullable|integer',
+            'congresos'=>'nullable|integer',
+            'actitud'=>'nullable|integer',
+            'disponibilidad'=>'nullable|integer',
+            'entrevista'=>'nullable|integer',
+            'sueldo'=>'nullable|integer',
+            'investigaciones'=>'nullable|integer'
         ];
     }
 }

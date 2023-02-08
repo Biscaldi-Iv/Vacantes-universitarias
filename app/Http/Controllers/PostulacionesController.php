@@ -46,13 +46,14 @@ class PostulacionesController extends Controller
     }
 
     public function update(PuntuacionRequest $request){
+        //dd($request);
         if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para puntuar candidatos");
         }
         $idVacante = $request->validate(['idVacante'=>'required|integer|min:1']);
         $idUsuario = $request->validate(['idUsuario'=>'required|integer|min:1']);
-        Postulacion::where(['fkIdVacante',"=", $idVacante],['fkIdUsuario',"=", $idUsuario])->update($request->validated());
-        return redirect()->route('postulaciones')
+        Postulacion::where(['fkIdVacante'=> $idVacante,'fkIdUsuario'=>$idUsuario])->update($request->validated());
+        return redirect()->route('principal')
         ->with('success',"Se registró correctamente la puntuación");
     }
 
@@ -64,6 +65,8 @@ class PostulacionesController extends Controller
         $idUsuario = $request->validate(['idUsuario'=>'required|integer|min:1']);
         $usuario=Usuario::where('id', $idUsuario)->select()->first();
         $vacante=Vacantes::where('idVacante', $idVacante)->select()->first();
-        return view('vacantes.puntuar', ['usuario'=>$usuario,'vacante'=>$vacante]);
+        $postulacion = Postulacion::where(['fkIdVacante'=> $idVacante,
+        'fkIdUsuario'=>$idUsuario])->select()->first();
+        return view('vacantes.puntuar', ['usuario'=>$usuario,'vacante'=>$vacante, 'postulacion'=>$postulacion]);
     }
 }
