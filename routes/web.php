@@ -82,7 +82,7 @@ Route::post('/vacantes/eliminar', [VacanteController::class, 'delete']);
 Route::get('/vacantes/infovacante/{idVacante}', [VacanteController::class, 'info']);
 
 //Postulaciones
-Route::get('/vacantes/postulaciones/{idVacante}', [PostulacionesController::class, 'show'])->name('postulaciones');
+Route::get('/vacantes/postulaciones/{idVacante}', [PostulacionesController::class, 'show'])->name('vacantes.postulaciones');
 
 Route::post('/vacantes/postularse', [PostulacionesController::class, 'postular']);
 

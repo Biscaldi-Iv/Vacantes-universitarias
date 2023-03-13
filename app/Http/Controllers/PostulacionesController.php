@@ -45,6 +45,8 @@ class PostulacionesController extends Controller
         return redirect()->route('principal')->with('success','Se registro con exito la postulacion');
     }
 
+
+
     public function update(PuntuacionRequest $request){
         //dd($request);
         if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
@@ -53,9 +55,11 @@ class PostulacionesController extends Controller
         $idVacante = $request->validate(['idVacante'=>'required|integer|min:1']);
         $idUsuario = $request->validate(['idUsuario'=>'required|integer|min:1']);
         Postulacion::where(['fkIdVacante'=> $idVacante,'fkIdUsuario'=>$idUsuario])->update($request->validated());
-        return redirect()->route('principal')
+        return redirect()->route('vacantes.postulaciones',['idVacante' => $request->idVacante])
         ->with('success',"Se registró correctamente la puntuación");
     }
+
+
 
     public function infoUsuario(Request $request){
         if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
