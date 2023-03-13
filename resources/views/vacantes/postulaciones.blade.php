@@ -62,20 +62,29 @@
                                         </form>
                                     </div>
                                 </div>
+                                <div class="col-md-auto p-2">
+                                    <form action="/vacantes/infoUsuario" method="post">
+                                        @csrf
+                                        <input type="number" name="idVacante" id="idVacante" value="{{ $vacante->idVacante }}" hidden>
+                                        <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden>
+                                        <button type="sumbit" class="btn btn-primary">Puntuar</button>
+                                    </form>
+                                </div>
                             </div>
-                        </td>
+                        </div>
+                    </td>
 
-                    </tr>
-                    @endforeach
-                @else
-                    <p>No hay postulaciones disponibles</p>
-                @endif
-            </tbody>
-            <tfoot>
+                </tr>
+                @endforeach
+            @else
+                <p>No hay postulaciones disponibles</p>
+            @endif
+        </tbody>
+        <tfoot>
 
-            </tfoot>
-        </table>
-    </div>
+        </tfoot>
+    </table>
+</div>
 @endsection
 
 @section('scripts')
