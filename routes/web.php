@@ -11,6 +11,7 @@ use App\Http\Controllers\VacanteController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\PostulacionesController;
+use App\Http\Controllers\OrdenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\PostulacionesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/orden/{orden}', [OrdenController::class, 'show']);
 
 Route::get('/', [PublicController::class, 'index'])->name('principal');
 

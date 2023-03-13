@@ -66,7 +66,7 @@ class AdminController extends Controller
         }
         $id=$request->validate(['id'=>'required|integer']);
         $data=$request->validate([
-            'password' => 'required|min:8',
+            'password' => 'nullable|min:8',
             'nombre' => 'required',
             'apellido' => 'required',
             'direccion' => 'required',
@@ -75,7 +75,11 @@ class AdminController extends Controller
             'tipodoc'=>'required',
             'ndoc'=>'required'
         ]);
-        $data['password']=Hash::make($request['password']);
+        if($data['password']){
+            $data['password']=Hash::make($request['password']);
+        }else{
+            unset($data['password']);
+        }
         if($request->privilegio==2){
             //ver si ya era privilegio 2 y actualizar uni
             //o asignarla
@@ -90,14 +94,14 @@ class AdminController extends Controller
                 'fkIdUni' => $request->fkIdUni
             ]);
             }
-            
+
             DB::commit();
 
         } elseif($request->privilegio==1){
             $pudata=$request->validate(['fkIdUni'=>'required|integer']);
             PersonalUniversidad::where('fkIdUser', $id)->delete();
         }
-        
+
         User::where('id', $id)->update($data);
         return redirect()->route('listadoUsuarios')
         ->with('success',"Se actualizaron los datos del usuario!");

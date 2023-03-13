@@ -45,6 +45,7 @@
                     <th hidden="true">Vacante</th>
                     @auth
                     @if(auth()->user()->privilegio==2)
+                    <th>Vacantes</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                     @endif

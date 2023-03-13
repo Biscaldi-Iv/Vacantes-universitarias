@@ -52,7 +52,6 @@
                                     <div class="col">
                                         <a href="mailto:{{$u->email}}">{{$u->email}}</a>
                                         <h5>{{$u->tipodoc}}: {{$u->ndoc}}</h5>
-                                        <h5>Titulo: {{$usuario->titulo}}</h5>
                                     </div>
                                     <div class="col-md-auto p-2">
                                         <form action="/vacantes/infoUsuario" method="post">

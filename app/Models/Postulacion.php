@@ -45,4 +45,17 @@ class Postulacion extends Model
         return $this->belongsTo(Usuario::class,'fkIdUsuario','id');
     }
 
+    public function vacante()
+    {
+        return $this->belongsTo(Vacantes::class,'fkIdVacante','id');
+    }
+
+
+
+    public function puntuacion_total(){
+        $t= $this->titulo+ $this->experiencia + $this->con_asignatura + $this->publicaciones + $this->congresos +
+        $this->actitud + $this->disponibilidad + $this->entrevista + $this->sueldo + $this->investigaciones;
+        return $t;
+    }
+
 }

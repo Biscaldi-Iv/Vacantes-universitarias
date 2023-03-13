@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('titulo')
-    <title>Info de vacante</title>
+<title>Info de vacante</title>
 @endsection
 
 @section('breadcrumb')
@@ -13,7 +13,7 @@
 
 @section('contenido')
 
-    <div class="col-xl-8 p-2">
+<div class="col-xl-8 p-2">
         <h1 class="fw-bold text-left my-3">{{ $vacante->tituloVacante }}</h1>
     </div>
     <hr>
@@ -57,9 +57,12 @@
             </div>
         </div>
         <div class="row">
+            <div class="alert alert-warning" role="alert" id="alert" hidden>
+                <strong>ADEVERTENCIA</strong> No es posible postularse debido a que se ha excedido la fecha de cierre de postulaciones
+            </div>
             @guest
             <div class="col sm-3" style="text-align:end;">
-            <a type="button" class="btn btn-primary " href="/login">
+            <a type="button" class="btn btn-primary" href="/login">
                 Iniciar Sesión
             </a>
             </div>
@@ -81,9 +84,10 @@
                     placeholder="Id del usuario" value="{{ $usuario->id }}">
                 </div>
                 <div style="text-align:end;">
-                    <button type="sumbit" class="btn btn-primary">Postularse</button>
+                    <button type="sumbit" class="btn btn-primary" id="btn_pos">Postularse</button>
                 </div>
             </form>
+
             @elseif(auth()->user()->privilegio==2)
                 <a href="/vacantes/postulaciones/{{$vacante->idVacante}}" class="btn btn-primary">Ver postulaciones</a>
             @endif
@@ -93,4 +97,14 @@
  @endsection
 
  @section('scripts')
+ @if ($vacante->fechaLimite > \Carbon\Carbon::now())
+ <script>
+    console.log("hola");
+    z=document.getElementById("alert");
+    p=document.getElementById("btn_pos");
+    p.setAttribute("disabled","true");
+    z.setAttribute("hidden","false");
+ </script>
+ @endif
+
  @endsection
