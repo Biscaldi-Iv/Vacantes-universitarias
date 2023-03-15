@@ -13,8 +13,8 @@
 
 @section('contenido')
     <div class="container mt-4 shadow"
-    style="width:30%; padding:auto; margin-top: 30%; margin-bottom: 10%; border-radius:10px;">
-        <form action="/login" method="POST">
+    style="width:30%; padding:40px; margin-top: 30%; margin-bottom: 10%; border-radius:10px;">
+        <form action="/login" method="POST" style="margin-top:20px; margin-bottom:20px;">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Correo electronico</label>

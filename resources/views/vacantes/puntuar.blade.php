@@ -5,12 +5,18 @@
 @endsection
 
 @section('breadcrumb')
-    <p>
-        /<a class="breadcrumb"href="/">Página principal</a>
-        /<a class="breadcrumb"href="/vacantes/infovacante/{{ $vacante->idVacante }}">{{ $vacante->tituloVacante }}</a>
+
+<p>
+    /<a class="breadcrumb"href="/">Página principal</a>
+    /<a class="breadcrumb"href="/vacantes/infovacante/{{ $vacante->idVacante }}">{{ $vacante->tituloVacante }}</a>
+    @if(str_contains(url()->previous(), 'orden'))
+        /<a class="breadcrumb" href="/orden/{{$vacante->idVacante}}">Ordenes de méritos</a>
+        /<a class="breadcrumb"href="#">Orden de Mérito</a>
+    @else
         /<a class="breadcrumb"href="/vacantes/postulaciones/{{$vacante->idVacante}}">Postulaciones</a>
         /<a class="breadcrumb"href="#">Puntuar</a>
-    </p>
+    @endif
+</p>
 @endsection
 
 @section('contenido')
@@ -144,9 +150,19 @@
             value="{{ $vacante->idVacante }}" hidden="true">
             <input type="number" name="idUsuario" id="idUsuario"
             value="{{ $usuario->id }}" hidden="true">
-            <div class="p-3">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+            <div style="text-align:end;">
+                <button type="submit" id="btn" class="btn btn-primary">Guardar</button>
             </div>
+
+            @if($vacante->fechaLimite < \Carbon\Carbon::now())
+            <div class="p-3" style="text-align:end;">
+                <a href="{{url()->previous()}}" class="btn btn-primary">
+                    <i class="bi bi-arrow-left-circle-fill"></i>
+
+                    Volver
+                </a>
+            </div>
+            @endif
         </div>
     </form>
 </div>
@@ -154,5 +170,20 @@
 @endsection
 
 @section('scripts')
+@if ($vacante->fechaLimite < \Carbon\Carbon::now())
+<script type="text/javascript">
+    document.getElementById("titulo").setAttribute("disabled","true");
+    document.getElementById("experiencia").setAttribute("disabled","true");
+    document.getElementById("con_asignatura").setAttribute("disabled","true");
+    document.getElementById("con_profesionales").setAttribute("disabled","true");
+    document.getElementById("publicaciones").setAttribute("disabled","true");
+    document.getElementById("congresos").setAttribute("disabled","true");
+    document.getElementById("actitud").setAttribute("disabled","true");
+    document.getElementById("disponibilidad").setAttribute("disabled","true");
+    document.getElementById("entrevista").setAttribute("disabled","true");
+    document.getElementById("investigaciones").setAttribute("disabled","true");
+    document.getElementById("btn").setAttribute("hidden","true");
+</script>
+@endif
 
 @endsection

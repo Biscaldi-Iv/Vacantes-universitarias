@@ -44,36 +44,38 @@
                     -->
                     @php($usuario=$p->usuario)
                     @php($u=$usuario->user)
-                    <tr class="table-light" >
+                    <tr class="table-light">
                         <td>
                             <div class="card-body">
                                 <div class="row">
                                     <h3 class="card-title">{{ $u->nombre}} {{$u->apellido}}</h3>
-                                    <div class="col">
+                                    <div class="col-md-8">
                                         <a href="mailto:{{$u->email}}">{{$u->email}}</a>
                                         <h5>{{$u->tipodoc}}: {{$u->ndoc}}</h5>
                                     </div>
-                                    <div class="col-md-auto p-2">
+                                    @if($p->puntuacion_total()==0)
+                                    <div class="col-md-2">
+                                        <div class="alert alert-warning text-center" role="alert">
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            Sin puntuar
+                                        </div>
+                                    </div>
+                                    @else
+                                    <div class="col-md-2 "></div>
+                                    @endif
+                                    <div class="col-md-auto">
                                         <form action="/vacantes/infoUsuario" method="post">
                                             @csrf
                                             <input type="number" name="idVacante" id="idVacante" value="{{ $vacante->idVacante }}" hidden>
                                             <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden>
-                                            <button type="sumbit" class="btn btn-primary">Puntuar</button>
+                                            <button type="sumbit" class="btn btn-primary">Ver postulación</button>
                                         </form>
                                     </div>
-                                </div>
-                                <div class="col-md-auto p-2">
-                                    <form action="/vacantes/infoUsuario" method="post">
-                                        @csrf
-                                        <input type="number" name="idVacante" id="idVacante" value="{{ $vacante->idVacante }}" hidden>
-                                        <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden>
-                                        <button type="sumbit" class="btn btn-primary">Puntuar</button>
-                                    </form>
+
                                 </div>
                             </div>
                         </div>
                     </td>
-
                 </tr>
                 @endforeach
             @else

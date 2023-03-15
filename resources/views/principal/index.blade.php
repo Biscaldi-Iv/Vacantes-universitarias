@@ -46,6 +46,7 @@
                     @auth
                     @if(auth()->user()->privilegio==2)
                     <th>Vacantes</th>
+                    <th></th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                     @endif
@@ -73,7 +74,7 @@
                                         {{$v->titulosRequeridos}}
                                     </p>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </td>
@@ -86,13 +87,19 @@
                         @auth
                         @if(auth()->user()->privilegio==1)
                         <!--abrir modal-->
-                        <a type="button" class="btn btn-primary" href="/vacantes/infovacante/{{ $v->idVacante }}">
+                        <a type="button" class="btn btn-primary " href="/vacantes/infovacante/{{ $v->idVacante }}">
                             Postularse <span class="badge badge-light">+Info</span>
                         </a>
                         @elseif(auth()->user()->privilegio==2)
-                        <a type="button" class="btn btn-primary" href="/vacantes/infovacante/{{ $v->idVacante }}">
-                            Ver vacante
-                        </a>
+                            @if($v->fechaLimite < \Carbon\Carbon::now())
+                            <a type="button" class="btn btn-primary" href="/orden/{{ $v->idVacante }}">
+                                Ver méritos
+                            </a>
+                            @else
+                            <a type="button" class="btn btn-primary" href="/vacantes/infovacante/{{ $v->idVacante }}">
+                                Ver vacante
+                            </a>
+                            @endif
                         @endif
                         @endauth
                     </td>
@@ -138,71 +145,71 @@
     <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                    <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Registar Vacante en {{ $universidad->nombreUniversidad }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <form id="formV" method="POST">
-                        @csrf
-                        <div class="modal-body">
-                            <div class="form-group row">
-                                <div class="col-sm-12 col-md-6 p-2">
-                                    <label for="tituloVacante">Título vacante</label>
-                                    <input type="text" class="form-control" id="tituloVacante"
-                                    name="tituloVacante" required
-                                    placeholder="Ej: Profesor de xx">
+                <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">Registar Vacante en {{ $universidad->nombreUniversidad }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form id="formV" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-md-6 p-2">
+                                <label for="tituloVacante">Título vacante</label>
+                                <input type="text" class="form-control" id="tituloVacante"
+                                name="tituloVacante" required
+                                placeholder="Ej: Profesor de xx">
 
-                                    <input type="number"
-                                    class="form-control" name="idVacante"
-                                    id="idVacante" hidden>
-                                </div>
-                                <div class="col-sm-12 col-md-6 p-2">
-                                    <label for="fkIdCatedra">Cátedra</label>
-                                    <select class="form-select" name="fkIdCatedra" id="fkIdCatedra">
-                                    @foreach ($catedras as $c)
-                                        <option value="{{ $c->idCatedra }}">{{ $c->nombreCatedra }}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
+                                <input type="number"
+                                class="form-control" name="idVacante"
+                                id="idVacante" hidden>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-12 p-2">
-                                    <label for="descCorta">Descripción breve</label>
-                                    <textarea class="form-control" name="descCorta" id="descCorta" rowspan="5" required
-                                    placeholder="Breve descripción sobre el puesto a cubrir"></textarea>
-                                </div>
-                                <div class="col-sm-12 p-2">
-                                    <label for="descCompleta">Descripcion completa</label>
-                                    <textarea class="form-control" id="descCompleta" name="descCompleta" required rowspan="10"
-                                    placeholder="Descripción ampliada del puesto (sugerencia: incluir responsabilidades)"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-12 col-md-6 p-2">
-                                    <label for="titulosRequeridos">Títlulos Requeridos</label>
-                                    <textarea class="form-control"
-                                    id="titulosRequeridos" rowspan="3"
-                                    name="titulosRequeridos" placeholder="Ej: Ingenieria en xx" required></textarea>
-                                </div>
-                                <div class="col-sm-12 col-md-6 p-2">
-                                    <label for="horarioJornada">Horario</label>
-                                    <textarea class="form-control" id="horarioJornada" rowspan="3" name="horarioJornada"
-                                    placeholder="Ej: Lunes y miércoles de 7:15 a 9:00" required></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-12 col-md-6 p-2">
-                                    <label for="fechaLimite">Fecha de límite de postulaciones</label>
-                                    <input type="date"
-                                    class="form-control" name="fechaLimite" id="fechaLimite">
-                                </div>
+                            <div class="col-sm-12 col-md-6 p-2">
+                                <label for="fkIdCatedra">Cátedra</label>
+                                <select class="form-select" name="fkIdCatedra" id="fkIdCatedra">
+                                @foreach ($catedras as $c)
+                                    <option value="{{ $c->idCatedra }}">{{ $c->nombreCatedra }}</option>
+                                @endforeach
+                                </select>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                            <button type="sumbit" class="btn btn-primary" aria-label="Guardar" id="send">Guardar</button>
+                        <div class="form-group row">
+                            <div class="col-sm-12 p-2">
+                                <label for="descCorta">Descripción breve</label>
+                                <textarea class="form-control" name="descCorta" id="descCorta" rowspan="5" required
+                                placeholder="Breve descripción sobre el puesto a cubrir"></textarea>
+                            </div>
+                            <div class="col-sm-12 p-2">
+                                <label for="descCompleta">Descripcion completa</label>
+                                <textarea class="form-control" id="descCompleta" name="descCompleta" required rowspan="10"
+                                placeholder="Descripción ampliada del puesto (sugerencia: incluir responsabilidades)"></textarea>
+                            </div>
                         </div>
-                    </form>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-md-6 p-2">
+                                <label for="titulosRequeridos">Títlulos Requeridos</label>
+                                <textarea class="form-control"
+                                id="titulosRequeridos" rowspan="3"
+                                name="titulosRequeridos" placeholder="Ej: Ingenieria en xx" required></textarea>
+                            </div>
+                            <div class="col-sm-12 col-md-6 p-2">
+                                <label for="horarioJornada">Horario</label>
+                                <textarea class="form-control" id="horarioJornada" rowspan="3" name="horarioJornada"
+                                placeholder="Ej: Lunes y miércoles de 7:15 a 9:00" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-md-6 p-2">
+                                <label for="fechaLimite">Fecha de límite de postulaciones</label>
+                                <input type="date"
+                                class="form-control" name="fechaLimite" id="fechaLimite">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Cerrar">Cerrar</button>
+                        <button type="sumbit" class="btn btn-primary" aria-label="Guardar" id="send">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

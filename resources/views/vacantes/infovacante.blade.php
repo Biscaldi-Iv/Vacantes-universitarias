@@ -89,21 +89,29 @@
             </form>
 
             @elseif(auth()->user()->privilegio==2)
-                <a href="/vacantes/postulaciones/{{$vacante->idVacante}}" class="btn btn-primary">Ver postulaciones</a>
+            <div style="text-align:end;">
+                @if ($vacante->fechaLimite < \Carbon\Carbon::now())
+                    <a href="/orden/{{$vacante->idVacante}}" class="btn btn-primary">Ver órden de mérito</a>
+                @else
+                    <a href="/vacantes/postulaciones/{{$vacante->idVacante}}" class="btn btn-primary">Ver postulaciones</a>
+                @endif
+            </div>
             @endif
             @endauth
+
         </div>
     </div>
  @endsection
 
  @section('scripts')
- @if ($vacante->fechaLimite > \Carbon\Carbon::now())
- <script>
-    console.log("hola");
+ @if ($vacante->fechaLimite < \Carbon\Carbon::now())
+ <script type="text/javascript">
     z=document.getElementById("alert");
-    p=document.getElementById("btn_pos");
-    p.setAttribute("disabled","true");
-    z.setAttribute("hidden","false");
+    z.removeAttribute("hidden");
+    @auth
+        p=document.getElementById("btn_pos");
+        p.setAttribute("hidden","true");
+    @endauth
  </script>
  @endif
 
