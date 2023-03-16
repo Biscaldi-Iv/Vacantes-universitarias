@@ -57,14 +57,14 @@ class User extends Authenticatable
 
     public function usuario()
     {
-        if(this->privilegio==1){
+        if($this->privilegio==1){
             return $this->hasOne(Usuario::class,'fkiduser','id');
         }
         return null;
     }
 
     public function personalUniversidad(){
-        if(this->privilegio==2){
+        if($this->privilegio==2){
             return $this->hasOne(PersonalUniversidad::class,'fkIdUser','id');
         }
         return null;

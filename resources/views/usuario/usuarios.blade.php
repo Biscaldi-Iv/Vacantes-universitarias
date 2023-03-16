@@ -32,6 +32,7 @@
                 <th>Contacto</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -49,7 +50,15 @@
                         {{ $u->telefono }}
                         </p>
                     </td>
-                    <td>
+                </td>
+                <td>
+                    @if($u->privilegio == 1)
+                    <a class="btn btn-outline-primary" href="/usuario/perfil/{{$u->id}}">
+                        Ver perfil
+                    </a>
+                    @endif
+                </td>
+                <td>
                         <div class="d-grid gap-2">
                             @php
                                 if($u->privilegio==2){

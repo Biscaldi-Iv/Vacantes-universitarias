@@ -49,7 +49,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <h3 class="card-title">{{ $u->nombre}} {{$u->apellido}}</h3>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <a href="mailto:{{$u->email}}">{{$u->email}}</a>
                                         <h5>{{$u->tipodoc}}: {{$u->ndoc}}</h5>
                                     </div>
@@ -63,6 +63,13 @@
                                     @else
                                     <div class="col-md-2 "></div>
                                     @endif
+                                    <div class="col">
+                                        @if($u->privilegio == 1)
+                                        <a class="btn btn-outline-primary" href="/usuario/perfil/{{$u->id}}">
+                                            Ver perfil
+                                        </a>
+                                        @endif
+                                    </div>
                                     <div class="col-md-auto">
                                         <form action="/vacantes/infoUsuario" method="post">
                                             @csrf

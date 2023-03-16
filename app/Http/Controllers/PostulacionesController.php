@@ -66,9 +66,13 @@ class PostulacionesController extends Controller
             return redirect()->route('principal')->with('error',"No tiene permiso para puntuar candidatos");
         }
         $idVacante = $request->validate(['idVacante'=>'required|integer|min:1']);
+        $vacante=Vacantes::where('idVacante', $idVacante)->select()->first();
+        if($vacante->catedra->universidad->idUniversidad!=session('universidad')) {
+            return redirect()->route('principal')->with('error',"No tiene permiso para puntuar candidatos
+            debido a que la vacante no pertenece a su universidad");
+        }
         $idUsuario = $request->validate(['idUsuario'=>'required|integer|min:1']);
         $usuario=Usuario::where('id', $idUsuario)->select()->first();
-        $vacante=Vacantes::where('idVacante', $idVacante)->select()->first();
         $postulacion = Postulacion::where(['fkIdVacante'=> $idVacante,
         'fkIdUsuario'=>$idUsuario])->select()->first();
         return view('vacantes.puntuar', ['usuario'=>$usuario,'vacante'=>$vacante, 'postulacion'=>$postulacion]);

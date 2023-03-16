@@ -47,7 +47,7 @@ class Postulacion extends Model
 
     public function vacante()
     {
-        return $this->belongsTo(Vacantes::class,'fkIdVacante','id');
+        return $this->belongsTo(Vacantes::class,'fkIdVacante','idVacante');
     }
 
 

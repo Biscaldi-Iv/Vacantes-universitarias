@@ -32,6 +32,6 @@ class Usuario extends Model
 
     public function postulacion()
     {
-        return $this->hasMany(Postulacion::class);
+        return $this->hasMany(Postulacion::class,'fkIdUsuario','id');
     }
 }

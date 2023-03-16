@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\PostulacionesController;
 use App\Http\Controllers\OrdenController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,8 @@ Route::post('/registrarse', [RegistroController::class, 'register']);
 Route::get('/admin/usuarios/registrar', [AdminController::class, 'showUserCreate'])->name('ADMINregister');
 
 Route::post('/admin/usuarios/registrar', [AdminController::class, 'createAdmin']);
+
+Route::get('/usuario/perfil/{id}', [UsuarioController::class, 'perfil']);
 
 // Catedras
 

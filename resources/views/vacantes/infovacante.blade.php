@@ -27,7 +27,8 @@
         <div class="row">
             <div class="col-sm-12 p-2">
                 <h4>Cátedra</h4>
-                <p>{{ $vacante->catedra->nombreCatedra }}</p>
+                <h5>{{ $vacante->catedra->nombreCatedra }}</h5>
+                <p>{{ $vacante->catedra->descripcion }}</p>
             </div>
         </div>
         <div class="row">
@@ -62,9 +63,9 @@
             </div>
             @guest
             <div class="col sm-3" style="text-align:end;">
-            <a type="button" class="btn btn-primary" href="/login">
-                Iniciar Sesión
-            </a>
+                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#inicio">
+                    Iniciar sesion
+                  </button>
             </div>
             @endguest
 
@@ -101,6 +102,41 @@
 
         </div>
     </div>
+    @guest
+    <!-- Modal -->
+    <div class="modal fade" id="inicio" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h5 class="modal-title" id="modalTitleId">Inicio de sesion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                <div class="modal-body">
+                    <p>Por favor inicie sesion y luego haga click en cerrar</p>
+                    <iframe src="/login#email" style="width: 100%; height: 100%"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.reload();">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<style>
+    .modal-dialog,
+    .modal-content {
+        /* 80% of window height */
+        height: 90%;
+    }
+
+    .modal-body {
+        /* 100% = dialog height, 120px = header + footer */
+        max-height: calc(100% - 120px);
+        overflow-y: scroll;
+    }
+</style>
+
+    @endguest
  @endsection
 
  @section('scripts')
