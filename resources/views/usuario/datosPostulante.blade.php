@@ -34,8 +34,8 @@
                         </div>
                         <div class="col-sm-12 p-2">
                             <label for="con_asignatura">Conocimiento</label>
-                            <textarea class="form-control" name="con_asignatura" placeholder="" rows="5">
-                                {{ session('postulante')->con_asignatura ?? old('con_asignatura') ?? '' }}</textarea>
+                            <textarea class="form-control" name="con_asignatura" placeholder="" rows="5"
+                                >{{ session('postulante')->con_asignatura ?? old('con_asignatura') ?? '' }}</textarea>
                         </div>
                         <div class="col-sm-12 p-2">
                             <label for="educacion">Educacion</label>
