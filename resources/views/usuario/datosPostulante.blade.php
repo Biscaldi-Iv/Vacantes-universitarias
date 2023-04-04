@@ -25,56 +25,47 @@
                         <div class="col-sm-12 p-2">
                             <label for="titulos">Titulos</label>
                             <textarea name="titulos" class="form-control" rows="5"
-                                >{{ session('postulante')->titulos ?? old('titulos') ??  '' }}
-                            </textarea>
+                                >{{ session('postulante')->titulos ?? old('titulos') ??  '' }}</textarea>
                         </div>
                         <div class="col-sm-12 p-2">
                             <label for="experiencia">Experiencia</label>
                             <textarea name="experiencia" class="form-control" rows="5"
-                                >{{ session('postulante')->experiencia ?? old('experiencia') ?? '' }}
-                            </textarea>
+                                >{{ session('postulante')->experiencia ?? old('experiencia') ?? '' }}</textarea>
                         </div>
                         <div class="col-sm-12 p-2">
                             <label for="con_asignatura">Conocimiento</label>
-                            <textarea class="form-control" name="con_asignatura" placeholder="" rows="5"
-                                >{{ session('postulante')->con_asignatura ?? old('con_asignatura') ?? '' }}
-                            </textarea>
+                            <textarea class="form-control" name="con_asignatura" placeholder="" rows="5">
+                                {{ session('postulante')->con_asignatura ?? old('con_asignatura') ?? '' }}</textarea>
                         </div>
                         <div class="col-sm-12 p-2">
                             <label for="educacion">Educacion</label>
                             <textarea class="form-control" name="educacion" rows="5"
-                                >{{ session('postulante')->educacion ?? old('educacion') ?? '' }}
-                            </textarea>
+                                >{{ session('postulante')->educacion ?? old('educacion') ?? '' }}</textarea>
                         </div>
                         <div class="col-sm-12 p-2">
                             <label for="publicaciones">Publicaciones</label>
                             <textarea class="form-control" name="publicaciones" placeholder="" rows="5"
-                                >{{ session('postulante')->publicaciones ?? old('publicaciones') ?? '' }}
-                            </textarea>
+                                >{{ session('postulante')->publicaciones ?? old('publicaciones') ?? '' }}</textarea>
                         </div>
                         <div class="col-sm-12 p-2">
                             <label for="investigaciones">Investigaciones</label>
                             <textarea class="form-control" name="investigaciones" rows="5"
-                                >{{ session('postulante')->investigaciones ?? old('investigaciones') ?? '' }}
-                            </textarea>
+                                >{{ session('postulante')->investigaciones ?? old('investigaciones') ?? '' }}</textarea>
                         </div>
                         <div class="col-sm-12 p-2">
                             <label for="disponibilidad">Disponibilidad</label>
                             <textarea class="form-control" name="disponibilidad" placeholder="" rows="5"
-                                >{{ session('postulante')->disponibilidad ?? old('disponibilidad') ?? '' }}
-                            </textarea>
+                                >{{ session('postulante')->disponibilidad ?? old('disponibilidad') ?? '' }}</textarea>
                         </div>
                         <div class="col-sm-12 p-2">
                             <label for="congresos">Congresos</label>
                             <textarea class="form-control" name="congresos" rows="5"
-                                >{{ session('postulante')->congresos ?? old('congresos') ?? '' }}
-                            </textarea>
+                                >{{ session('postulante')->congresos ?? old('congresos') ?? '' }}</textarea>
                         </div>
                         <div class="col-sm-12 p-2">
                             <label for="con_profesionales">Conocimientos profesionales</label>
                             <textarea class="form-control" name="con_profesionales" rows="5"
-                                >{{ session('postulante')->con_profesionales ?? old('con_profesionales') ?? '' }}
-                            </textarea>
+                                >{{ session('postulante')->con_profesionales ?? old('con_profesionales') ?? '' }}</textarea>
                         </div>
                     </div>
 
