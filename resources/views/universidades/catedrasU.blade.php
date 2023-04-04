@@ -4,9 +4,9 @@
     <title>Catedras</title>
 @endsection
 
-@section('breadcrumbs')
+@section('breadcrumb')
     <p>
-        /<a class="breadcrumbs" href="/">Página principal</a>
+        /<a class="breadcrumb"href="/">Página principal</a>
         /<a class="breadcrumb"href="/catedrasU">Catedras</a>
     </p>
 @endsection
