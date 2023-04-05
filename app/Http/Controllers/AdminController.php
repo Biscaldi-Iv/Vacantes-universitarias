@@ -84,10 +84,10 @@ class AdminController extends Controller
             //ver si ya era privilegio 2 y actualizar uni
             //o asignarla
             DB::beginTransaction();
-            $pudata=$request->validate(['fkIdUni'=>'required|integer']);
+            $pu_data=$request->validate(['fkIdUni'=>'required|integer']);
             $pu = PersonalUniversidad::where('fkIdUser', $id)->first();
             if($pu != null){
-                PersonalUniversidad::where('fkIdUser', $id)->update($pudata);
+                PersonalUniversidad::where('fkIdUser', $id)->update($pu_data);
             } else {
             PersonalUniversidad::create([
                 'fkIdUser' => $request->id,
@@ -98,7 +98,7 @@ class AdminController extends Controller
             DB::commit();
 
         } elseif($request->privilegio==1){
-            $pudata=$request->validate(['fkIdUni'=>'required|integer']);
+            $pu_data=$request->validate(['fkIdUni'=>'required|integer']);
             PersonalUniversidad::where('fkIdUser', $id)->delete();
         }
 
