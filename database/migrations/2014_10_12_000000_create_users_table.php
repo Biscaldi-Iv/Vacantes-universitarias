@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('direccion');
-            $table->bigInteger('telefono');
+            $table->string('telefono');
             $table->string('tipodoc');
             $table->bigInteger('ndoc');
             $table->integer('privilegio');

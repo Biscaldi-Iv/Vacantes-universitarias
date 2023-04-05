@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('titulo')->nullable();
             $table->integer('experiencia')->nullable();
             $table->integer('con_asignatura')->nullable();
-            $table->integer('con_profecionales')->nullable();
+            $table->integer('con_profesionales')->nullable();
             $table->integer('publicaciones')->nullable();
             $table->integer('congresos')->nullable();
             $table->integer('actitud')->nullable();

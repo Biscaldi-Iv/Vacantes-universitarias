@@ -26,6 +26,7 @@ class RegistroController extends Controller
     public function register(RegistroRequest $request){
     try{
             $user = User::create($request->validated());
+            $user['password'] = Hash::make($request['password']);
             Usuario::create(['fkiduser'=>$user->id]);
             auth()->login($user);
 
