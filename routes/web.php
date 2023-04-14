@@ -13,6 +13,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\PostulacionesController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\FAQController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,9 +108,7 @@ Route::post('/datospostulante', [PostulanteController::class, 'save']);
 
 // FAQ
 
-Route::get('/faq', function () {
-    return view('info.FAQ');
-});
+Route::get('/faq', [FAQController::class, 'show']);
 
 Route::get('/vacantes/infovacante', function () {
     return view('vacantes.infovacante');

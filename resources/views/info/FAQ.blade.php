@@ -18,7 +18,41 @@
         </div>
         <div class="row p-2">
             <div class="col-md-10 mx-auto">
-                Lista de preguntas
+
+                <div class="accordion" id="accordionTipos">
+                @foreach ($tipos_p as $t)
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen{{$t->idTipoPregunta}}A-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen{{$t->idTipoPregunta}}A-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen{{$t->idTipoPregunta}}A-collapseOne">
+                            {{$t->descripcion}}
+                        </button>
+                        </h2>
+                        <div id="panelsStayOpen{{$t->idTipoPregunta}}A-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen{{$t->idTipoPregunta}}A-headingOne">
+                        <div class="accordion-body">
+
+                        <div class="accordion" id="accordionPregunta">
+                        @foreach ($t->preguntas as $p)
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="panelsStayOpen{{$p->idPregunta}}-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen{{$p->idPregunta}}-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen{{$p->idPregunta}}-collapseOne">
+                                    {{$p->pregunta}}
+                                </button>
+                                </h2>
+                                <div id="panelsStayOpen{{$p->idPregunta}}-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen{{$p->idPregunta}}-headingOne">
+                                <div class="accordion-body">
+                                    <p>{{$p->respuesta}}<p>
+                                </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
+
+                        </div>
+                        </div>
+                    </div>
+                @endforeach
+                </div>
+
             </div>
         </div>
     </div>
