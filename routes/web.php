@@ -26,7 +26,7 @@ use App\Http\Controllers\FAQController;
 |
 */
 
-Route::get('/orden/{orden}', [OrdenController::class, 'show']);
+Route::get('/orden/{orden}', [OrdenController::class, 'show'])->name('orden');
 
 Route::get('/', [PublicController::class, 'index'])->name('principal');
 

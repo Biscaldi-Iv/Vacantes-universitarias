@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Usuario;
 use App\Models\Vacantes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,8 +19,16 @@ class PostulacionFactory extends Factory
      */
     public function definition()
     {
+        $users = [];
+        $usuarios = Usuario::all();
+        foreach($usuarios as $u) {
+            if ($u->user->privilegio == 1){
+                array_push($users, $u->id);
+            }
+        }
+
         return [
-            'fkIdUsuario' => User::all()->random()->id,
+            'fkIdUsuario' => fake()->randomElement($users),
             'fkIdVacante' => Vacantes::all()->random()->idVacante,
             'titulo' => fake()->numberBetween(1,10),
             'experiencia' => fake()->numberBetween(1,10),
