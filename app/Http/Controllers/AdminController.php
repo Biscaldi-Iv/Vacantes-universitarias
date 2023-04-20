@@ -11,6 +11,7 @@ use App\Models\Universidad;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use \Illuminate\Database\QueryException;
 
 class AdminController extends Controller
 {
@@ -115,7 +116,11 @@ class AdminController extends Controller
         if(auth()->user()->id==$id){
             return redirect()->route('principal')->with('error','Intento de autoeliminarse!');
         }
-        User::where('id', $id)->delete();
+        try{
+            User::where('id', $id)->delete();
+        } catch(QueryException $e){
+            return redirect()->route('principal')->with('error','No es posible eliminar este usuario.');
+        }
         return redirect()->route('listadoUsuarios')
         ->with('success',"Se ha eliminado el usuario $request->nombre $request->apellido");
     }

@@ -9,39 +9,48 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UniversidadesRequest;
 
 use App\Models\Universidad;
+use \Illuminate\Database\QueryException;
 
 class UniversidadesController extends Controller
 {
-    public function show(Request $request) {
+    public function show(Request $request)
+    {
         $universidades=Universidad::all();
-        return view('universidades.listado',['universidades'=>$universidades]);
+        return view('universidades.listado', ['universidades'=>$universidades]);
     }
 
-    public function create(UniversidadesRequest $request) {
+    public function create(UniversidadesRequest $request)
+    {
         if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
+            return redirect()->route('principal')->with('error', "No tiene permiso para acceder a $request->url()");
         }
         Universidad::create($request->validated());
-        return redirect()->route('universidades')->with('success','Universidad registrada!');
+        return redirect()->route('universidades')->with('success', 'Universidad registrada!');
     }
 
-    public function update(UniversidadesRequest $request) {
+    public function update(UniversidadesRequest $request)
+    {
         if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
+            return redirect()->route('principal')->with('error', "No tiene permiso para acceder a $request->url()");
         }
         $idU=$request->validate(['idUniversidad'=>'required|integer|min:1']);
         Universidad::where('idUniversidad', $idU)->update($request->validated());
         return redirect()->route('universidades')
-        ->with('success',"Se actualizaron los datos de la universidad $request->nombreUniversidad!");
+        ->with('success', "Se actualizaron los datos de la universidad $request->nombreUniversidad!");
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request)
+    {
         if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
+            return redirect()->route('principal')->with('error', "No tiene permiso para acceder a $request->url()");
         }
         $idU=$request->validate(['idUniversidad'=>'required|integer|min:1']);
-        Universidad::where('idUniversidad', $idU)->delete();
+        try {
+            Universidad::where('idUniversidad', $idU)->delete();
+        } catch(QueryException $e){
+            return redirect()->route('principal')->with('error', "No es posible eliminar los datos de la universidad.");
+        }
         return redirect()->route('universidades')
-        ->with('success',"Se eliminaron los datos de la universidad $request->nombreUniversidad!");
+        ->with('success', "Se eliminaron los datos de la universidad $request->nombreUniversidad!");
     }
 }

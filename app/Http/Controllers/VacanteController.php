@@ -9,6 +9,7 @@ use App\Models\Universidad;
 use App\Models\Usuario;
 use App\Models\Catedra;
 use Illuminate\Support\Facades\Auth;
+use \Illuminate\Database\QueryException;
 
 class VacanteController extends Controller
 {
@@ -36,7 +37,12 @@ class VacanteController extends Controller
             return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
         }
         $idV=$request->validate(['idVacante'=>'required|integer|min:1']);
-        Vacantes::where('idVacante', $idV)->delete();
+        try{
+            Vacantes::where('idVacante', $idV)->delete();
+        } catch(QueryException $e){
+            return redirect()->route('principal')->with('error',"No fue posible eliminar la vacante. Es posbile que tenga
+            postulaciones registradas. Si desea evitar nuevas postulaciones se recomienda modificar la fecha de limite de postulaciones.");
+        }
         return redirect()->route('principal')
         ->with('success',"Se eliminaron los datos de la vacante $request->tituloVacante!");
     }

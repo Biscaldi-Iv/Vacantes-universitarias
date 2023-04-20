@@ -345,8 +345,8 @@ function eliminar(idVacante, tituloVacante,fkIdCatedra,horarioJornada,fechaLimit
     document.getElementById('fechaLimite').setAttribute("readonly" , "readonly" , false);
 
     document.getElementById('formV').setAttribute('action','/vacantes/eliminar', false);
-    document.getElementById('send').setAttribute('class','btn btn-success', false);
-    document.getElementById('send').innerHTML="Guardar";
+    document.getElementById('send').setAttribute('class','btn btn-danger', false);
+    document.getElementById('send').innerHTML="Eliminar";
 }
 </script>
 @endif

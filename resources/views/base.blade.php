@@ -129,7 +129,7 @@
                             &copy; Vacantes Universitarias 2022. Todos los derechos reservados.
                         </p>
                     </div>
-                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                    <!--div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
                                 <a href="#!"><i class="bi-facebook fs-3"></i></a>
@@ -141,7 +141,7 @@
                                 <a href="#!"><i class="bi-instagram fs-3"></i></a>
                             </li>
                         </ul>
-                    </div>
+                    </div-->
                 </div>
             </div>
         </footer>

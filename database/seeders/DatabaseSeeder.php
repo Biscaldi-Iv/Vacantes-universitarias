@@ -28,16 +28,17 @@ class DatabaseSeeder extends Seeder
 
 
 
-        User::factory()->create(['email' => 'admin@admin.com', 'privilegio' => 3]);
-        User::factory()->create(['email' => 'jefe@jefe.com','privilegio' => 2]);
-        User::factory()->create(['email' => 'user@user.com','privilegio' => 1]);
-        Usuario::factory()->create(['fkiduser' => 2]);
+        Universidad::factory()->create(['nombreUniversidad' => 'UTN', 'emailRRHH' => 'info@utn.edu.ar', 'sitioWeb' => 'utn.edu.ar']); //1
+        Universidad::factory()->create(['nombreUniversidad' => 'UNR', 'emailRRHH' => 'info@unr.edu.ar', 'sitioWeb' => 'unr.edu.ar']); //2
+        Universidad::factory()->create(['nombreUniversidad' => 'UCA', 'emailRRHH' => 'info@uca.edu.ar', 'sitioWeb' => 'uca.edu.ar']); //3
+        Universidad::factory()->create(['nombreUniversidad' => 'Austral', 'emailRRHH' => 'info@austral.edu.ar', 'sitioWeb' => 'austral.edu.ar']); //4
+        User::factory()->create(['email' => 'admin@admin.com', 'privilegio' => 3]); //1
+        User::factory()->create(['email' => 'jefe@jefe.com','privilegio' => 2]); //2
+        User::factory()->create(['email' => 'user@user.com','privilegio' => 1]); //3
+        PersonalUniversidad::factory()->create(['fkIdUser'=> 2, 'fkIdUni'=> 1]);
+        Usuario::factory()->create(['fkiduser' => 3]);
         Usuario::factory(10)->create();
         Catedra::factory(10)->create();
-        Universidad::factory()->create(['nombreUniversidad' => 'UTN', 'emailRRHH' => 'info@utn.edu.ar', 'sitioWeb' => 'utn.edu.ar']);
-        Universidad::factory()->create(['nombreUniversidad' => 'UNR', 'emailRRHH' => 'info@unr.edu.ar', 'sitioWeb' => 'unr.edu.ar']);
-        Universidad::factory()->create(['nombreUniversidad' => 'UCA', 'emailRRHH' => 'info@uca.edu.ar', 'sitioWeb' => 'uca.edu.ar']);
-        Universidad::factory()->create(['nombreUniversidad' => 'Austral', 'emailRRHH' => 'info@austral.edu.ar', 'sitioWeb' => 'austral.edu.ar']);
         Vacantes::factory(10)->create();
         PersonalUniversidad::factory(10)->create();
         Postulacion::factory(10)->create();
