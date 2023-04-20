@@ -14,6 +14,7 @@ use App\Http\Controllers\PostulacionesController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FAQController;
+use App\Http\Controllers\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,15 @@ Route::post('/admin/usuarios/actualizar', [AdminController::class, 'updateUser']
 
 Route::post('/admin/usuarios/borrar', [AdminController::class, 'deleteUser']);
 
-Route::post('/login', [LoginController::class,'login']);
+Route::post('/login', [LoginController::class,'login'])->name('usuario.login');
+
+Route::get('/contraseña/olvidada', [PasswordController::class,'showForgot']);
+
+Route::post('/contraseña/olvidada', [PasswordController::class,'forgot'])->name('password.forgot');
+
+Route::get('/contraseña/reestablecer', [PasswordController::class,'showReset']);
+
+Route::post('/contraseña/reestablecer', [PasswordController::class,'reset'])->name('password.reset');
 
 Route::get('/logout', [LogoutController::class,'logout']);
 
