@@ -1,18 +1,31 @@
 header.masthead {
     position: relative;
-    background: linear-gradient(180deg, #004AAD, #bbc2c9);
+    background-color: #343a40;
+    background: url("/img/bg-academy.png") no-repeat center center;
+    /*background: linear-gradient(180deg, #004AAD, lightblue);*/
     background-size: cover;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
   }
 
   header.masthead:before {
     content: "";
     position: absolute;
-    background: linear-gradient(180deg, #004AAD, #EDF2F7);
-
+    background: linear-gradient(180deg, #004AAD, lightblue);
+    height: 100%;
     width: 100%;
-    top: 0; }
-
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+  }
+  header.masthead h1, header.masthead .h1 {
+    font-size: 2rem;
+  }
   @media (min-width: 768px) {
+    header.masthead {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
     header.masthead h1, header.masthead .h1 {
       font-size: 3rem;
     }
