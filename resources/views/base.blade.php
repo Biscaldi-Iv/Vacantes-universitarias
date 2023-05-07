@@ -117,7 +117,7 @@
                             <li class="list-inline-item"><a href="#!">Política de privacidad</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">
-                            &copy; Vacantes Universitarias 2022. Todos los derechos reservados.
+                            &copy; AcademyHub 2022. Todos los derechos reservados.
                         </p>
                     </div>
                     <!--div class="col-lg-6 h-100 text-center text-lg-end my-auto">

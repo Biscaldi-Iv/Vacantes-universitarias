@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('titulo')
-    <title>Vacantes Universitarias</title>
+    <title>Vacantes-AcademyHub</title>
 @endsection
 
 @section('breadcrumb')
