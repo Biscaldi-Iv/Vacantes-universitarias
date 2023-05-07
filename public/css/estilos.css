@@ -3,20 +3,15 @@ header.masthead {
     background: linear-gradient(180deg, #004AAD, #bbc2c9);
     background-size: cover;
   }
+
   header.masthead:before {
     content: "";
     position: absolute;
     background: linear-gradient(180deg, #004AAD, #EDF2F7);
 
-    height: 100%;
     width: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.5;
-  }
-  header.masthead h1, header.masthead .h1 {
-    font-size: 2rem;
-  }
+    top: 0; }
+
   @media (min-width: 768px) {
     header.masthead h1, header.masthead .h1 {
       font-size: 3rem;
