@@ -32,7 +32,7 @@ class PasswordController extends Controller
             );
 
             return $status === Password::RESET_LINK_SENT
-                        ? redirect('usuario.login')->with(['success' => 'Se le ha enviado un email con el link para reestablecer su contraseña.'])
+                        ? redirect()->route('usuario.login')->with(['success' => 'Se le ha enviado un email con el link para reestablecer su contraseña.'])
                         : back()->withErrors(['email' => __($status)]);
 
     }

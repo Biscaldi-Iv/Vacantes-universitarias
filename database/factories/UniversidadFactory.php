@@ -21,7 +21,7 @@ class UniversidadFactory extends Factory
             'direccionUniversidad' => fake()->address(),
             'telefono'=> fake()->phoneNumber(),
             'emailRRHH' => fake()->companyEmail(),
-            'sitioWeb' => fake()->sentence(),
+            'sitioWeb' => fake()->url(),
             ]
         ;
     }

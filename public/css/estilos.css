@@ -1,15 +1,13 @@
 header.masthead {
     position: relative;
-    background-color: #343a40;
-    background: url("/img/bg-masthead.jpg") no-repeat center center;
+    background: linear-gradient(180deg, #004AAD, #bbc2c9);
     background-size: cover;
-    padding-top: 8rem;
-    padding-bottom: 8rem;
   }
   header.masthead:before {
     content: "";
     position: absolute;
-    background-color: #1c375e;
+    background: linear-gradient(180deg, #004AAD, #EDF2F7);
+
     height: 100%;
     width: 100%;
     top: 0;
@@ -20,10 +18,6 @@ header.masthead {
     font-size: 2rem;
   }
   @media (min-width: 768px) {
-    header.masthead {
-      padding-top: 8rem;
-      padding-bottom: 8rem;
-    }
     header.masthead h1, header.masthead .h1 {
       font-size: 3rem;
     }
