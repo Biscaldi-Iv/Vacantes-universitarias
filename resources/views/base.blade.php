@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         @yield('titulo')
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="img/Vacantes.png" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
         rel="stylesheet" type="text/css" />
@@ -44,16 +44,7 @@
     <body>
         <!-- Masthead-->
         <header class="masthead">
-            <div class="container position-relative">
-                <div class="row justify-content-center">
-                    <div class="col-xl-8">
-                        <div class="text-center text-white">
-                            <!-- Page heading-->
-                            <h1 class="mb-5">Vacantes Universitarias</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="container position-relative" />
         </header>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top shadow">

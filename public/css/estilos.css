@@ -1,15 +1,17 @@
 header.masthead {
     position: relative;
     background-color: #343a40;
-    background: url("/img/bg-masthead.jpg") no-repeat center center;
+    background: url("/img/bg-academy.png") no-repeat center center;
+    /*background: linear-gradient(180deg, #004AAD, lightblue);*/
     background-size: cover;
     padding-top: 8rem;
     padding-bottom: 8rem;
   }
+
   header.masthead:before {
     content: "";
     position: absolute;
-    background-color: #1c375e;
+    background: linear-gradient(180deg, #004AAD, lightblue);
     height: 100%;
     width: 100%;
     top: 0;
