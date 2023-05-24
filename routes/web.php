@@ -115,9 +115,21 @@ Route::get('/datospostulante', [PostulanteController::class, 'edit'])->name('dat
 
 Route::post('/datospostulante', [PostulanteController::class, 'save']);
 
-// FAQ
+// INFO
 
 Route::get('/faq', [FAQController::class, 'show']);
+
+Route::get('/about', function () {
+    return view('info.about');
+});
+
+Route::get('/privacy', function () {
+    return view('info.privacypolicy');
+});
+
+Route::get('/terms', function () {
+    return view('info.termsofuse');
+});
 
 Route::get('/vacantes/infovacante', function () {
     return view('vacantes.infovacante');

@@ -18,4 +18,17 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_login()
+    {
+        $response =$this->withHeaders(
+            ['X-Header'=>'Value',]
+            )->post('/login',[
+                'email'=>'aaa@mail.com',
+                'password'=>'asdasdasd',
+            ]);
+        $response->assertStatus(200);
+    }
+
+
 }

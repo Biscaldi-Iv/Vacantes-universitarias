@@ -15,9 +15,9 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
         rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/css/estilos.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="/css/estilos.css" rel="stylesheet" />
         <!-- Minified Bootstrap CSS
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         Minified JS library
@@ -92,9 +92,9 @@
         <div class="container w-75 bg-white shadow mt-5 mb-5">
             @yield('breadcrumb')
             @if (session('error'))
-                <h5 class="alert alert-danger">{{ session('error') }}</h5>
+                <h5 class="alert alert-danger"><strong>ERROR!</strong> {{ session('error') }}</h5>
             @elseif(session('success'))
-                <h5 class="alert alert-success">{{ session('success') }}</h5>
+                <h5 class="alert alert-success"><strong>HECHO!</strong> {{ session('success') }}</h5>
             @endif
             @yield('contenido')
         </div>
@@ -108,20 +108,20 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">Acerca de</a></li>
+                            <li class="list-inline-item"><a href="/about" class="links">Acerca de</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contacto</a></li>
+                            <li class="list-inline-item"><a href="#!" class="links">Contacto</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terminos de uso</a></li>
+                            <li class="list-inline-item"><a href="/terms" class="links">Terminos de uso</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Política de privacidad</a></li>
+                            <li class="list-inline-item"><a href="/privacy" class="links">Política de privacidad</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">
                             &copy; AcademyHub 2022. Todos los derechos reservados.
                         </p>
                     </div>
                     <!--div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-                        <ul class="list-inline mb-0">
+                        <ul class="list-inline mb-0"></ul>
                             <li class="list-inline-item me-4">
                                 <a href="#!"><i class="bi-facebook fs-3"></i></a>
                             </li>

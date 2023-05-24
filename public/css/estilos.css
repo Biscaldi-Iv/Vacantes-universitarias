@@ -36,3 +36,6 @@ footer.footer {
     padding-bottom: 4rem;
   }
 
+   .links:visited {
+    color:#3c0460;
+ }
