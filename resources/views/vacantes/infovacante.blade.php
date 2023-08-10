@@ -113,7 +113,7 @@
                         </div>
                 <div class="modal-body">
                     <p>Por favor inicie sesion y luego haga click en cerrar</p>
-                    <iframe src="/login#email" style="width: 100%; height: 100%"></iframe>
+                    <iframe src="/login#email" style="width: 100%; height: 100%" id="chframe"></iframe>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="window.location.reload();">Cerrar</button>
@@ -148,6 +148,19 @@
         p=document.getElementById("btn_pos");
         p.setAttribute("hidden","true");
     @endauth
+
+    @guest
+    let reloadOnLogin = function() {
+        let status= document.getElementById("chframe").contentDocument.title !== 'Inicio de sesion';
+        if(status){
+            document.location.reload();
+        }
+        else{
+            console.log('Try again!');
+        }
+    }
+    document.getElementById("chframe").onload=reloadOnLogin;
+    @endguest
  </script>
  @endif
 
