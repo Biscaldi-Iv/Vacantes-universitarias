@@ -115,6 +115,7 @@
                             <li class="list-inline-item"><a href="/terms" class="links">Terminos de uso</a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="/privacy" class="links">Política de privacidad</a></li>
+                            <li class="list-inline-item"><a href="/map" class="links">Mapa del sitio</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">
                             &copy; AcademyHub 2022. Todos los derechos reservados.

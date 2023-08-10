@@ -130,6 +130,9 @@ Route::get('/privacy', function () {
 Route::get('/terms', function () {
     return view('info.termsofuse');
 });
+Route::get('/map', function () {
+    return view('info.map');
+});
 
 Route::get('/vacantes/infovacante', function () {
     return view('vacantes.infovacante');
