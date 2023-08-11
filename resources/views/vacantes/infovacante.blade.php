@@ -150,16 +150,27 @@
     @endauth
 
     @guest
-    let reloadOnLogin = function() {
-        let status= document.getElementById("chframe").contentDocument.title !== 'Inicio de sesion';
-        if(status){
-            document.location.reload();
+        let reloadOnLogin = function() {
+            fetch(`${window.origin}/auth-status`, {
+                method: 'GET',
+                credentials: 'include',
+                cache: 'no-cache',
+                headers: new Headers({'content-type':'application/json'}),
+            })
+            .then(function (response) {
+                if (response.status != 200) {
+                    console.log(`response status was not 200, was ${response.status}`);
+                    return;
+                }
+                response.json().then(function (data) {
+                    if(data.status=='1'){
+                        document.location.reload();
+                    }
+                });
+            });
+
         }
-        else{
-            console.log('Try again!');
-        }
-    }
-    document.getElementById("chframe").onload=reloadOnLogin;
+        document.getElementById("chframe").onload=reloadOnLogin;
     @endguest
  </script>
  @endif

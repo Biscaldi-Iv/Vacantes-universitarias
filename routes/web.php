@@ -142,4 +142,9 @@ Route::get('/ordenmerito', function () {
     return view('meritos.ordenmerito');
 });
 
-
+Route::get('/auth-status', function (Request $request){
+    if(Auth::check()){
+        return ['status'=>'1'];
+    }
+    return ['status'=>'0'];
+});
