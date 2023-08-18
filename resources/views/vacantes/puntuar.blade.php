@@ -170,8 +170,22 @@
 @endsection
 
 @section('scripts')
-@if ($vacante->fechaLimite < \Carbon\Carbon::now())
 <script type="text/javascript">
+let removeLead0=function(){
+    var x=document.getElementsByTagName("input");
+    for(var i = 0; i < x.length; i++) {
+        if(x[i].name =="_token") continue;
+        var val=x[i].value;
+      x[i].value=parseInt(val,10);
+     }
+}
+var x=document.getElementsByTagName("input");
+for(var i = 0; i < x.length; i++) {
+      x[i].oninput=removeLead0;
+}
+
+
+@if ($vacante->fechaLimite < \Carbon\Carbon::now())
     document.getElementById("titulo").setAttribute("disabled","true");
     document.getElementById("experiencia").setAttribute("disabled","true");
     document.getElementById("con_asignatura").setAttribute("disabled","true");
@@ -183,7 +197,7 @@
     document.getElementById("entrevista").setAttribute("disabled","true");
     document.getElementById("investigaciones").setAttribute("disabled","true");
     document.getElementById("btn").setAttribute("hidden","true");
-</script>
 @endif
+</script>
 
 @endsection

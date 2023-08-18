@@ -151,6 +151,10 @@
 
     @guest
         let reloadOnLogin = function() {
+            let currentReq=document.getElementById("chframe").contentWindow.location.href;
+             if(!currentReq.includes("/login") && !currentReq.includes("/registrarse")){
+                 document.getElementById("chframe").contentWindow.location.href=`/login`;
+                }
             fetch(`${window.origin}/auth-status`, {
                 method: 'GET',
                 credentials: 'include',
