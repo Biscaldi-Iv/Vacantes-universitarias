@@ -13,6 +13,9 @@
 @endsection
 
 @section('contenido')
+    @error('email')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="container mt-4 shadow"
         style="width:30%; padding:40px; margin-top: 30%; margin-bottom: 10%; border-radius:10px;">
         <h5 class="text-center">Ingrese su correo electrónico</h5>
@@ -23,6 +26,7 @@
                 <label for="email" class="form-label">Correo electronico</label>
                 <input type="email" class="form-control" name="email" id="email" value=""
                     placeholder="Correo electronico" required>
+
             </div>
             <button type="submit" class="btn btn-primary w-100">Enviar</button>
         </form>

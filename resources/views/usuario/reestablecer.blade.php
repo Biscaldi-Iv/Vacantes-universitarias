@@ -21,7 +21,8 @@
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Correo electronico</label>
-                <input type="email" class="form-control" name="email" id="email" value="{{ request()->email }}">
+                <input type="email" class="form-control" name="email" id="email" value="{{ request()->email }}"
+                    disabled>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>

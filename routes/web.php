@@ -107,6 +107,7 @@ Route::post('/vacantes/puntuar', [PostulacionesController::class, 'update']);
 Route::post('/vacantes/infoUsuario', [PostulacionesController::class, 'infoUsuario']);
 // Postulante
 
+
 Route::get('/ordenmerito/detallemerito', function () {
     return view('meritos.detallemerito');
 });

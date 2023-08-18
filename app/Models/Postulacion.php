@@ -19,6 +19,7 @@ class Postulacion extends Model
         'titulo',
         'experiencia',
         'con_asignatura',
+        'con_profesionales',
         'publicaciones',
         'congresos',
         'actitud',
@@ -32,6 +33,7 @@ class Postulacion extends Model
         'titulo'=>0,
         'experiencia'=>0,
         'con_asignatura'=>0,
+        'con_profesionales'=>0,
         'publicaciones'=>0,
         'congresos'=>0,
         'actitud'=>0,
@@ -54,7 +56,7 @@ class Postulacion extends Model
 
 
     public function puntuacion_total(){
-        $t= $this->titulo+ $this->experiencia + $this->con_asignatura + $this->publicaciones + $this->congresos +
+        $t= $this->titulo+ $this->experiencia + $this->con_asignatura + $this->con_profesionales + $this->publicaciones + $this->congresos +
         $this->actitud + $this->disponibilidad + $this->entrevista + $this->sueldo + $this->investigaciones;
         return $t;
     }
