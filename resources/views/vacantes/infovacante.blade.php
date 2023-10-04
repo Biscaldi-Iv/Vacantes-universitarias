@@ -92,9 +92,9 @@
             @elseif(auth()->user()->privilegio==2)
             <div style="text-align:end;">
                 @if ($vacante->fechaLimite < \Carbon\Carbon::now())
-                    <a href="/orden/{{$vacante->idVacante}}" class="btn btn-primary">Ver órden de mérito</a>
+                    <button type="button" onclick="location.href='/orden/{{$vacante->idVacante}}'" class="btn btn-primary">Ver órden de mérito</button>
                 @else
-                    <a href="/vacantes/postulaciones/{{$vacante->idVacante}}" class="btn btn-primary">Ver postulaciones</a>
+                    <button type="button" onclick="location.href='/vacantes/postulaciones/{{$vacante->idVacante}}'" class="btn btn-primary">Ver postulaciones</button>
                 @endif
             </div>
             @endif
@@ -104,12 +104,12 @@
     </div>
     @guest
     <!-- Modal -->
-    <div class="modal fade" id="inicio" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal fade" id="inicio" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden>
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                     <div class="modal-header">
                             <h5 class="modal-title" id="modalTitleId">Inicio de sesion</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal de inicio de sesion"></button>
                         </div>
                 <div class="modal-body">
                     <p>Por favor inicie sesion y luego haga click en cerrar</p>

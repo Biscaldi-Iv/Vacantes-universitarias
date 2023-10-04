@@ -12,15 +12,10 @@
 @endsection
 
 @section('contenido')
-<div class="col p-2">
-        <div class="input-group">
-            <form>
-                @csrf
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary">search</button>
-            </form>
-        </div>
+    <div class="col p-2">
+    <x-barra-buscar />
     </div>
+
     <div class="text-center p-2 my-3">
         <h1 class="fw-bold text-left my-3" >{{$vacante->tituloVacante}}</h1>
     </div>

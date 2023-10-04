@@ -32,12 +32,12 @@
         .breadcrumb:hover{
             display: inline;
             color: blue;
-            text-decoration: inline;
+            text-decoration: underline;
         }
         .breadcrumb:active{
             display: inline;
             color: blue;
-            text-decoration: inline;
+            text-decoration: underline;
         }
         </style>
     </head>
@@ -79,8 +79,8 @@
                     </div>
                 @endauth
                 @guest
-                    <a class="btn btn-primary" name="login" href="/login">Ingresar</a>
-                    <a class="btn btn-secondary" name="registrarse" href="/registrarse">Registrarse</a>
+                    <button class="btn btn-primary" name="login"  onclick='location.href="/login"'>Ingresar</button>
+                    <button class="btn btn-secondary" name="registrarse" onclick="location.href='/registrarse'">Registrarse</button>
                 @endguest
                 </div>
             </div>

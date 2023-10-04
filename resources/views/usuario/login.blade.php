@@ -26,8 +26,8 @@
                 <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
             </div>
             <button type="submit" class="btn btn-primary w-100">Iniciar sesion</button>
-            <a class="btn btn-light w-100" name="registrarse" href="/registrarse">Registrarse</a>
-            <a class="btn btn-light w-100" name="reestablecer" href="/contraseña/olvidada">Has olvidado tu contraseña?</a>
+            <button type="button" class="btn btn-light w-100" name="registrarse" onclick="location.href='/registrarse'">Registrarse</button>
+            <button type="button" class="btn btn-light w-100" name="reestablecer" onclick="location.href='/contraseña/olvidada'">Has olvidado tu contraseña?</a>
         </form>
     </div>
 @endsection

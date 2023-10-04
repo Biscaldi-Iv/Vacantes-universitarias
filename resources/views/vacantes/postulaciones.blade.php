@@ -13,25 +13,15 @@
 @endsection
 
 @section('contenido')
-<div class="col p-2">
-        <div class="input-group">
-            <form>
-                @csrf
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary">search</button>
-            </form>
-        </div>
+    <div class="col p-2">
+        <x-barra-buscar />
     </div>
     <div class="text-center p-2 my-3">
         <h1>Vacante: {{$vacante->tituloVacante}}</h1>
     </div>
     <hr>
     <div class="table-responsive">
-        <table class="table table-striped
-        table-hover
-        table-borderless
-        table-light
-        align-middle" aria-label="Listado de vacantes">
+        <table class="table table-striped table-hover table-borderless table-light align-middle" aria-label="Listado de vacantes">
         <caption>Postulaciones</caption>
         <thead class="table-light">
             <th>Postulante</th>
@@ -65,7 +55,7 @@
                                     @endif
                                     <div class="col">
                                         @if($u->privilegio == 1)
-                                        <a class="btn btn-outline-primary" href="/usuario/perfil/{{$u->id}}">
+                                        <button type="button" class="btn btn-outline-primary" onclick="location.href='/usuario/perfil/{{$u->id}}'">
                                             Ver perfil
                                         </a>
                                         @endif
@@ -78,12 +68,10 @@
                                             <button type="sumbit" class="btn btn-primary">Ver postulación</button>
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 @endforeach
             @else
                 <p>No hay postulaciones disponibles</p>
@@ -92,8 +80,8 @@
         <tfoot>
 
         </tfoot>
-    </table>
-</div>
+        </table>
+    </div>
 @endsection
 
 @section('scripts')

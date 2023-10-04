@@ -47,13 +47,7 @@
         <hr>
         @if (count($postulaciones) > 0)
             <div class="table-responsive">
-                <table
-                    class="table table-striped
-        table-hover
-        table-borderless
-        table-light
-        align-middle"
-                    aria-label="Listado de vacantes">
+                <table class="table table-striped table-hover table-borderless table-light align-middle" aria-label="Listado de vacantes">
                     <caption>Postulaciones</caption>
                     <thead class="table-light text-center">
                         <th>Informacion de vacante</th>
@@ -71,11 +65,11 @@
                                 </td>
                                 <td>
                                     @if ($vacante->fechaLimite < \Carbon\Carbon::now())
-                                        <div class="alert alert-danger">Cerrada</div>
+                                    <div class="alert alert-danger">Cerrada</div>
                                     @else
-                                        <div class="alert alert-success">
-                                            <strong>Abierta</strong> La puntuacion actual es parcial
-                                        </div>
+                                    <div class="alert alert-success">
+                                        <strong>Abierta</strong> La puntuacion actual es parcial
+                                    </div>
                                     @endif
                                 </td>
                                 <td class="text-center">

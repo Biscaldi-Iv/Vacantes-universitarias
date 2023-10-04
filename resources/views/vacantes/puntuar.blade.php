@@ -152,8 +152,8 @@
                         value="{{ $postulacion->investigaciones ?? (old('investigaciones') ?? 0) }}">
                 </div>
                 <input type="number" name="idVacante" id="idVacante" value="{{ $vacante->idVacante }}"
-                    hidden="true">
-                <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden="true">
+                    hidden>
+                <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden>
                 <div style="text-align:end;">
                     <button type="submit" id="btn" class="btn btn-primary">Guardar</button>
                 </div>
@@ -163,11 +163,11 @@
 
                 @if ($vacante->fechaLimite < \Carbon\Carbon::now())
                     <div class="p-3" style="text-align:end;">
-                        <a href="{{ url()->previous() }}" class="btn btn-primary">
+                        <button type="button" onclick="location.href='{{ url()->previous() }}'" class="btn btn-primary">
                             <i class="bi bi-arrow-left-circle-fill"></i>
 
                             Volver
-                        </a>
+                        </button>
                     </div>
                 @endif
             </div>

@@ -76,12 +76,12 @@
 </div>
 
 <!-- Modal -->
-<div class="modal face" id="modalC" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+<div class="modal face" id="modalC" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitleId">Informacion de la cátedra</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
             </div>
             <form id="formC" method="POST">
                 @csrf

@@ -41,9 +41,9 @@
         align-middle"
             aria-label="Listado de vacantes">
             <thead class="table-light">
-                <caption hidden="true">Vacantes</caption>
+                <caption hidden>Vacantes</caption>
                 <tr>
-                    <th hidden="true">Vacante</th>
+                    <th hidden>Vacante</th>
                     @auth
                         @if (auth()->user()->privilegio == 2)
                             <th>Vacantes</th>
@@ -81,27 +81,27 @@
                         </td>
                         <td>
                             @guest
-                                <a type="button" class="btn btn-primary" href="/vacantes/infovacante/{{ $v->idVacante }}">
+                                <button type="button" class="btn btn-primary" onclick="location.href='/vacantes/infovacante/{{ $v->idVacante }}'">
                                     Postularse <span class="badge badge-light">+Info</span>
-                                </a>
+                                </button>
                             @endguest
                             @auth
                                 @if (auth()->user()->privilegio == 1)
                                     <!--abrir modal-->
-                                    <a type="button" class="btn btn-primary "
-                                        href="/vacantes/infovacante/{{ $v->idVacante }}">
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="location.href='/vacantes/infovacante/{{ $v->idVacante }}'">
                                         Postularse <span class="badge badge-light">+Info</span>
-                                    </a>
+                                    </button>
                                 @elseif(auth()->user()->privilegio == 2)
                                     @if ($v->fechaLimite < \Carbon\Carbon::now())
-                                        <a type="button" class="btn btn-primary" href="/orden/{{ $v->idVacante }}">
+                                        <button type="button" class="btn btn-primary" onclick="location.href='/orden/{{ $v->idVacante }}'">
                                             Ver méritos
-                                        </a>
+                                        </button>
                                     @else
-                                        <a type="button" class="btn btn-primary"
-                                            href="/vacantes/infovacante/{{ $v->idVacante }}">
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="location.href='/vacantes/infovacante/{{ $v->idVacante }}'">
                                             Ver vacante
-                                        </a>
+                                        </button>
                                     @endif
                                 @endif
                             @endauth
@@ -146,13 +146,13 @@
         @if (auth()->user()->privilegio == 2)
             <!-- Modal -->
             <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
-                aria-hidden="true">
+                aria-hidden>
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="modalTitleId">Registar Vacante en {{ $universidad->nombreUniversidad }}
                             </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
                         </div>
                         <form id="formV" method="POST">
                             @csrf
@@ -207,8 +207,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                                    aria-label="Cerrar">Cerrar</button>
-                                <button type="sumbit" class="btn btn-primary" aria-label="Guardar"
+                                    aria-label="Cerrar modal">Cerrar</button>
+                                <button type="sumbit" class="btn btn-primary" aria-label="Guardar vacante"
                                     id="send">Guardar</button>
                             </div>
                         </form>

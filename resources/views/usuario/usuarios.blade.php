@@ -13,9 +13,9 @@
 
 @section('contenido')
     <div class="row-4 my-3">
-        <a class="btn btn-primary btn-lg" href="/admin/usuarios/registrar">
+        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/admin/usuarios/registrar'">
             Registrar usuario
-        </a>
+        </button>
     </div>
 
     <div class="table-responsive">
@@ -54,9 +54,9 @@
                         </td>
                         <td>
                             @if ($u->privilegio == 1)
-                                <a class="btn btn-outline-primary" href="/usuario/perfil/{{ $u->id }}">
+                                <button type="button" class="btn btn-outline-primary" onclick="location.href='/usuario/perfil/{{ $u->id }}'">
                                     Ver perfil
-                                </a>
+                                </button>
                             @endif
                         </td>
                         <td>
@@ -103,12 +103,12 @@
         </table>
     </div>
 
-    <div class="modal fade" id="modalU" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal fade" id="modalU" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitleId">Informacion del Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
                 </div>
                 <form action="/admin/usuarios" id="formU" method="POST">
                     @csrf
