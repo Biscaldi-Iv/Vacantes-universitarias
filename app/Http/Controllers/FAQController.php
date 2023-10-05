@@ -15,7 +15,7 @@ class FAQController extends Controller
 
     public function create(Request $request){
         if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
+            return redirect()->route('principal')->with('error',"No tiene permiso para registrar preguntas frecuentes");
         }
         //
     }

@@ -16,7 +16,7 @@ class VacanteController extends Controller
 
     public function create(VacanteRequest $request) {
         if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
+            return redirect()->route('principal')->with('error',"No tiene permiso para registrar vacantes");
         }
         Vacantes::create($request->validated());
         return redirect()->route('principal')->with('success','Vacante registrada!');
@@ -24,7 +24,7 @@ class VacanteController extends Controller
 
     public function update(VacanteRequest $request) {
         if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
+            return redirect()->route('principal')->with('error',"No tiene permiso para modificar vacantes");
         }
         $idV=$request->validate(['idVacante'=>'required|integer|min:1']);
         Vacantes::where('idVacante', $idV)->update($request->validated());
@@ -34,7 +34,7 @@ class VacanteController extends Controller
 
     public function delete(Request $request) {
         if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
+            return redirect()->route('principal')->with('error',"No tiene permiso para eliminar vacantes");
         }
         $idV=$request->validate(['idVacante'=>'required|integer|min:1']);
         try{
