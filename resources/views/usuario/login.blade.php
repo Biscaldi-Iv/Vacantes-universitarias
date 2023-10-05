@@ -20,11 +20,12 @@
             <div class="mb-3">
                 <label for="email" class="form-label">Correo electronico</label>
                 <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}"
-                    placeholder="Correo electronico">
+                    placeholder="Correo electronico" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña"
+                    required>
             </div>
             <div class="mb-3">
                 <div class="g-recaptcha" data-sitekey={{ env('CAPTCHA_SITE_KEY') }}></div>
