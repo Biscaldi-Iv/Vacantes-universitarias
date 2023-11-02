@@ -14,7 +14,7 @@ class LoginController extends Controller
     public function show()
     {
         if (Auth::check()) {
-            return redirect()->route('principal')->with('succes', 'Usted ya ha iniciado sesion!');
+            return redirect()->route('principal')->with('success', 'Usted ya ha iniciado sesion!');
         }
         return view('usuario.login');
     }
@@ -38,6 +38,6 @@ class LoginController extends Controller
             $p = PersonalUniversidad::where('fkIdUser', auth()->user()->id)->select()->first();
             session(['universidad' => $p->fkIdUni]);
         }
-        return redirect()->route('principal')->with('succes', 'Se ha iniciado sesion!');
+        return redirect()->route('principal')->with('success', 'Se ha iniciado sesion!');
     }
 }

@@ -48,7 +48,6 @@ class PostulacionesController extends Controller
 
 
     public function update(PuntuacionRequest $request){
-        //dd($request);
         if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para puntuar candidatos");
         }

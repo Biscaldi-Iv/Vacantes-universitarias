@@ -14,7 +14,9 @@ use App\Http\Controllers\PostulacionesController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FAQController;
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PasswordController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,6 +126,12 @@ Route::get('/about', function () {
     return view('info.about');
 });
 
+Route::get('/contact', function () {
+    return view('info.contact');
+})->name('contacto');
+
+Route::post('info/contact', [InfoController::class, 'store']);
+
 Route::get('/privacy', function () {
     return view('info.privacypolicy');
 });
@@ -143,7 +151,7 @@ Route::get('/ordenmerito', function () {
     return view('meritos.ordenmerito');
 });
 
-Route::get('/auth-status', function (Request $request){
+Route::get('/auth-status', function (){
     if(Auth::check()){
         return ['status'=>'1'];
     }

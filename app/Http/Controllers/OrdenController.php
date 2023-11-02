@@ -20,7 +20,6 @@ class OrdenController extends Controller
          entrevista+
          sueldo+
          investigaciones) desc')->get();
-        //dd($postulaciones->toArray());
         return view('meritos.ordenmerito', ['vacante' => $vacante ,'postulaciones' => $postulaciones]);
     }
 

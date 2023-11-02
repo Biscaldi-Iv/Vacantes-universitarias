@@ -110,7 +110,7 @@
                         <ul class="list-inline mb-2">
                             <li class="list-inline-item"><a href="/about" class="links">Acerca de</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!" class="links">Contacto</a></li>
+                            <li class="list-inline-item"><a href="/contact" class="links">Contacto</a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="/terms" class="links">Terminos de uso</a></li>
                             <li class="list-inline-item">⋅</li>
