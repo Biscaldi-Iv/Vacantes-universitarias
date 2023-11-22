@@ -6,9 +6,9 @@
 
 @section('breadcrumb')
     <p>
-        /<a class="breadcrumb"href="/">Página principal</a>
-        /<a class="breadcrumb"href="/vacantes/infovacante/{{ $vacante->idVacante }}">{{ $vacante->tituloVacante }}</a>
-        /<a class="breadcrumb"href="/vacantes/postulaciones/{{$vacante->idVacante}}">Postulaciones</a>
+        /<a class="breadcrumb" href="/">Página principal</a>
+        /<a class="breadcrumb" href="/vacantes/infovacante/{{ $vacante->idVacante }}">{{ $vacante->tituloVacante }}</a>
+        /<a class="breadcrumb" href="/vacantes/postulaciones/{{$vacante->idVacante}}">Postulaciones</a>
     </p>
 @endsection
 

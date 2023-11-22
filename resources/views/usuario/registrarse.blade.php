@@ -7,13 +7,13 @@
 
 @section('breadcrumb')
     <p>
-        /<a class="breadcrumb"href="/">Página principal</a>
+        /<a class="breadcrumb" href="/">Página principal</a>
         @guest
-            /<a class="breadcrumb"href="/registrarse">Registrarse</a>
+            /<a class="breadcrumb" href="/registrarse">Registrarse</a>
         @endguest
         @auth
-            /<a class="breadcrumb"href="/admin/usuarios">Usuarios</a>
-            /<a class="breadcrumb"href="/admin/usuarios/registrar">Registrar usuarios con privilegio</a>
+            /<a class="breadcrumb" href="/admin/usuarios">Usuarios</a>
+            /<a class="breadcrumb" href="/admin/usuarios/registrar">Registrar usuarios con privilegio</a>
         @endauth
 
     </p>

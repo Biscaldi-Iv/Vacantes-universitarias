@@ -6,7 +6,7 @@
 
 @section('breadcrumb')
     <p>
-        /<a class="breadcrumb"href="/">Página principal</a>
+        /<a class="breadcrumb" href="/">Página principal</a>
     </p>
 @endsection
 
@@ -43,11 +43,14 @@
             <thead class="table-light">
                 <caption hidden>Vacantes</caption>
                 <tr>
-                    <th hidden>Vacante</th>
+                    @guest
+                    <th hidden>Vacantes</th>
+                    <th hidden>Acciones</th>
+                    @endguest
                     @auth
                         @if (auth()->user()->privilegio == 2)
                             <th>Vacantes</th>
-                            <th></th>
+                            <th>Meritos</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         @endif

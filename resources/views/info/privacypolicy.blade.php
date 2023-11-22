@@ -6,8 +6,8 @@
 
 @section('breadcrumb')
     <p class="text-justify px-5">
-        /<a class="breadcrumb"href="/">Página principal</a>
-        /<a class="breadcrumb"href="/privacy">Politica de Privacidad</a>
+        /<a class="breadcrumb" href="/">Página principal</a>
+        /<a class="breadcrumb" href="/privacy">Politica de Privacidad</a>
     </p>
 @endsection
 

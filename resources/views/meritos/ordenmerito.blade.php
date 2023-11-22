@@ -6,8 +6,8 @@
 
 @section('breadcrumb')
     <p>
-        /<a class="breadcrumb"href="/">Página principal</a>
-        /<a class="breadcrumb"href="/orden/{{ $vacante->idVacante }}">Orden de merito</a>
+        /<a class="breadcrumb" href="/">Página principal</a>
+        /<a class="breadcrumb" href="/orden/{{ $vacante->idVacante }}">Orden de merito</a>
     </p>
 @endsection
 

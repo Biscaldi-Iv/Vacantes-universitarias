@@ -6,8 +6,8 @@
 
 @section('breadcrumb')
     <p>
-        /<a class="breadcrumb"href="/">Página principal</a>
-        /<a class="breadcrumb"href="/map">Mapa del sitio</a>
+        /<a class="breadcrumb" href="/">Página principal</a>
+        /<a class="breadcrumb" href="/map">Mapa del sitio</a>
     </p>
 @endsection
 

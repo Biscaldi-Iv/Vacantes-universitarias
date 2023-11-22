@@ -6,14 +6,14 @@
 
 @section('breadcrumb')
     <p>
-        /<a class="breadcrumb"href="/">Página principal</a>
-        /<a class="breadcrumb"href="/vacantes/infovacante/{{ $vacante->idVacante }}">{{ $vacante->tituloVacante }}</a>
+        /<a class="breadcrumb" href="/">Página principal</a>
+        /<a class="breadcrumb" href="/vacantes/infovacante/{{ $vacante->idVacante }}">{{ $vacante->tituloVacante }}</a>
         @if (str_contains(url()->previous(), 'orden'))
             /<a class="breadcrumb" href="/orden/{{ $vacante->idVacante }}">Ordenes de méritos</a>
-            /<a class="breadcrumb"href="#">Orden de Mérito</a>
+            /<a class="breadcrumb" href="#">Orden de Mérito</a>
         @else
-            /<a class="breadcrumb"href="/vacantes/postulaciones/{{ $vacante->idVacante }}">Postulaciones</a>
-            /<a class="breadcrumb"href="#">Puntuar</a>
+            /<a class="breadcrumb" href="/vacantes/postulaciones/{{ $vacante->idVacante }}">Postulaciones</a>
+            /<a class="breadcrumb" href="#">Puntuar</a>
         @endif
     </p>
 @endsection

@@ -6,9 +6,9 @@
 
 @section('breadcrumb')
     <p>
-        /<a class="breadcrumb"href="/">Página principal</a>
-        /<a class="breadcrumb"href="/login">Inicio de sesion</a>
-        /<a class="breadcrumb"href="/reestablecer">Reestablecer contraseña</a>
+        /<a class="breadcrumb" href="/">Página principal</a>
+        /<a class="breadcrumb" href="/login">Inicio de sesion</a>
+        /<a class="breadcrumb" href="/reestablecer">Reestablecer contraseña</a>
     </p>
 @endsection
 
