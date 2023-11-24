@@ -1,66 +1,35 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<picture>
+    <source media="(prefers-color-scheme: dark)" src="./public/img/Vacantes_Alt.png" alt="Logo de AcademyHub">
+    <source media="(prefers-color-scheme: light)" src="./public/img/academy.png" alt="Logo de AcademyHub">
+    <img src="./public/img/Vacantes_Alt.png" alt="Logo de AcademyHub">
+</picture>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# [AcademyHub](https://academy-hub.000webhostapp.com/)
 
-## About Laravel
+## Descripción del [sitio](https://academy-hub.000webhostapp.com/about)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+El sitio será un módulo destinado a la gestión de los llamados a cubrir vacantes de distintas universidades. Informará de la apertura de los llamados y permitirá la postulación para las vacantes. Permitirá registrar y gestionar los Curriculum vitae de los postulantes y la visualización de los mismos para los usuarios de la universidad. Informará también de los resultados de órdenes de mérito a los postulantes, de manera que todos los usuarios externos a la universidad puedan ver los resultados.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Objetivo general del sitio
 
-## Learning Laravel
+El objetivo principal del sitio es gestionar los llamados a cubrir vacantes en las distintas cátedras de cada universidad. 
+Para ello deberá:
+- Realizar la apertura de llamados a cubrir vacante en las cátedras del departamento de sistemas.
+- Realizar el registro de los CV de los postulantes. 
+- Publicar los resultados de los órdenes de mérito de las diferentes vacantes que se realizan, para que todos los usuarios puedan visualizarlas.
+- Mantener un registro histórico de las vacantes cubiertas.
+- Mantener un registro de puntuaciones del orden de mérito.
+- Notificar a los postulantes de los resultados de los órdenes de mérito.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## [Mapa del sitio](https://academy-hub.000webhostapp.com/map)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<img src="./public/img/mapa.png" alt="Mapa del sitio web">
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Modelo lógico
 
-## Laravel Sponsors
+<img src="./public/img/modLogico.png" alt="Modelo logico del sitio web">
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Modelo Físico
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<img src="./public/img/modFisico.png" alt="Modelo fisico del sitio web">

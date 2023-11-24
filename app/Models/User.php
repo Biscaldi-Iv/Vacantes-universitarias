@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Usuario;
+use App\Models\PersonalUniversidad;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -50,6 +53,25 @@ class User extends Authenticatable
     ];
 
     public function setPasswordAttribute($value){
-        $this->attributes['password'] = bcrypt($value);
+        $this->attributes['password'] = $value;
+    }
+
+    public function usuario()
+    {
+        if($this->privilegio==1){
+            return $this->hasOne(Usuario::class,'fkiduser','id');
+        }
+        return null;
+    }
+
+    public function personalUniversidad(){
+        if($this->privilegio==2){
+            return $this->hasOne(PersonalUniversidad::class,'fkIdUser','id');
+        }
+        return null;
+    }
+
+    public function getId(){
+        return $this->id;
     }
 }

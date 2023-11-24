@@ -13,7 +13,7 @@ class PostulanteController extends Controller
 {
     public function edit(Request $request){
         if(!Auth::check()) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
+            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a datos del postulante");
         }
         $postulante=DB::table('usuarios')->select(
             'fkiduser',
@@ -33,7 +33,7 @@ class PostulanteController extends Controller
 
     public function save(PostulanteRequest $request){
         if(!Auth::check()) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a $request->url()");
+            return redirect()->route('principal')->with('error',"No tiene permiso para modificar los datos del postulante");
         }
         Usuario::where('fkiduser',auth()->user()->id)->update($request->validated());
         return redirect()->route('principal')->with('success','Se guardaron los cambios');

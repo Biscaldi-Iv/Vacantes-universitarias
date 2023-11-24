@@ -9,6 +9,14 @@ use App\Http\Controllers\UniversidadesController;
 use App\Http\Controllers\CatedrasController;
 use App\Http\Controllers\VacanteController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\PostulacionesController;
+use App\Http\Controllers\OrdenController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\FAQController;
+use App\Http\Controllers\InfoController;
+use App\Http\Controllers\PasswordController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +29,11 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('principal.index');
-})->name('principal');
+Route::get('/orden/{orden}', [OrdenController::class, 'show'])->name('orden');
+
+Route::get('/', [PublicController::class, 'index'])->name('principal');
+
+Route::get('/buscar', [PublicController::class, 'buscar'])->name('buscar');
 
 // Usuario
 
@@ -35,7 +45,15 @@ Route::post('/admin/usuarios/actualizar', [AdminController::class, 'updateUser']
 
 Route::post('/admin/usuarios/borrar', [AdminController::class, 'deleteUser']);
 
-Route::post('/login', [LoginController::class,'login']);
+Route::post('/login', [LoginController::class,'login'])->name('usuario.login');
+
+Route::get('/contraseña/olvidada', [PasswordController::class,'showForgot']);
+
+Route::post('/contraseña/olvidada', [PasswordController::class,'forgot'])->name('password.forgot');
+
+Route::get('/contraseña/reestablecer', [PasswordController::class,'showReset']);
+
+Route::post('/contraseña/reestablecer', [PasswordController::class,'reset'])->name('password.reset');
 
 Route::get('/logout', [LogoutController::class,'logout']);
 
@@ -46,6 +64,8 @@ Route::post('/registrarse', [RegistroController::class, 'register']);
 Route::get('/admin/usuarios/registrar', [AdminController::class, 'showUserCreate'])->name('ADMINregister');
 
 Route::post('/admin/usuarios/registrar', [AdminController::class, 'createAdmin']);
+
+Route::get('/usuario/perfil/{id}', [UsuarioController::class, 'perfil']);
 
 // Catedras
 
@@ -69,13 +89,26 @@ Route::post('/universidades/borrar', [UniversidadesController::class, 'delete'])
 
 // Vacantes
 
-Route::get('/vacantes/registrovacante', [VacanteController::class, 'showcreate'])->name('crearvacante');
+//Route::get('/vacantes/nuevo', [VacanteController::class, 'showcreate'])->name('crearvacante');
 
-Route::post('/vacantes/crear', [VacanteController::class, 'create']);
+Route::post('/vacantes/registrar', [VacanteController::class, 'create']);
 
+Route::post('/vacantes/editar', [VacanteController::class, 'update']);
 
+Route::post('/vacantes/eliminar', [VacanteController::class, 'delete']);
 
+Route::get('/vacantes/infovacante/{idVacante}', [VacanteController::class, 'info']);
+
+//Postulaciones
+Route::get('/vacantes/postulaciones/{idVacante}', [PostulacionesController::class, 'show'])->name('vacantes.postulaciones');
+
+Route::post('/vacantes/postularse', [PostulacionesController::class, 'postular']);
+
+Route::post('/vacantes/puntuar', [PostulacionesController::class, 'update']);
+
+Route::post('/vacantes/infoUsuario', [PostulacionesController::class, 'infoUsuario']);
 // Postulante
+
 
 Route::get('/ordenmerito/detallemerito', function () {
     return view('meritos.detallemerito');
@@ -85,10 +118,29 @@ Route::get('/datospostulante', [PostulanteController::class, 'edit'])->name('dat
 
 Route::post('/datospostulante', [PostulanteController::class, 'save']);
 
-// FAQ
+// INFO
 
-Route::get('/faq', function () {
-    return view('info.FAQ');
+Route::get('/faq', [FAQController::class, 'show']);
+
+Route::get('/about', function () {
+    return view('info.about');
+});
+
+Route::get('/contact', function () {
+    return view('info.contact');
+})->name('contacto');
+
+Route::post('info/contact', [InfoController::class, 'store']);
+
+Route::get('/privacy', function () {
+    return view('info.privacypolicy');
+});
+
+Route::get('/terms', function () {
+    return view('info.termsofuse');
+});
+Route::get('/map', function () {
+    return view('info.map');
 });
 
 Route::get('/vacantes/infovacante', function () {
@@ -99,4 +151,9 @@ Route::get('/ordenmerito', function () {
     return view('meritos.ordenmerito');
 });
 
-
+Route::get('/auth-status', function (){
+    if(Auth::check()){
+        return ['status'=>'1'];
+    }
+    return ['status'=>'0'];
+});

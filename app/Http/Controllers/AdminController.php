@@ -11,6 +11,7 @@ use App\Models\Universidad;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use \Illuminate\Database\QueryException;
 
 class AdminController extends Controller
 {
@@ -66,7 +67,7 @@ class AdminController extends Controller
         }
         $id=$request->validate(['id'=>'required|integer']);
         $data=$request->validate([
-            'password' => 'required|min:8',
+            'password' => 'nullable|min:8',
             'nombre' => 'required',
             'apellido' => 'required',
             'direccion' => 'required',
@@ -75,10 +76,33 @@ class AdminController extends Controller
             'tipodoc'=>'required',
             'ndoc'=>'required'
         ]);
+        if($data['password']){
+            $data['password']=Hash::make($request['password']);
+        }else{
+            unset($data['password']);
+        }
         if($request->privilegio==2){
             //ver si ya era privilegio 2 y actualizar uni
             //o asignarla
+            DB::beginTransaction();
+            $pu_data=$request->validate(['fkIdUni'=>'required|integer']);
+            $pu = PersonalUniversidad::where('fkIdUser', $id)->first();
+            if($pu != null){
+                PersonalUniversidad::where('fkIdUser', $id)->update($pu_data);
+            } else {
+            PersonalUniversidad::create([
+                'fkIdUser' => $request->id,
+                'fkIdUni' => $request->fkIdUni
+            ]);
+            }
+
+            DB::commit();
+
+        } elseif($request->privilegio==1){
+            $pu_data=$request->validate(['fkIdUni'=>'required|integer']);
+            PersonalUniversidad::where('fkIdUser', $id)->delete();
         }
+
         User::where('id', $id)->update($data);
         return redirect()->route('listadoUsuarios')
         ->with('success',"Se actualizaron los datos del usuario!");
@@ -92,7 +116,11 @@ class AdminController extends Controller
         if(auth()->user()->id==$id){
             return redirect()->route('principal')->with('error','Intento de autoeliminarse!');
         }
-        User::where('id', $id)->delete();
+        try{
+            User::where('id', $id)->delete();
+        } catch(QueryException $e){
+            return redirect()->route('principal')->with('error','No es posible eliminar este usuario.');
+        }
         return redirect()->route('listadoUsuarios')
         ->with('success',"Se ha eliminado el usuario $request->nombre $request->apellido");
     }
