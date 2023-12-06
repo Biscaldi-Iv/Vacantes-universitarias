@@ -26,7 +26,7 @@ class LoginController extends Controller
             'response' => $request->input("g-recaptcha-response")
         ]);
         if (!$g_response->json('success')) {
-            return redirect()->to('login')->with('error', 'No se ha validado el capcha!');
+            return redirect()->to('login')->with('error', 'No se ha validado el captcha!');
         }
         $credenciales = $request->validated();
         if (!Auth::validate($credenciales)) {

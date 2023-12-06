@@ -32,12 +32,13 @@ class RegistroController extends Controller
             'response' => $request->input("g-recaptcha-response")
         ]);
         if (!$g_response->json('success')) {
-            return redirect()->route('registrarse')->with('error', 'No se ha validado el capcha!');
+            return redirect()->route('registrarse')->with('error', 'No se ha validado el captcha!');
         }
 
         try {
-            $user = User::create($request->validated());
-            $user['password'] = Hash::make($request['password']);
+            $attributes = $request->validated();
+            $attributes['password'] = Hash::make($request['password']);
+            $user = User::create($attributes);
             Usuario::create(['fkiduser' => $user->id]);
             auth()->login($user);
         } catch (QueryException $e) {
