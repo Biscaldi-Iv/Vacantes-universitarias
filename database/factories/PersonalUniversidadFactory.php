@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Catedra;
 use App\Models\Universidad;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,6 +22,7 @@ class PersonalUniversidadFactory extends Factory
         return [
             'fkIdUser' => User::factory()->create(['privilegio' => 2]),
             'fkIdUni' => Universidad::all()->random()->idUniversidad,
+            'fkIdCatedra' => Catedra::first()->idCatedra,
         ];
     }
 }

@@ -18,7 +18,6 @@ class CatedraFactory extends Factory
     public function definition()
     {
         return [
-            'fkIdUniversidad' => Universidad::factory()->create(),
             'nombreCatedra' => fake()->randomElement(['Matemática Superior', 'Legislación', 'Análisis Matemático', 'Comunicaciones', 'Redes']),
             'descripcion' => fake()->paragraph(),
         ];

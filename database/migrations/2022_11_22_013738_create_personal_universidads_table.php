@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id('idUP');
             $table->bigInteger('fkIdUser')->unsigned();
             $table->bigInteger('fkIdUni')->unsigned();
+            $table->bigInteger('fkIdCatedra')->unsigned();
             $table->foreign('fkIdUser')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fkIdUni')->references('idUniversidad')->on('universidads')
+            ->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('fkIdCatedra')->references('idCatedra')->on('catedras')
             ->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });

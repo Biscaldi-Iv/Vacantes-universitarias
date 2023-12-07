@@ -38,12 +38,12 @@
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" minlength="2"
+                            <input type="text" class="form-control" name="nombre"
                                 placeholder="Primer nombre" value="{{ old('nombre') }}" required>
                         </div>
                         <div class="col-sm-6 p-2">
                             <label for="apellido">Apellido</label>
-                            <input type="text" class="form-control" name="apellido" minlength="5"
+                            <input type="text" class="form-control" name="apellido"
                                 placeholder="Apellidos" value="{{ old('apellido') }}" required>
                         </div>
                     </div>
@@ -174,7 +174,6 @@
         @auth
         @if (auth()->user()->privilegio == 3)
             function cambiar(sel) {
-                console.log("cambiar");
                 if (sel.value == 2) {
                     document.getElementById("selUni").hidden = false;
                 } else {

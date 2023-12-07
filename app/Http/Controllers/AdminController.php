@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RegistroRequest;
+use App\Http\Resources\UniversidadesResourceCollection;
 use App\Models\User;
 use App\Models\Usuario;
 use App\Models\PersonalUniversidad;
@@ -20,7 +21,7 @@ class AdminController extends Controller
             return redirect()->route('principal')->with('error','Usted no tiene permiso para acceder a esta pagina');
         }
         $usuarios=User::all();
-        $universidades=Universidad::all();
+        $universidades = new UniversidadesResourceCollection(Universidad::all()->load(['catedras']));
         $pu=PersonalUniversidad::all();
         return view('usuario.usuarios',
         ['usuarios'=>$usuarios, 'universidades'=>$universidades,'pu'=>$pu]);
@@ -30,7 +31,7 @@ class AdminController extends Controller
         if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
             return redirect()->route('principal')->with('error','Usted no tiene permiso para acceder a esta pagina!');
         }
-        $universidades=Universidad::all();
+        $universidades=Universidad::all()->load(['catedras']);
         return view('usuario.registrarse', ['universidades'=>$universidades]);
     }
 
@@ -85,14 +86,15 @@ class AdminController extends Controller
             //ver si ya era privilegio 2 y actualizar uni
             //o asignarla
             DB::beginTransaction();
-            $pu_data=$request->validate(['fkIdUni'=>'required|integer']);
+            $pu_data=$request->validate(['fkIdUni'=>'required|integer1exists:id,universidads', 'fkIdCatedra'=>'required|integer|exists:id,catedras']);
             $pu = PersonalUniversidad::where('fkIdUser', $id)->first();
             if($pu != null){
                 PersonalUniversidad::where('fkIdUser', $id)->update($pu_data);
             } else {
             PersonalUniversidad::create([
                 'fkIdUser' => $request->id,
-                'fkIdUni' => $request->fkIdUni
+                'fkIdUni' => $request->fkIdUni,
+                'fkIdCatedra' => $request->fkIdCatedra
             ]);
             }
 

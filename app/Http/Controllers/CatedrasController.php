@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Catedra;
 use App\Models\Universidad;
 use App\Http\Requests\CatedrasRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -44,5 +45,13 @@ class CatedrasController extends Controller
         Catedra::where('idCatedra', $idc)->delete();
         return redirect()->route('catedrasU')
         ->with('success',"Se eliminaron los datos de la cátedra $request->nombreCatedra!");
+    }
+
+    public function showAdmin() {
+        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
+            return redirect()->route('principal')->with('error',"No tiene permiso para acceder a cátedras");
+        }
+        $universidad= Universidad::all()->with(['catedras']);
+        return view('universidades.catedrasU', ['universidad'=> $universidad]);
     }
 }
