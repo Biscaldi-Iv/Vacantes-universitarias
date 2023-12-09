@@ -48,8 +48,9 @@
                 @endif
             </div>
         </div>
-        <hr>
+
         @if (auth()->user()->privilegio == 1)
+            <hr>
             @if (count($postulaciones) > 0)
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-borderless table-light align-middle"
@@ -92,6 +93,7 @@
                 <h1>No hay postulaciones disponibles</h1>
             @endif
         @endif
+
     </div>
 @endsection
 
