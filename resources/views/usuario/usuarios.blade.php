@@ -188,20 +188,24 @@
                         <div class="form-group row">
                             <div class="col-sm-6 p-2">
                                 <label for="password">Contraseña</label>
-                                <input type="password" class="form-control" oninput="checkpass()" name="password"
-                                    id="password" placeholder="contraseña" minlength="8" maxlength="16">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" oninput="checkpass()" name="password"
+                                        id="password" placeholder="contraseña" minlength="8" maxlength="16">
                                     <button class="btn" style=" border-color: #ced4da;" type="button" id="togglePassword">
                                         <i class="bi bi-eye"></i>
                                     </button>
+                                </div>
                             </div>
                             <div class="col-sm-6 p-2">
                                 <label for="password_confirmacion">Confirmar Contraseña</label>
-                                <input type="password" class="form-control" oninput="checkpass()"
+                                <div class="input-group">
+                                    <input type="password" class="form-control" oninput="checkpass()"
                                     name="password_confirmacion" id="password_confirmacion" placeholder="contraseña"
                                     minlength="8" maxlength="16">
                                     <button class="btn" style=" border-color: #ced4da;" type="button" id="togglePasswordConfirmation">
                                         <i class="bi bi-eye"></i>
                                     </button>
+                                </div>
                             </div>
                         </div>
                         <h6 class="alert alert-success" id="success" hidden></h6>
