@@ -65,10 +65,7 @@ class User extends Authenticatable
     }
 
     public function personalUniversidad(){
-        if($this->privilegio==2){
-            return $this->hasOne(PersonalUniversidad::class,'fkIdUser','id');
-        }
-        return null;
+        return $this->hasOne(PersonalUniversidad::class,'fkIdUser','id');
     }
 
     public function getId(){

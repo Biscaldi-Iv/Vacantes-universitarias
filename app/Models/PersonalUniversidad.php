@@ -12,6 +12,7 @@ class PersonalUniversidad extends Model
     protected $fillable=[
         'idUP',
         'fkIdUser',
-        'fkIdUni'
+        'fkIdUni',
+        'fkIdCatedra'
     ];
 }

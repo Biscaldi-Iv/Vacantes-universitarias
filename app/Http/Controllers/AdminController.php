@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegistroRequest;
 use App\Http\Resources\UniversidadesResourceCollection;
+use App\Http\Resources\UserResourceCollection;
 use App\Models\User;
 use App\Models\Usuario;
 use App\Models\PersonalUniversidad;
@@ -20,7 +21,7 @@ class AdminController extends Controller
         if((!Auth::check()) || (auth()->user()->privilegio!=3)) {
             return redirect()->route('principal')->with('error','Usted no tiene permiso para acceder a esta pagina');
         }
-        $usuarios=User::all();
+        $usuarios= new UserResourceCollection(User::all()->load('personalUniversidad'));
         $universidades = new UniversidadesResourceCollection(Universidad::all()->load(['catedras']));
         $pu=PersonalUniversidad::all();
         return view('usuario.usuarios',
