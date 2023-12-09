@@ -49,7 +49,7 @@
                     <a class="navbar-brand" href="/">Inicio</a>
                     <a class="navbar-brand" href="/universidades">Universidades</a>
                     @auth
-                    @if(auth()->user()->privilegio==2)
+                    @if(auth()->user()->privilegio!=1)
                         <a class="navbar-brand" href="/catedrasU">Catedras</a>
                     @endif
                     @if(auth()->user()->privilegio==3)

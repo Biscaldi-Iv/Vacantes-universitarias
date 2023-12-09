@@ -14,7 +14,7 @@
 @section('contenido')
 
 <div class="row-4 my-3">
-    <h1 class="h1 p-2">{{ $universidad->nombreUniversidad }}</h1>
+    <h1 class="h1 p-2">Listado de Cátedras</h1>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
     data-bs-target="#modalC" onClick="crear()">
@@ -93,9 +93,18 @@
                             id="idCatedra" placeholder="Id de la cátedra">
                         </div>
                         <div class="mb-3" hidden>
+                            @if(auth()->user()->privilegio==2)
                             <input type="number" readonly class="form-control" name="fkIdUniversidad"
                             id="fkIdUniversidad" placeholder="Id de la universidad a la que pertenece la cátedra"
                             value="{{ $universidad->idUniversidad }}">
+                            @else
+                            <select class="form-select form-select-lg" name="fkIdUni" id="fkIdUni">
+                                @foreach ($universidad as $u)
+                                    <option value="{{ $u->idUniversidad }}">{{ $u->nombreUniversidad }}</option>
+                                @endforeach
+                            </select>
+                            @endif
+                        </div>
                         </div>
                         <div class="mb-3">
                           <label for="nombreCatedra" class="form-label">Nombre de catedra</label>

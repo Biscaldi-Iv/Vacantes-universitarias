@@ -150,8 +150,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6 p-2">
                                 <label for="privilegio">Privilegio</label>
-                                <select name="privilegio" id="privilegio" class="form-select form-select-lg"
-                                    onchange="cambiar(this)">
+                                <select name="privilegio" id="privilegio" class="form-select form-select-lg" onchange="cambiar(this)">
                                     <option value="1" selected>Usuario</option>
                                     <option value="2">Personal universitario</option>
                                     <option value="3">Administrator</option>
@@ -166,7 +165,13 @@
                                 </select>
                             </div>
                         </div>
-
+                        <div class="form-group row" id="selCat">
+                            <div class="col-sm-6 p-2">
+                                <label for="fkIdCatedra" class="form-label">Cátedra</label>
+                                <select class="form-select form-select-lg" name="fkIdCatedra" id="fkIdCatedra">
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <div class="col-sm-6 p-2">
                                 <label for="direccion">Dirección</label>
@@ -255,15 +260,42 @@
             //c2.parentNode.removeChild(c2);
         }, false);
 
+        document.getElementById("fkIdUni").addEventListener("change", function() {
+            cambiar(this);
+        });
 
-        function cambiar(sel) {
-            console.log("cambiar");
-            if (sel.value == 2) {
+        function cambiar(select) {
+            var selectedValue = select.value;
+
+            var catedraSelect = document.getElementById("fkIdCatedra");
+            catedraSelect.innerHTML = "";
+
+            if (selectedValue === "2") {
+                var selectedUniId = document.getElementById("fkIdUni").value;
                 document.getElementById("selUni").hidden = false;
+                document.getElementById("selCat").hidden = false;
+                var universidades = @json($universidades);
+
+                var selectedUniversity = universidades.find(function(uni) {
+                    return uni.idUniversidad == selectedUniId;
+                });
+
+                console.log(@json($u))
+                var catedras = selectedUniversity['catedras'];
+
+                catedras.forEach(function(catedra) {
+                    var option = document.createElement("option");
+                    option.select
+                    option.value = catedra.idCatedra;
+                    option.text = catedra.nombreCatedra;
+                    catedraSelect.appendChild(option);
+                });
             } else {
                 document.getElementById("selUni").hidden = true;
+                document.getElementById("selCat").hidden = true;
             }
         }
+
 
         function editar(id, nombre, apellido, email, telefono, privilegio, universidad, tipodoc, ndoc, direccion) {
             document.getElementById('id').value = id;
@@ -274,6 +306,15 @@
             document.getElementById('privilegio').selectedIndex = privilegio - 1;
             cambiar(document.getElementById('privilegio'));
             document.getElementById('fkIdUni').selectedIndex = universidad;
+            document.getElementById('fkIdCatedra').selectedIndex = catedra;
+            if (fkIdCatedra) {
+                var catedraSelect = document.getElementById('fkIdCatedra');
+                var optionToSelect = [...catedraSelect.options].find(option => option.value === fkIdCatedra.toString());
+
+                if (optionToSelect) {
+                    optionToSelect.selected = true;
+                }
+            }
             switch (tipodoc) {
                 case "DNI": {
                     document.getElementById('tipodoc').selectedIndex = 0;
@@ -313,6 +354,8 @@
             document.getElementById('formU').setAttribute('action', '/admin/usuarios/actualizar', false);
             document.getElementById('send').setAttribute('class', 'btn btn-success', false);
             document.getElementById('send').innerHTML = "Guardar";
+
+          
         }
 
         function eliminar(id, nombre, apellido, email, telefono, privilegio, universidad, tipodoc, ndoc, direccion) {
