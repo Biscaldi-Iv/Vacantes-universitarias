@@ -13,7 +13,7 @@
         @endguest
         @auth
             /<a class="breadcrumb" href="/admin/usuarios">Usuarios</a>
-            /<a class="breadcrumb" href="/admin/usuarios/registrar">Registrar usuarios con privilegio</a>
+            /<a class="breadcrumb" href="/admin/usuarios/registrar">Registrar usuarios</a>
         @endauth
 
     </p>
@@ -22,7 +22,12 @@
 @section('contenido')
     <div class="container w-75 bg-white shadow mt-5 mb-5 ">
         <div class="col-xl-8 p-2">
+            @guest
             <h2 class="fw-bold text-left my-3 ">Registrarse</h2>
+        @endguest
+        @auth
+        <h2 class="fw-bold text-left my-3 ">Registrar Usuario</h2>
+        @endauth
         </div>
         <div class="row p-2 ">
             <div class="col-md-10 mx-auto ">
@@ -126,11 +131,13 @@
                             </div>
                         </div>
                     </div>
+                    @guest
                     <div class="form-group row">
                         <div class="col-sm-6 p-2">
                             <div class="g-recaptcha" data-sitekey={{ env('CAPTCHA_SITE_KEY') }}></div>
                         </div>
                     </div>
+                    @endguest
                     <h6 class="alert alert-success" id="success" hidden></h6>
                     @error('email')
                         <div class="alert alert-danger">{{ $message }}</div>
