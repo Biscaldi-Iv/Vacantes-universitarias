@@ -31,6 +31,7 @@
                     <th>Documento</th>
                     <th>Nombre y apellido</th>
                     <th>Contacto</th>
+                    <th>Tipo de Usuario</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -51,6 +52,8 @@
                                 {{ $u->telefono }}
                             </p>
                         </td>
+                        <td>
+                            <p>{{ $u->privilegio == 1 ? 'Postulante' :( $u->privilegio == 2 ? 'Jefe de Cátedra' : 'Administrador')}} </p>
                         </td>
                         <td>
                             @if ($u->privilegio == 1)
@@ -187,12 +190,18 @@
                                 <label for="password">Contraseña</label>
                                 <input type="password" class="form-control" oninput="checkpass()" name="password"
                                     id="password" placeholder="contraseña" minlength="8" maxlength="16">
+                                    <button class="btn" style=" border-color: #ced4da;" type="button" id="togglePassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
                             </div>
                             <div class="col-sm-6 p-2">
                                 <label for="password_confirmacion">Confirmar Contraseña</label>
                                 <input type="password" class="form-control" oninput="checkpass()"
                                     name="password_confirmacion" id="password_confirmacion" placeholder="contraseña"
                                     minlength="8" maxlength="16">
+                                    <button class="btn" style=" border-color: #ced4da;" type="button" id="togglePasswordConfirmation">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
                             </div>
                         </div>
                         <h6 class="alert alert-success" id="success" hidden></h6>
@@ -352,5 +361,22 @@
             document.getElementById('send').setAttribute('class', 'btn btn-danger', false);
             document.getElementById('send').innerHTML = "Eliminar";
         }
+
+        function togglePasswordVisibility(passwordField, toggleButton) {
+            toggleButton.addEventListener('click', function() {
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                this.classList.toggle('password-visible');
+            });
+        }
+
+        const passwordField = document.getElementById('password');
+        const togglePasswordButton = document.getElementById('togglePassword');
+        togglePasswordVisibility(passwordField, togglePasswordButton);
+
+        const passwordConfirmField = document.getElementById('password_confirmacion');
+        const togglePasswordConfirmButton = document.getElementById('togglePasswordConfirmation');
+        togglePasswordVisibility(passwordConfirmField, togglePasswordConfirmButton);
+
     </script>
 @endsection
