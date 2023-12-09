@@ -20,9 +20,9 @@
             id="form-validation">
             @csrf
             <div class="mb-3">
-                <label for="email" class="form-label">Correo electronico</label>
+                <label for="email" class="form-label" hidden>Correo electronico</label>
                 <input type="email" class="form-control" name="email" id="email" value="{{ request()->email }}"
-                    disabled>
+                    hidden>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
