@@ -26,13 +26,21 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" oninput="checkpass()" name="password" id="password"
-                    placeholder="contraseña" minlength="8" maxlength="16">
+                <div class="input-group">
+                    <input type="password" class="form-control" oninput="checkpass()" name="password" id="password" placeholder="Contraseña" minlength="8" maxlength="16">
+                    <button class="btn" style=" border-color: #ced4da;" type="button" id="togglePassword">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
-                <input type="password" class="form-control" oninput="checkpass()" name="password_confirmation"
-                    id="password_confirmation" placeholder="contraseña" minlength="8" maxlength="16">
+                <div class="input-group">
+                    <input type="password" class="form-control" oninput="checkpass()" name="password_confirmation" id="password_confirmation" placeholder="Confirmar Contraseña" minlength="8" maxlength="16">
+                    <button class="btn" style=" border-color: #ced4da;" type="button" id="togglePasswordConfirmation">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
             </div>
             <h6 class="alert alert-success" id="success" hidden></h6>
             <input type="text" class="form-control" name="token" id="token" value="{{ request()->token }}" hidden>
@@ -63,7 +71,6 @@
         var form = document.getElementById("form-validation");
         form.addEventListener("submit", function(event) {
             if (!checkpass()) {
-                //alert("Password mismatch");
                 event.preventDefault();
                 event.stopPropagation();
             } else if (form.checkValidity() == false) {
@@ -72,5 +79,26 @@
             }
             form.classList.add("was-validated");
         }, false);
+
+       
+        function togglePasswordVisibility(passwordField, toggleButton) {
+            toggleButton.addEventListener('click', function() {
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                this.classList.toggle('password-visible');
+                this.querySelector('i').classList.toggle('bi-eye');
+                this.querySelector('i').classList.toggle('bi-eye-slash');
+            });
+        }
+
+        const passwordField = document.getElementById('password');
+        const togglePasswordButton = document.getElementById('togglePassword');
+        togglePasswordVisibility(passwordField, togglePasswordButton);
+
+        const passwordConfirmField = document.getElementById('password_confirmation');
+        const togglePasswordConfirmButton = document.getElementById('togglePasswordConfirmation');
+        togglePasswordVisibility(passwordConfirmField, togglePasswordConfirmButton);
+    
+
     </script>
 @endsection

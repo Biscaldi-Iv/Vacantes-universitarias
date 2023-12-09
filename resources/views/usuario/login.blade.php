@@ -24,8 +24,12 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña"
-                    required>
+                <div class="input-group">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
+                    <button class="btn" style=" border-color: #ced4da;" type="button" id="togglePassword">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
             </div>
             <div class="mb-3">
                 <div class="g-recaptcha" data-sitekey={{ env('CAPTCHA_SITE_KEY') }}></div>
@@ -44,5 +48,14 @@
         function onSubmit(token) {
             document.getElementById("form-login").submit();
         }
+        const passwordField = document.getElementById('password');
+        const togglePasswordButton = document.getElementById('togglePassword');
+
+        togglePasswordButton.addEventListener('click', function() {
+        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('bi-eye');
+        this.querySelector('i').classList.toggle('bi-eye-slash');
+        });
     </script>
 @endsection

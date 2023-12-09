@@ -181,19 +181,19 @@
                                     <div class="col-sm-12 p-2">
                                         <label for="descCorta">Descripción breve</label>
                                         <textarea class="form-control" name="descCorta" id="descCorta" rowspan="5" required
-                                            placeholder="Breve descripción sobre el puesto a cubrir"></textarea>
+                                        placeholder="Breve descripción sobre el puesto a cubrir"></textarea>
                                     </div>
                                     <div class="col-sm-12 p-2">
                                         <label for="descCompleta">Descripcion completa</label>
-                                        <textarea class="form-control" id="descCompleta" name="descCompleta" required rowspan="10"
-                                            placeholder="Descripción ampliada del puesto (sugerencia: incluir responsabilidades)"></textarea>
+                                        <textarea class="form-control" id="descCompleta" name="descCompleta" rowspan="10" required
+                                        placeholder="Descripción ampliada del puesto (sugerencia: incluir responsabilidades)"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12 col-md-6 p-2">
                                         <label for="titulosRequeridos">Títlulos Requeridos</label>
                                         <textarea class="form-control" id="titulosRequeridos" rowspan="3" name="titulosRequeridos"
-                                            placeholder="Ej: Ingenieria en xx" required></textarea>
+                                        placeholder="Ej: Ingenieria en xx" required></textarea>
                                     </div>
                                     <div class="col-sm-12 col-md-6 p-2">
                                         <label for="horarioJornada">Horario</label>
