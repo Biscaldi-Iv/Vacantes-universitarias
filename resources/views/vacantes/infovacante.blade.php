@@ -84,9 +84,15 @@
                     <input type="number" class="form-control" name="id" id="id"
                     placeholder="Id del usuario" value="{{ $usuario->id }}">
                 </div>
+                @if (in_array($vacante->idVacante,$usuario->postulacion->pluck('fkIdVacante')->toArray() ))
                 <div style="text-align:end;">
-                    <button type="sumbit" class="btn btn-primary" id="btn_pos">Postularse</button>
+                    <button type="button" class="btn btn-primary my-2" onclick="location.href='/'" id="btn_back">Volver</button>
                 </div>
+                @else
+                <div style="text-align:end;">
+                    <button type="submit" class="btn btn-primary" id="btn_pos">Postularse</button>
+                </div>
+                @endif
             </form>
 
             @elseif(auth()->user()->privilegio==2)

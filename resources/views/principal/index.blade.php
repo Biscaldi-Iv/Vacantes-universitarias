@@ -51,6 +51,9 @@
                         @if (auth()->user()->privilegio == 2)
                             <th>Vacantes</th>
                             <th>Meritos</th>
+                            @if (auth()->user()->privilegio == 1 )
+                            <th>Estado</th>
+                            @endif
                             <th>Editar</th>
                             <th>Eliminar</th>
                         @endif
@@ -78,6 +81,22 @@
                                             {{ $v->titulosRequeridos }}
                                         </p>
                                     </div>
+                                    @auth
+                                        @if (auth()->user()->privilegio == 1 )
+                                        @php
+                                        $user = auth()->user()->usuario;
+                                        $postulaciones = $user->postulacion ? $user->postulacion->pluck('fkIdVacante')->toArray() : [];
+                                        @endphp
+                                        <div class="col col-auto mt-4">
+                                            @if (in_array($v->idVacante,$postulaciones ))
+                                            <div class="alert alert-success">
+                                                Ya te has postulado
+                                            </div>
+                                            @else
+                                            @endif
+                                        </div>
+                                        @endif
+                                    @endauth
 
                                 </div>
                             </div>
@@ -93,7 +112,11 @@
                                     <!--abrir modal-->
                                     <button type="button" class="btn btn-primary"
                                         onclick="location.href='/vacantes/infovacante/{{ $v->idVacante }}'">
+                                        @if (in_array($v->idVacante,$postulaciones ))
+                                        Ver vacante <span class="badge badge-light">+Info</span>
+                                        @else
                                         Postularse <span class="badge badge-light">+Info</span>
+                                        @endif
                                     </button>
                                 @elseif(auth()->user()->privilegio == 2)
                                     @if ($v->fechaLimite < \Carbon\Carbon::now())

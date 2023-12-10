@@ -58,10 +58,7 @@ class User extends Authenticatable
 
     public function usuario()
     {
-        if($this->privilegio==1){
-            return $this->hasOne(Usuario::class,'fkiduser','id');
-        }
-        return null;
+        return $this->hasOne(Usuario::class,'fkiduser','id');
     }
 
     public function personalUniversidad(){
