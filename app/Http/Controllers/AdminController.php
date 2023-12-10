@@ -87,7 +87,7 @@ class AdminController extends Controller
             //ver si ya era privilegio 2 y actualizar uni
             //o asignarla
             DB::beginTransaction();
-            $pu_data=$request->validate(['fkIdUni'=>'required|integer1exists:id,universidads', 'fkIdCatedra'=>'required|integer|exists:id,catedras']);
+            $pu_data=$request->validate(['fkIdUni'=>'required|integer|exists:universidads,idUniversidad', 'fkIdCatedra'=>'required|integer|exists:catedras,idCatedra']);
             $pu = PersonalUniversidad::where('fkIdUser', $id)->first();
             if($pu != null){
                 PersonalUniversidad::where('fkIdUser', $id)->update($pu_data);
