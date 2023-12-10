@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\Auth;
 class CatedrasController extends Controller
 {
     public function show() {
-        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
+        if((!Auth::check()) || (auth()->user()->privilegio==1)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para acceder a cátedras");
         }
-        $catedras= Catedra::where('fkIdUniversidad', session('universidad'))->get();
-        $universidad= Universidad::where('idUniversidad', session('universidad'))->select()->first();
+        $catedras = (auth()->user()->privilegio == 2) ? Catedra::where('fkIdUniversidad', session('universidad'))->get() : Catedra::all();
+        $universidad = (auth()->user()->privilegio == 2 )? Universidad::where('idUniversidad', session('universidad'))->select()->first() : Universidad::all();
         return view('universidades.catedrasU', ['catedras' => $catedras, 'universidad'=> $universidad]);
     }
 
     public function create(CatedrasRequest $request) {
-        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
+        if((!Auth::check()) || (auth()->user()->privilegio==1)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para registrar cátedras");
         }
         Catedra::create($request->validated());
@@ -28,7 +28,7 @@ class CatedrasController extends Controller
     }
 
     public function update(CatedrasRequest $request) {
-        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
+        if((!Auth::check()) || (auth()->user()->privilegio==1)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para modificar cátedras");
         }
         $idc=$request->validate(['idCatedra'=>'required|integer|min:1']);
@@ -38,7 +38,7 @@ class CatedrasController extends Controller
     }
 
     public function delete(Request $request) {
-        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
+        if((!Auth::check()) || (auth()->user()->privilegio==1)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para eliminar cátedras");
         }
         $idc=$request->validate(['idCatedra'=>'required|integer|min:1']);
@@ -48,7 +48,7 @@ class CatedrasController extends Controller
     }
 
     public function showAdmin() {
-        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
+        if((!Auth::check()) || (auth()->user()->privilegio==1)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para acceder a cátedras");
         }
         $universidad= Universidad::all()->with(['catedras']);
