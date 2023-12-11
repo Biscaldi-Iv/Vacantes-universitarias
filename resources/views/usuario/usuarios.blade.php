@@ -53,11 +53,13 @@
                             </p>
                         </td>
                         <td>
-                            <p>{{ $u->privilegio == 1 ? 'Postulante' :( $u->privilegio == 2 ? 'Jefe de Cátedra' : 'Administrador')}} </p>
+                            <p>{{ $u->privilegio == 1 ? 'Postulante' : ($u->privilegio == 2 ? 'Jefe de Cátedra' : 'Administrador') }}
+                            </p>
                         </td>
                         <td>
-                            @if ($u->privilegio == 1)
-                                <button type="button" class="btn btn-outline-primary" onclick="location.href='/usuario/perfil/{{ $u->id }}'">
+                            @if ($u->privilegio != 3)
+                                <button type="button" class="btn btn-outline-primary"
+                                    onclick="location.href='/usuario/perfil/{{ $u->id }}'">
                                     Ver perfil
                                 </button>
                             @endif
@@ -66,7 +68,7 @@
                             <div class="d-grid gap-2">
                                 <button type="button" class="btn btn-primary"
                                     onclick="editar('{{ $u->id }}','{{ $u->nombre }}','{{ $u->apellido }}','{{ $u->email }}','{{ $u->telefono }}','{{ $u->privilegio }}', '{{ $u->personalUniversidad->fkIdUni ?? 0 }}',
-                                '{{ $u->tipodoc }}','{{ $u->ndoc }}','{{ $u->direccion }}', '{{ $u->personalUniversidad->fkIdCatedra ?? 0}}')"
+                                '{{ $u->tipodoc }}','{{ $u->ndoc }}','{{ $u->direccion }}', '{{ $u->personalUniversidad->fkIdCatedra ?? 0 }}')"
                                     data-bs-target="#modalU" data-bs-toggle="modal">Editar</button>
                             </div>
                         </td>
@@ -74,7 +76,7 @@
                             <div class="d-grid gap-2">
                                 <button type="button" class="btn btn-danger"
                                     onclick="eliminar('{{ $u->id }}','{{ $u->nombre }}','{{ $u->apellido }}','{{ $u->email }}','{{ $u->telefono }}','{{ $u->privilegio }}', '{{ $u->personalUniversidad->fkIdUni ?? 0 }}',
-                                '{{ $u->tipodoc }}','{{ $u->ndoc }}','{{ $u->direccion }}', '{{ $u->personalUniversidad->fkIdCatedra ?? 0}}')"
+                                '{{ $u->tipodoc }}','{{ $u->ndoc }}','{{ $u->direccion }}', '{{ $u->personalUniversidad->fkIdCatedra ?? 0 }}')"
                                     data-bs-target="#modalU" data-bs-toggle="modal">Eliminar</button>
                             </div>
                         </td>
@@ -115,31 +117,31 @@
         const c1 = document.getElementById("password");
         const c2 = document.getElementById("password_confirmacion");
 
-        const Universidades=@json($universidades);
+        const Universidades = @json($universidades);
 
-        let catForm= document.getElementById("formCatedras");
-        let catSelect= document.getElementById("fkIdCatedra");
+        let catForm = document.getElementById("formCatedras");
+        let catSelect = document.getElementById("fkIdCatedra");
 
-        function showCatedras(uni, catedra=undefined) {
-            if(document.getElementById('privilegio').value!=2){
-                catForm.hidden=true;
+        function showCatedras(uni, catedra = undefined) {
+            if (document.getElementById('privilegio').value != 2) {
+                catForm.hidden = true;
                 return;
             }
-            catForm.hidden=false;
+            catForm.hidden = false;
             //remover opciones
             while (catSelect.options.length > 0) {
                 catSelect.remove(0);
             }
             //agregar opciones
-            Universidades.find(element=> element.idUniversidad==uni).catedras.forEach(cat => {
-                let option=document.createElement('option');
-                option.value=cat.idCatedra;
-                option.text=cat.nombreCatedra;
+            Universidades.find(element => element.idUniversidad == uni).catedras.forEach(cat => {
+                let option = document.createElement('option');
+                option.value = cat.idCatedra;
+                option.text = cat.nombreCatedra;
                 catSelect.appendChild(option);
             });
             //seleccionar catedra
-            if(catedra){
-                catSelect.value=catedra;
+            if (catedra) {
+                catSelect.value = catedra;
             }
         }
 
@@ -179,7 +181,8 @@
             }
         }
 
-        function editar(id, nombre, apellido, email, telefono, privilegio, universidad, tipodoc, ndoc, direccion, idCatedra=undefined) {
+        function editar(id, nombre, apellido, email, telefono, privilegio, universidad, tipodoc, ndoc, direccion,
+            idCatedra = undefined) {
             document.getElementById('id').value = id;
             document.getElementById('nombre').value = nombre;
             document.getElementById('apellido').value = apellido;
@@ -214,7 +217,7 @@
             document.getElementById('direccion').value = direccion;
             document.getElementById('password').value = "";
             document.getElementById('password_confirmacion').value = "";
-            showCatedras(universidad,idCatedra);
+            showCatedras(universidad, idCatedra);
 
             document.getElementById('nombre').removeAttribute("readonly", false);
             document.getElementById('apellido').removeAttribute("readonly", false);
@@ -230,7 +233,8 @@
             document.getElementById('send').innerHTML = "Guardar";
         }
 
-        function eliminar(id, nombre, apellido, email, telefono, privilegio, universidad, tipodoc, ndoc, direccion, idCatedra=undefined) {
+        function eliminar(id, nombre, apellido, email, telefono, privilegio, universidad, tipodoc, ndoc, direccion,
+            idCatedra = undefined) {
             document.getElementById('id').value = id;
             document.getElementById('nombre').value = nombre;
             document.getElementById('apellido').value = apellido;
@@ -275,7 +279,7 @@
             document.getElementById('direccion').setAttribute("readonly", "readonly", false);
             document.getElementById('password').setAttribute("readonly", "readonly", false);
             document.getElementById('password_confirmacion').setAttribute("readonly", "readonly", false);
-            showCatedras(universidad,idCatedra);
+            showCatedras(universidad, idCatedra);
 
             document.getElementById('formU').setAttribute('action', '/admin/usuarios/borrar', false);
             document.getElementById('send').setAttribute('class', 'btn btn-danger', false);
@@ -298,17 +302,15 @@
         const togglePasswordConfirmButton = document.getElementById('togglePasswordConfirmation');
         togglePasswordVisibility(passwordConfirmField, togglePasswordConfirmButton);
 
-        function cambiarContras(b){
-            if(b){
+        function cambiarContras(b) {
+            if (b) {
                 document.getElementById('password').removeAttribute("readonly", false);
                 document.getElementById('password_confirmacion').removeAttribute("readonly", false);
-            }
-            else{
+            } else {
                 document.getElementById('password').setAttribute("readonly", "readonly", false);
                 document.getElementById('password_confirmacion').setAttribute("readonly", "readonly", false);
             }
-            document.getElementById("claves").hidden=!b;
+            document.getElementById("claves").hidden = !b;
         }
-
     </script>
 @endsection

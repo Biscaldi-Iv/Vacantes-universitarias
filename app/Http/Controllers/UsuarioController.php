@@ -12,7 +12,7 @@ class UsuarioController extends Controller
     public function perfil(Request $request, int $id)
     {
         $user = User::where('id', $id)->first();
-        if ($user->privilegio == 1) {
+        if (($user->privilegio == 1) && (!is_null($user->usuario))) {
             $postulaciones = $user->usuario->postulacion;
             return view('usuario.perfil')->with(['postulaciones' => $postulaciones, 'user' => $user]);
         } else {

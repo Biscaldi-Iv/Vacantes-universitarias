@@ -11,10 +11,17 @@ class userinputs extends Component
      *
      * @return void
      */
-    public function __construct($universidades)
+    public $user;
+    public $universidades;
+
+    public function __construct($universidades = null, $user = null)
     {
-        if(!is_null($universidades)){
-            $this->universidades=$universidades;
+
+        if (!is_null($universidades)) {
+            $this->universidades = $universidades;
+        }
+        if (!is_null($user)) {
+            $this->user = $user;
         }
     }
 

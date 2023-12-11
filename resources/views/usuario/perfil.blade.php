@@ -12,7 +12,7 @@
 @endsection
 
 @section('contenido')
-    @if (auth()->user()->privilegio == 1)
+    @if ($user->privilegio == 1)
         @php($usuario = $user->usuario)
     @endif
     <div class="col p-2">
@@ -33,19 +33,21 @@
                                 <p>Tipo de documento: {{ $user->tipodoc }}</p> <br>
                                 <p>N° de documento: {{ $user->ndoc }}</p>
                             </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-primary"
-                                    style="float:right; right:0 ; bottom:0, position:fixed;"
-                                    onclick="editar('{{ $user->id }}','{{ $user->nombre }}','{{ $user->apellido }}','{{ $user->email }}','{{ $user->telefono }}',
+                            @if (auth()->user()->id == $user->id)
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary"
+                                        style="float:right; right:0 ; bottom:0, position:fixed;"
+                                        onclick="editar('{{ $user->id }}','{{ $user->nombre }}','{{ $user->apellido }}','{{ $user->email }}','{{ $user->telefono }}',
                                 '{{ $user->tipodoc }}','{{ $user->ndoc }}','{{ $user->direccion }}')"
-                                    data-bs-target="#modalU" data-bs-toggle="modal">Editar</button>
-                            </div>
+                                        data-bs-target="#modalU" data-bs-toggle="modal">Editar</button>
+                                </div>
+                            @endif
                         </div>
 
 
                     </div>
                 </div>
-                @if (auth()->user()->privilegio == 1)
+                @if ($user->privilegio == 1)
                     <div class="row justify-content-center align-items-center g-2">
                         <div class="col">
                             <p>Titulos: {{ $usuario->titulos }}</p> <br>
@@ -62,7 +64,7 @@
             </div>
         </div>
 
-        @if (auth()->user()->privilegio == 1)
+        @if ($user->privilegio == 1)
             <hr>
             @if (count($postulaciones) > 0)
                 <div class="table-responsive">
@@ -118,96 +120,9 @@
                 </div>
                 <form action="/usuario/actualizar" id="formU" method="POST">
                     @csrf
-                    <div class="modal-body">
-                        <div class="form-group row">
-                            <div class="col-sm-12 p-2" hidden>
-                                <label for="id">ID</label>
-                                <input type="number" class="form-control" name="id" id="id"
-                                    placeholder="id del usuario">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 p-2">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" name="nombre" id="nombre" minlength="2"
-                                    placeholder="Primer nombre" required>
-                            </div>
-                            <div class="col-sm-6 p-2">
-                                <label for="apellido">Apellido</label>
-                                <input type="text" class="form-control" name="apellido" id="apellido" minlength="5"
-                                    placeholder="Apellidos" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 p-2">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="Email"
-                                    readonly>
-                            </div>
-                            <div class="col-sm-6 p-2">
-                                <label for="telefono">Teléfono</label>
-                                <input type="phone" class="form-control" name="telefono" id="telefono" minlength="7"
-                                    placeholder="Teléfono" required>
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <div class="col-sm-6 p-2">
-                                <label for="direccion">Dirección</label>
-                                <input type="text" class="form-control" name="direccion" id="direccion" minlength="5"
-                                    placeholder="direccion" required>
-                            </div>
-                            <div class="col-sm-6 p-2">
-                                <label for="ndoc">Documento</label>
-                                <select name="tipodoc" id="tipodoc" class="form-grup-text">
-                                    <option value="DNI">DNI</option>
-                                    <option value="ID">ID</option>
-                                    <option value="LC">LC</option>
-                                    <option value="LE">LE</option>
-                                    <option value="CI">CI</option>
-                                </select>
-                                <input type="number" class="form-control" name="ndoc" id="ndoc" required>
-                            </div>
-                        </div>
+                    <x-user-inputs :user=$user></x-user-inputs>
 
-                        <div class="form-group row">
-                            <div class="col-sm-6 p-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="cambio"
-                                        onchange="cambiarContras(this.checked)" />
-                                    <label class="form-check-label" for="cambio"> Cambiar contraseña</label>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row" id='claves' hidden>
-                            <div class="col-sm-6 p-2">
-                                <label for="password">Contraseña</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" oninput="checkpass()" name="password"
-                                        id="password" placeholder="contraseña" minlength="8" maxlength="16">
-                                    <button class="btn" style=" border-color: #ced4da;" type="button"
-                                        id="togglePassword">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 p-2">
-                                <label for="password_confirmacion">Confirmar Contraseña</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" oninput="checkpass()"
-                                        name="password_confirmacion" id="password_confirmacion" placeholder="contraseña"
-                                        minlength="8" maxlength="16">
-                                    <button class="btn" style=" border-color: #ced4da;" type="button"
-                                        id="togglePasswordConfirmation">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="alert alert-success" id="success" hidden></h6>
-                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="sumbit" id="send" class="btn btn-success">Guardar</button>
