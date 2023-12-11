@@ -37,7 +37,7 @@ Route::get('/buscar', [PublicController::class, 'buscar'])->name('buscar');
 
 // Usuario
 
-Route::get('/login', [LoginController::class,'show']);
+Route::get('/login', [LoginController::class, 'show']);
 
 Route::get('/admin/usuarios', [AdminController::class, 'showUsers'])->name('listadoUsuarios');
 
@@ -45,17 +45,17 @@ Route::post('/admin/usuarios/actualizar', [AdminController::class, 'updateUser']
 
 Route::post('/admin/usuarios/borrar', [AdminController::class, 'deleteUser']);
 
-Route::post('/login', [LoginController::class,'login'])->name('usuario.login');
+Route::post('/login', [LoginController::class, 'login'])->name('usuario.login');
 
-Route::get('/contraseña/olvidada', [PasswordController::class,'showForgot']);
+Route::get('/contraseña/olvidada', [PasswordController::class, 'showForgot']);
 
-Route::post('/contraseña/olvidada', [PasswordController::class,'forgot'])->name('password.forgot');
+Route::post('/contraseña/olvidada', [PasswordController::class, 'forgot'])->name('password.forgot');
 
-Route::get('/contraseña/reestablecer', [PasswordController::class,'showReset']);
+Route::get('/contraseña/reestablecer', [PasswordController::class, 'showReset']);
 
-Route::post('/contraseña/reestablecer', [PasswordController::class,'reset'])->name('password.reset');
+Route::post('/contraseña/reestablecer', [PasswordController::class, 'reset'])->name('password.reset');
 
-Route::get('/logout', [LogoutController::class,'logout']);
+Route::get('/logout', [LogoutController::class, 'logout']);
 
 Route::get('/registrarse', [RegistroController::class, 'show'])->name('registrarse');
 
@@ -65,7 +65,9 @@ Route::get('/admin/usuarios/registrar', [AdminController::class, 'showUserCreate
 
 Route::post('/admin/usuarios/registrar', [AdminController::class, 'createAdmin']);
 
-Route::get('/usuario/perfil/{id}', [UsuarioController::class, 'perfil']);
+Route::get('/usuario/perfil/{id}', [UsuarioController::class, 'perfil'])->name('userProfile');
+
+route::post('/usuario/actualizar', [UsuarioController::class, 'updateUser']);
 
 // Catedras
 
@@ -73,9 +75,9 @@ Route::get('/catedrasU', [CatedrasController::class, 'show'])->name('catedrasU')
 
 Route::post('/universidades/catedrasU/crear', [CatedrasController::class, 'create']);
 
-Route::post('/universidades/catedrasU/actualizar',[CatedrasController::class, 'update']);
+Route::post('/universidades/catedrasU/actualizar', [CatedrasController::class, 'update']);
 
-Route::post('/universidades/catedrasU/borrar',[CatedrasController::class, 'delete']);
+Route::post('/universidades/catedrasU/borrar', [CatedrasController::class, 'delete']);
 
 // Universidades
 
@@ -151,9 +153,9 @@ Route::get('/ordenmerito', function () {
     return view('meritos.ordenmerito');
 });
 
-Route::get('/auth-status', function (){
-    if(Auth::check()){
-        return ['status'=>'1'];
+Route::get('/auth-status', function () {
+    if (Auth::check()) {
+        return ['status' => '1'];
     }
-    return ['status'=>'0'];
+    return ['status' => '0'];
 });
