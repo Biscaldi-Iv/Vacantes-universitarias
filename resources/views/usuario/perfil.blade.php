@@ -37,7 +37,7 @@
                                 <button type="button" class="btn btn-primary"
                                     style="float:right; right:0 ; bottom:0, position:fixed;"
                                     onclick="editar('{{ $user->id }}','{{ $user->nombre }}','{{ $user->apellido }}','{{ $user->email }}','{{ $user->telefono }}',
-                                '{{ $user->tipodoc }}','{{ $user->ndoc }}','{{ $user->direccion }}'"
+                                '{{ $user->tipodoc }}','{{ $user->ndoc }}','{{ $user->direccion }}')"
                                     data-bs-target="#modalU" data-bs-toggle="modal">Editar</button>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                     <h5 class="modal-title" id="modalTitleId">Informacion del Usuario</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
                 </div>
-                <form action="/admin/usuarios" id="formU" method="POST">
+                <form action="/usuario/actualizar" id="formU" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group row">
@@ -142,7 +142,7 @@
                             <div class="col-sm-6 p-2">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control" name="email" id="email" placeholder="Email"
-                                    placeholder="Email" required>
+                                    readonly>
                             </div>
                             <div class="col-sm-6 p-2">
                                 <label for="telefono">Teléfono</label>
@@ -154,8 +154,8 @@
                         <div class="form-group row">
                             <div class="col-sm-6 p-2">
                                 <label for="direccion">Dirección</label>
-                                <input type="text" class="form-control" name="direccion" id="direccion"
-                                    minlength="5" placeholder="direccion" required>
+                                <input type="text" class="form-control" name="direccion" id="direccion" minlength="5"
+                                    placeholder="direccion" required>
                             </div>
                             <div class="col-sm-6 p-2">
                                 <label for="ndoc">Documento</label>
@@ -221,8 +221,38 @@
 
 @section('scripts')
     <script>
-        function editar(id, nombre, apellido, email, telefono, privilegio, universidad, tipodoc, ndoc, direccion,
-            idCatedra = undefined) {
+        const success = document.getElementById("success");
+        const c1 = document.getElementById("password");
+        const c2 = document.getElementById("password_confirmacion");
+
+        function checkpass() {
+            success.removeAttribute("hidden");
+            if (c1.value == c2.value) {
+                success.setAttribute("class", "alert alert-success");
+                success.innerHTML = "Las contraseñas coinciden";
+                return true;
+            } else {
+                success.setAttribute("class", "alert alert-danger");
+                success.innerHTML = "Las contraseñas NO coinciden";
+                return false;
+            }
+        }
+
+        var form = document.getElementById("formU");
+        form.addEventListener("submit", function(event) {
+            if (!checkpass()) {
+                //alert("Password mismatch");
+                event.preventDefault();
+                event.stopPropagation();
+            } else if (form.checkValidity() == false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+            //c2.parentNode.removeChild(c2);
+        }, false);
+
+        function editar(id, nombre, apellido, email, telefono, tipodoc, ndoc, direccion) {
             document.getElementById('id').value = id;
             document.getElementById('nombre').value = nombre;
             document.getElementById('apellido').value = apellido;
@@ -254,18 +284,17 @@
             document.getElementById('direccion').value = direccion;
             document.getElementById('password').value = "";
             document.getElementById('password_confirmacion').value = "";
-            showCatedras(universidad, idCatedra);
 
             document.getElementById('nombre').removeAttribute("readonly", false);
             document.getElementById('apellido').removeAttribute("readonly", false);
-            document.getElementById('email').removeAttribute("readonly", false);
+            //document.getElementById('email').removeAttribute("readonly", false);
             document.getElementById('telefono').removeAttribute("readonly", false);
             document.getElementById('ndoc').removeAttribute("readonly", false);
             document.getElementById('direccion').removeAttribute("readonly", false);
             document.getElementById('password').removeAttribute("readonly", false);
             document.getElementById('password_confirmacion').removeAttribute("readonly", false);
 
-            document.getElementById('formU').setAttribute('action', '/admin/usuarios/actualizar', false);
+            document.getElementById('formU').setAttribute('action', '/usuario/actualizar', false);
             document.getElementById('send').setAttribute('class', 'btn btn-success', false);
             document.getElementById('send').innerHTML = "Guardar";
         }
