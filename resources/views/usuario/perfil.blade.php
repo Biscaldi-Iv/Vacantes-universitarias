@@ -28,8 +28,21 @@
                         <p>Telefono: {{ $user->telefono }}</p> <br>
                     </div>
                     <div class="col">
-                        <p>Tipo de documento: {{ $user->tipodoc }}</p> <br>
-                        <p>N° de documento: {{ $user->ndoc }}</p>
+                        <div class="row">
+                            <div class="col">
+                                <p>Tipo de documento: {{ $user->tipodoc }}</p> <br>
+                                <p>N° de documento: {{ $user->ndoc }}</p>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-primary"
+                                    style="float:right; right:0 ; bottom:0, position:fixed;"
+                                    onclick="editar('{{ $user->id }}','{{ $user->nombre }}','{{ $user->apellido }}','{{ $user->email }}','{{ $user->telefono }}',
+                                '{{ $user->tipodoc }}','{{ $user->ndoc }}','{{ $user->direccion }}'"
+                                    data-bs-target="#modalU" data-bs-toggle="modal">Editar</button>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
                 @if (auth()->user()->privilegio == 1)
@@ -93,9 +106,195 @@
                 <h1>No hay postulaciones disponibles</h1>
             @endif
         @endif
+    </div>
 
+
+    <div class="modal fade" id="modalU" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Informacion del Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
+                </div>
+                <form action="/admin/usuarios" id="formU" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <div class="col-sm-12 p-2" hidden>
+                                <label for="id">ID</label>
+                                <input type="number" class="form-control" name="id" id="id"
+                                    placeholder="id del usuario">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 p-2">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" name="nombre" id="nombre" minlength="2"
+                                    placeholder="Primer nombre" required>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" class="form-control" name="apellido" id="apellido" minlength="5"
+                                    placeholder="Apellidos" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 p-2">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Email"
+                                    placeholder="Email" required>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label for="telefono">Teléfono</label>
+                                <input type="phone" class="form-control" name="telefono" id="telefono" minlength="7"
+                                    placeholder="Teléfono" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 p-2">
+                                <label for="direccion">Dirección</label>
+                                <input type="text" class="form-control" name="direccion" id="direccion"
+                                    minlength="5" placeholder="direccion" required>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label for="ndoc">Documento</label>
+                                <select name="tipodoc" id="tipodoc" class="form-grup-text">
+                                    <option value="DNI">DNI</option>
+                                    <option value="ID">ID</option>
+                                    <option value="LC">LC</option>
+                                    <option value="LE">LE</option>
+                                    <option value="CI">CI</option>
+                                </select>
+                                <input type="number" class="form-control" name="ndoc" id="ndoc" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 p-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cambio"
+                                        onchange="cambiarContras(this.checked)" />
+                                    <label class="form-check-label" for="cambio"> Cambiar contraseña</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row" id='claves' hidden>
+                            <div class="col-sm-6 p-2">
+                                <label for="password">Contraseña</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" oninput="checkpass()" name="password"
+                                        id="password" placeholder="contraseña" minlength="8" maxlength="16">
+                                    <button class="btn" style=" border-color: #ced4da;" type="button"
+                                        id="togglePassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label for="password_confirmacion">Confirmar Contraseña</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" oninput="checkpass()"
+                                        name="password_confirmacion" id="password_confirmacion" placeholder="contraseña"
+                                        minlength="8" maxlength="16">
+                                    <button class="btn" style=" border-color: #ced4da;" type="button"
+                                        id="togglePasswordConfirmation">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="alert alert-success" id="success" hidden></h6>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="sumbit" id="send" class="btn btn-success">Guardar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 
 @section('scripts')
+    <script>
+        function editar(id, nombre, apellido, email, telefono, privilegio, universidad, tipodoc, ndoc, direccion,
+            idCatedra = undefined) {
+            document.getElementById('id').value = id;
+            document.getElementById('nombre').value = nombre;
+            document.getElementById('apellido').value = apellido;
+            document.getElementById('email').value = email;
+            document.getElementById('telefono').value = telefono;
+            switch (tipodoc) {
+                case "DNI": {
+                    document.getElementById('tipodoc').selectedIndex = 0;
+                    break;
+                }
+                case "ID": {
+                    document.getElementById('tipodoc').selectedIndex = 1;
+                    break;
+                }
+                case "LC": {
+                    document.getElementById('tipodoc').selectedIndex = 2;
+                    break;
+                }
+                case "LE": {
+                    document.getElementById('tipodoc').selectedIndex = 3;
+                    break;
+                }
+                case "CI": {
+                    document.getElementById('tipodoc').selectedIndex = 4;
+                    break;
+                }
+            }
+            document.getElementById('ndoc').value = ndoc;
+            document.getElementById('direccion').value = direccion;
+            document.getElementById('password').value = "";
+            document.getElementById('password_confirmacion').value = "";
+            showCatedras(universidad, idCatedra);
+
+            document.getElementById('nombre').removeAttribute("readonly", false);
+            document.getElementById('apellido').removeAttribute("readonly", false);
+            document.getElementById('email').removeAttribute("readonly", false);
+            document.getElementById('telefono').removeAttribute("readonly", false);
+            document.getElementById('ndoc').removeAttribute("readonly", false);
+            document.getElementById('direccion').removeAttribute("readonly", false);
+            document.getElementById('password').removeAttribute("readonly", false);
+            document.getElementById('password_confirmacion').removeAttribute("readonly", false);
+
+            document.getElementById('formU').setAttribute('action', '/admin/usuarios/actualizar', false);
+            document.getElementById('send').setAttribute('class', 'btn btn-success', false);
+            document.getElementById('send').innerHTML = "Guardar";
+        }
+
+        function togglePasswordVisibility(passwordField, toggleButton) {
+            toggleButton.addEventListener('click', function() {
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                this.classList.toggle('password-visible');
+            });
+        }
+
+        const passwordField = document.getElementById('password');
+        const togglePasswordButton = document.getElementById('togglePassword');
+        togglePasswordVisibility(passwordField, togglePasswordButton);
+
+        const passwordConfirmField = document.getElementById('password_confirmacion');
+        const togglePasswordConfirmButton = document.getElementById('togglePasswordConfirmation');
+        togglePasswordVisibility(passwordConfirmField, togglePasswordConfirmButton);
+
+        function cambiarContras(b) {
+            if (b) {
+                document.getElementById('password').removeAttribute("readonly", false);
+                document.getElementById('password_confirmacion').removeAttribute("readonly", false);
+            } else {
+                document.getElementById('password').setAttribute("readonly", "readonly", false);
+                document.getElementById('password_confirmacion').setAttribute("readonly", "readonly", false);
+            }
+            document.getElementById("claves").hidden = !b;
+        }
+    </script>
 @endsection
