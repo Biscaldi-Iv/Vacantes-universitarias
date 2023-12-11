@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-100">
 
 <head>
     <meta charset="utf-8">
@@ -48,7 +48,7 @@
     </style>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     <!-- Navigation-->
     <nav class="navbar navbar-light bg-light static-top shadow">
         <div class="container">
@@ -94,7 +94,6 @@
     </nav>
     <!-- Navigation-->
 
-    <!-- Body -->
 
     <div class="container w-75 bg-white shadow mt-5 mb-5">
         @yield('breadcrumb')
@@ -103,47 +102,41 @@
         @elseif(session('success'))
             <h5 class="alert alert-success"><strong>HECHO!</strong> {{ session('success') }}</h5>
         @endif
-        @yield('contenido')
+
+        <!-- Body -->
+        <main class="flex-shrink-0">
+            @yield('contenido')
+        </main>
+
+        <!-- Footer-->
+        <footer class="footer bg-light mt-auto py-3 mb-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="/about" class="links">Acerca de</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="/contact" class="links">Contacto</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="/terms" class="links">Terminos de uso</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="/privacy" class="links">Política de privacidad</a></li>
+                            <li class="list-inline-item"><a href="/map" class="links">Mapa del sitio</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">
+                            &copy; AcademyHub 2022. Todos los derechos reservados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </div>
 
-    <!-- Body -->
 
 
-    <!-- Footer-->
-    <footer class="footer bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                    <ul class="list-inline mb-2">
-                        <li class="list-inline-item"><a href="/about" class="links">Acerca de</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="/contact" class="links">Contacto</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="/terms" class="links">Terminos de uso</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="/privacy" class="links">Política de privacidad</a></li>
-                        <li class="list-inline-item"><a href="/map" class="links">Mapa del sitio</a></li>
-                    </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">
-                        &copy; AcademyHub 2022. Todos los derechos reservados.
-                    </p>
-                </div>
-                <!--div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-                        <ul class="list-inline mb-0"></ul>
-                            <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
-                            </li>
-                            <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
-                            </li>
-                        </ul>
-                    </div-->
-            </div>
-        </div>
-    </footer>
+
+
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
