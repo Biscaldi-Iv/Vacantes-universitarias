@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -21,8 +22,11 @@ class UsuarioController extends Controller
 
     public function updateUser(Request $request)
     {
+        $userid = $request->validate(['id' => 'required|integer']);
 
-        $id = $request->validate(['id' => 'required|integer']);
+        if ((auth()->user()->id != $userid["id"]) ||  (!Auth::check())) {
+            return redirect()->route('principal')->with('error', "No tiene permiso para realizar esta acción");
+        }
         $data = $request->validate([
             'password' => 'nullable|min:8',
             'nombre' => 'required',
@@ -38,7 +42,7 @@ class UsuarioController extends Controller
             unset($data['password']);
         }
 
-        User::where('id', $id)->update($data);
+        User::where('id', $userid)->update($data);
         return redirect()->route('userProfile', ['id' => $request->id])
             ->with('success', "¡Se actualizaron los datos del usuario!");
     }
