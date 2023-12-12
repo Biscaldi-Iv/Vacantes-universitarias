@@ -139,9 +139,20 @@
         const success = document.getElementById("success");
         const c1 = document.getElementById("password");
         const c2 = document.getElementById("password_confirmacion");
+        const cb = document.getElementById("cambio");
 
         function checkpass() {
             success.removeAttribute("hidden");
+            if (!cb.checked) {
+                success.setAttribute("class", "hidden");
+                return true;
+            }
+
+            if (c1.value.length < 8 || c1.value.length > 16 || c2.value.length < 8 || c2.value.length > 16) {
+                success.setAttribute("class", "alert alert-danger");
+                success.innerHTML = "La contraseña debe tener entre 8 y 16 caracteres";
+                return false;
+            }
             if (c1.value == c2.value) {
                 success.setAttribute("class", "alert alert-success");
                 success.innerHTML = "Las contraseñas coinciden";

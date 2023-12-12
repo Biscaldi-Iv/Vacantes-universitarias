@@ -14,46 +14,50 @@ use \Illuminate\Database\QueryException;
 class VacanteController extends Controller
 {
 
-    public function create(VacanteRequest $request) {
-        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para registrar vacantes");
+    public function create(VacanteRequest $request)
+    {
+        if ((!Auth::check()) || (auth()->user()->privilegio != 2)) {
+            return redirect()->route('principal')->with('error', "No tiene permiso para registrar vacantes");
         }
         Vacantes::create($request->validated());
-        return redirect()->route('principal')->with('success','Vacante registrada!');
+        return redirect()->route('principal')->with('success', 'Vacante registrada!');
     }
 
-    public function update(VacanteRequest $request) {
-        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para modificar vacantes");
+    public function update(VacanteRequest $request)
+    {
+        if ((!Auth::check()) || (auth()->user()->privilegio != 2)) {
+            return redirect()->route('principal')->with('error', "No tiene permiso para modificar vacantes");
         }
-        $idV=$request->validate(['idVacante'=>'required|integer|min:1']);
+        $idV = $request->validate(['idVacante' => 'required|integer|min:1']);
         Vacantes::where('idVacante', $idV)->update($request->validated());
         return redirect()->route('principal')
-        ->with('success',"Se actualizaron los datos de la vacante $request->tituloVacante!");
+            ->with('success', "Se actualizaron los datos de la vacante $request->tituloVacante!");
     }
 
-    public function delete(Request $request) {
-        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
-            return redirect()->route('principal')->with('error',"No tiene permiso para eliminar vacantes");
+    public function delete(Request $request)
+    {
+        if ((!Auth::check()) || (auth()->user()->privilegio != 2)) {
+            return redirect()->route('principal')->with('error', "No tiene permiso para eliminar vacantes");
         }
-        $idV=$request->validate(['idVacante'=>'required|integer|min:1']);
-        try{
+        $idV = $request->validate(['idVacante' => 'required|integer|min:1']);
+        try {
             Vacantes::where('idVacante', $idV)->delete();
-        } catch(QueryException $e){
-            return redirect()->route('principal')->with('error',"No fue posible eliminar la vacante. Es posbile que tenga
+        } catch (QueryException $e) {
+            return redirect()->route('principal')->with('error', "No fue posible eliminar la vacante. Es posible que tenga
             postulaciones registradas. Si desea evitar nuevas postulaciones se recomienda modificar la fecha de limite de postulaciones.");
         }
         return redirect()->route('principal')
-        ->with('success',"Se eliminaron los datos de la vacante $request->tituloVacante!");
+            ->with('success', "Se eliminaron los datos de la vacante $request->tituloVacante!");
     }
 
-    public function info(int $idVacante){
-        if((Auth::check()) && (auth()->user()->privilegio==1)) {
+    public function info(int $idVacante)
+    {
+        if ((Auth::check()) && (auth()->user()->privilegio == 1)) {
             $vac = Vacantes::where('idVacante', $idVacante)->select()->first();
             $us = Usuario::where('fkiduser', auth()->user()->id)->select()->first();
-            return view('vacantes.infovacante', ['vacante'=>$vac, 'usuario'=>$us]);
+            return view('vacantes.infovacante', ['vacante' => $vac, 'usuario' => $us]);
         }
         $vac = Vacantes::where('idVacante', $idVacante)->select()->first();
-        return view('vacantes.infovacante', ['vacante'=>$vac]);
+        return view('vacantes.infovacante', ['vacante' => $vac]);
     }
 }

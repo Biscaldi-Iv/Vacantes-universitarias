@@ -23,26 +23,26 @@
     <div class="container w-75 bg-white shadow mt-5 mb-5 ">
         <div class="col-xl-8 p-2">
             @guest
-            <h2 class="fw-bold text-left my-3 ">Registrarse</h2>
-        @endguest
-        @auth
-        <h2 class="fw-bold text-left my-3 ">Registrar Usuario</h2>
-        @endauth
+                <h2 class="fw-bold text-left my-3 ">Registrarse</h2>
+            @endguest
+            @auth
+                <h2 class="fw-bold text-left my-3 ">Registrar Usuario</h2>
+            @endauth
         </div>
         <div class="row p-2 ">
             <div class="col-md-10 mx-auto ">
                 @auth
                     @if (auth()->user()->privilegio == 3)
-                        <form method="POST" action="/admin/usuarios/registrar" id="form-validation">
+                        <form method="POST" class="was-validated" action="/admin/usuarios/registrar" id="form-validation">
                     @endif
                 @endauth
                 @guest
-                    <form method="POST" action="/registrarse" id="form-validation">
-                @endguest
+                    <form method="POST" class="was-validated" action="/registrarse" id="form-validation">
+                    @endguest
                     @csrf
 
                     @auth
-                    <x-user-inputs :universidades=$universidades></x-user-inputs>
+                        <x-user-inputs :universidades=$universidades></x-user-inputs>
                     @endauth
 
                     @guest
@@ -75,9 +75,21 @@
         const success = document.getElementById("success");
         const c1 = document.getElementById("password");
         const c2 = document.getElementById("password_confirmacion");
+        const cb = document.getElementById("cambio");
+
 
         function checkpass() {
             success.removeAttribute("hidden");
+            if (!cb.checked) {
+                success.setAttribute("class", "hidden");
+                return true;
+            }
+
+            if (c1.value.length < 8 || c1.value.length > 16 || c2.value.length < 8 || c2.value.length > 16) {
+                success.setAttribute("class", "alert alert-danger");
+                success.innerHTML = "La contraseña debe tener entre 8 y 16 caracteres";
+                return false;
+            }
             if (c1.value == c2.value) {
                 success.setAttribute("class", "alert alert-success");
                 success.innerHTML = "Las contraseñas coinciden";
@@ -131,6 +143,5 @@
         const passwordConfirmField = document.getElementById('password_confirmacion');
         const togglePasswordConfirmButton = document.getElementById('togglePasswordConfirmation');
         togglePasswordVisibility(passwordConfirmField, togglePasswordConfirmButton);
-
     </script>
 @endsection

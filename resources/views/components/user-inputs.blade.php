@@ -12,24 +12,24 @@
     <div class="form-group row">
         <div class="col-sm-6 p-2">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="nombre" minlength="2"
+            <input type="text" class="form-control" name="nombre" id="nombre" maxlength="30"
                 placeholder="Primer nombre" required @guest value="{{ old('nombre') }}" @endguest>
         </div>
         <div class="col-sm-6 p-2">
             <label for="apellido">Apellido</label>
-            <input type="text" class="form-control" name="apellido" id="apellido" minlength="5"
+            <input type="text" class="form-control" name="apellido" id="apellido" maxlength="30"
                 placeholder="Apellidos" required @guest value="{{ old('apellido') }}" @endguest>
         </div>
     </div>
     <div class="form-group row">
         <div class="col-sm-6 p-2">
             <label for="email">Email</label>
-            <input type="mail" class="form-control" name="email" id="email" placeholder="Email" required
-                @auth readonly @endauth @guest value="{{ old('email') }}" @endguest>
+            <input type="mail" class="form-control" name="email" id="email" placeholder="Email" maxlenght="30"
+                required @auth readonly @endauth @guest value="{{ old('email') }}" @endguest>
         </div>
         <div class="col-sm-6 p-2">
             <label for="telefono">Teléfono</label>
-            <input type="phone" class="form-control" name="telefono" id="telefono" minlength="7"
+            <input type="phone" class="form-control" name="telefono" id="telefono" maxlength="30"
                 placeholder="Teléfono" required @guest value="{{ old('telefono') }}" @endguest>
         </div>
     </div>
@@ -68,7 +68,7 @@
     <div class="form-group row">
         <div class="col-sm-6 p-2">
             <label for="direccion">Dirección</label>
-            <input type="text" class="form-control" name="direccion" id="direccion" minlength="5"
+            <input type="text" class="form-control" name="direccion" id="direccion" maxlength="50"
                 placeholder="direccion" required @guest value="{{ old('direccion') }}" @endguest>
         </div>
         <div class="col-sm-6 p-2">
@@ -80,22 +80,21 @@
                 <option value="LE">LE</option>
                 <option value="CI">CI</option>
             </select>
-            <input type="number" class="form-control" name="ndoc" id="ndoc" required
-                @guest value="{{ old('ndoc') }}" @endguest>
+            <input type="number" class="form-control" name="ndoc" id="ndoc" max="999999999999999"
+                min="0" required @guest value="{{ old('ndoc') }}" @endguest>
         </div>
     </div>
 
-    @auth
-        <div class="form-group row">
-            <div class="col-sm-6 p-2">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="cambio" onchange="cambiarContras(this.checked)"
-                        checked />
-                    <label class="form-check-label" for="cambio"> Cambiar contraseña</label>
-                </div>
+
+    <div class="form-group row" @guest class="hidden" @endguest>
+        <div class="col-sm-6 p-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cambio" onchange="cambiarContras(this.checked)"
+                    checked />
+                <label class="form-check-label" for="cambio"> Cambiar contraseña</label>
             </div>
         </div>
-    @endauth
+    </div>
 
 
     <div class="form-group row" id='claves'>

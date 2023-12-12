@@ -27,7 +27,8 @@
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" oninput="checkpass()" name="password" id="password" placeholder="Contraseña" minlength="8" maxlength="16">
+                    <input type="password" class="form-control" oninput="checkpass()" name="password" id="password"
+                        placeholder="Contraseña" minlength="8" maxlength="16">
                     <button class="btn" style=" border-color: #ced4da;" type="button" id="togglePassword">
                         <i class="bi bi-eye"></i>
                     </button>
@@ -36,7 +37,8 @@
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" oninput="checkpass()" name="password_confirmation" id="password_confirmation" placeholder="Confirmar Contraseña" minlength="8" maxlength="16">
+                    <input type="password" class="form-control" oninput="checkpass()" name="password_confirmation"
+                        id="password_confirmation" placeholder="Confirmar Contraseña" minlength="8" maxlength="16">
                     <button class="btn" style=" border-color: #ced4da;" type="button" id="togglePasswordConfirmation">
                         <i class="bi bi-eye"></i>
                     </button>
@@ -57,6 +59,11 @@
 
         function checkpass() {
             success.removeAttribute("hidden");
+            if (c1.value.length < 8 || c1.value.length > 16 || c2.value.length < 8 || c2.value.length > 16) {
+                success.setAttribute("class", "alert alert-danger");
+                success.innerHTML = "La contraseña debe tener entre 8 y 16 caracteres";
+                return false;
+            }
             if (c1.value == c2.value) {
                 success.setAttribute("class", "alert alert-success");
                 success.innerHTML = "Las contraseñas coinciden";
@@ -80,7 +87,7 @@
             form.classList.add("was-validated");
         }, false);
 
-       
+
         function togglePasswordVisibility(passwordField, toggleButton) {
             toggleButton.addEventListener('click', function() {
                 const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -98,7 +105,5 @@
         const passwordConfirmField = document.getElementById('password_confirmation');
         const togglePasswordConfirmButton = document.getElementById('togglePasswordConfirmation');
         togglePasswordVisibility(passwordConfirmField, togglePasswordConfirmButton);
-    
-
     </script>
 @endsection
