@@ -86,7 +86,7 @@
     </div>
 
 
-    <div class="form-group row" @guest class="hidden" @endguest>
+    <div class="form-group row" @guest hidden @endguest>
         <div class="col-sm-6 p-2">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="cambio" onchange="cambiarContras(this.checked)"
