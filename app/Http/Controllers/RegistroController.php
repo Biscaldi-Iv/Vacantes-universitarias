@@ -22,6 +22,7 @@ class RegistroController extends Controller
         if (Auth::check()) {
             return redirect()->route('principal')->with('success', 'Usted ya ha iniciado sesion!');
         }
+        session(['url.intended' => url()->previous()]);
         return view('usuario.registrarse');
     }
 
@@ -45,10 +46,9 @@ class RegistroController extends Controller
             $error_code = $e->errorInfo[1];
             if ($error_code == 1062) {
                 //duplicado de email
-                return redirect()->route('registrarse')->with('error', 'La identificación ya esta registrada');
+                return redirect()->route('registrarse')->with('error', 'Su correo electrónico ha sido registrado');
             }
         }
-
         return redirect()->route('datospostulante')->with('success', '¡Usuario creado! Se ha iniciado sesion automaticamente.
         Por favor ingrese la informacion de su perfil profesional');
     }

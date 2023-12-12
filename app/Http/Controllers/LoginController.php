@@ -16,6 +16,7 @@ class LoginController extends Controller
         if (Auth::check()) {
             return redirect()->route('principal')->with('success', 'Usted ya ha iniciado sesion!');
         }
+        session(['url.intended' => url()->previous()]);
         return view('usuario.login');
     }
 
@@ -38,6 +39,6 @@ class LoginController extends Controller
             $p = PersonalUniversidad::where('fkIdUser', auth()->user()->id)->select()->first();
             session(['universidad' => $p->fkIdUni]);
         }
-        return redirect()->route('principal')->with('success', 'Se ha iniciado sesion!');
+        return redirect()->intended(route('principal'))->with('success', 'Se ha iniciado sesion!');
     }
 }
