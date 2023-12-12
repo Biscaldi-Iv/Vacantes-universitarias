@@ -30,8 +30,12 @@ class LoginController extends Controller
             return redirect()->to('login')->with('error', 'No se ha validado el captcha!');
         }
         $credenciales = $request->validated();
-        if (!Auth::validate($credenciales)) {
-            return redirect()->to('login')->with('error', 'No se ha podido iniciar sesion, revise sus credenciales!');
+        if (Auth::attempt($credenciales)) {
+            if (auth()->user()->privilegio == 2) {
+                $p = PersonalUniversidad::where('fkIdUser', auth()->user()->id)->first();
+                session(['universidad' => $p->fkIdUni]);
+            }
+            return redirect()->intended(route('principal'))->with('success', 'Se ha iniciado sesión!');
         }
         $user = Auth::getProvider()->retrieveByCredentials($credenciales);
         Auth::login($user);

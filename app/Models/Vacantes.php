@@ -21,6 +21,8 @@ class Vacantes extends Model
         'fechaLimite'
     ];
 
+    protected $primaryKey = 'idVacante'; 
+
     public function catedra()
     {
         return $this->hasOne(Catedra::class, 'idCatedra','fkIdCatedra');

@@ -34,20 +34,21 @@ class VacanteController extends Controller
             ->with('success', "Se actualizaron los datos de la vacante $request->tituloVacante!");
     }
 
-    public function delete(Request $request)
-    {
-        if ((!Auth::check()) || (auth()->user()->privilegio != 2)) {
-            return redirect()->route('principal')->with('error', "No tiene permiso para eliminar vacantes");
+    public function delete(int $idV) {
+        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
+            return redirect()->route('principal')->with('error',"No tiene permiso para eliminar vacantes");
         }
-        $idV = $request->validate(['idVacante' => 'required|integer|min:1']);
-        try {
-            Vacantes::where('idVacante', $idV)->delete();
-        } catch (QueryException $e) {
-            return redirect()->route('principal')->with('error', "No fue posible eliminar la vacante. Es posible que tenga
-            postulaciones registradas. Si desea evitar nuevas postulaciones se recomienda modificar la fecha de limite de postulaciones.");
+        $vacante = Vacantes::where('idVacante', $idV)->with(['postulaciones'])->first();
+        try{
+            if(count($vacante->postulaciones)){
+                $vacante->postulaciones()->delete();
+            }
+            $vacante->delete();
+        } catch(QueryException $e){
+            return redirect()->route('principal')->with('error',"No fue posible eliminar la vacante");
         }
         return redirect()->route('principal')
-            ->with('success', "Se eliminaron los datos de la vacante $request->tituloVacante!");
+        ->with('success',"Se eliminaron los datos de la vacante $vacante->tituloVacante!");
     }
 
     public function info(int $idVacante)

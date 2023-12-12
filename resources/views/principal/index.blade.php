@@ -140,9 +140,7 @@
                                         data-bs-toggle="modal" data-bs-target="#modalId">Editar</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger"
-                                        onclick='eliminar({{ $v->idVacante }}, "{{ $v->tituloVacante }}", {{ $v->fkIdCatedra }}, "{{ $v->horarioJornada }}", "{{ $v->fechaLimite }}")'
-                                        data-bs-toggle="modal" data-bs-target="#modalId">Eliminar</button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#validationId" onclick="forceDelete({{$v->idVacante}},{{$v->postulaciones}})">Eliminar</button>
                                 </td>
                             @endif
                         @endauth
@@ -238,6 +236,28 @@
                                     id="send">Guardar</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="validationId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalTitleId">Eliminar Vacante</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 id="modalAlert" class="alert alert-danger">Esta vacante posee postulaciones registradas. Para eliminarla se deberán eliminar las postulaciones. <strong>Esta acción no se puede deshacer</strong></h5>
+                            <p>¿Está seguro de que desea eliminar esta vacante?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <form id="deleteForm" method="POST" action="/vacantes/eliminar">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -339,43 +359,15 @@
                     document.getElementById('send').innerHTML = "Guardar";
                 }
 
-                function eliminar(idVacante, tituloVacante, fkIdCatedra, horarioJornada, fechaLimite) {
-                    let fl = document.getElementById("fechaLimite");
-                    fl.setAttribute('min', "2000-01-01");
-                    //valores que no se pueden pasar como parametro por ser texto largo
-                    let descCorta = document.getElementById('corta' + idVacante).innerHTML;
-                    let descCompleta = document.getElementById('larga' + idVacante).innerHTML;
-                    let titReq = document.getElementById('titulos' + idVacante).innerHTML;
-
-                    document.getElementById('idVacante').setAttribute("value", idVacante, false);
-                    document.getElementById('tituloVacante').value = tituloVacante;
-                    //document.getElementById('fkIdUniversidad').value=fkIdUniversidad;
-                    for (x = 0; x <= document.getElementById('fkIdCatedra').options.length; x++) {
-                        if (document.getElementById('fkIdCatedra').options[x].value == fkIdCatedra) {
-                            document.getElementById('fkIdCatedra').selectedIndex = x;
-                            break;
-                        }
+                function forceDelete(idVacante, postulaciones) {
+                    if (postulaciones.length === 0) {
+                        document.getElementById('modalAlert').setAttribute("hidden", true);
+                    } else {
+                        document.getElementById('modalAlert').removeAttribute("hidden", false);
                     }
-                    document.getElementById('horarioJornada').value = horarioJornada;
-                    document.getElementById('descCorta').value = descCorta;
-                    document.getElementById('descCompleta').value = descCompleta;
-                    document.getElementById('titulosRequeridos').value = titReq;
-                    //probable error
-                    document.getElementById('fechaLimite').value = fechaLimite.replace(" 00:00:00", '');
-
-                    //modificar readonly
-                    document.getElementById('tituloVacante').setAttribute('readonly', 'readonly', false);
-                    //document.getElementById('fkIdUniversidad').setAttribute("readonly" , "readonly" , false);
-                    document.getElementById('horarioJornada').setAttribute("readonly", "readonly", false);
-                    document.getElementById('descCorta').setAttribute("readonly", "readonly", false);
-                    document.getElementById('descCompleta').setAttribute("readonly", "readonly", false);
-                    document.getElementById('titulosRequeridos').setAttribute("readonly", "readonly", false);
-                    document.getElementById('fechaLimite').setAttribute("readonly", "readonly", false);
-
-                    document.getElementById('formV').setAttribute('action', '/vacantes/eliminar', false);
-                    document.getElementById('send').setAttribute('class', 'btn btn-danger', false);
-                    document.getElementById('send').innerHTML = "Eliminar";
+                    document.getElementById('deleteForm').setAttribute('action', '/vacantes/eliminar/' + idVacante);
                 }
+
             </script>
         @endif
     @endauth

@@ -69,22 +69,6 @@
                 <div class="form-group row">
                     <div class="col-sm-6 p-2">
                         <label for="fechaLimite">Fecha de límite de postulaciones</label>
-                        <!-- <input size="16" type="text" name="event_datetime" class="form-control" id="form_datetime" readonly> -->
-                        <!--script type="text/javascript">
-                        $(function () {
-                            var today = new Date();
-                            var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-                            var time = today.getHours() + ":" + today.getMinutes();
-                            var dateTime = date+' '+time;
-                            $("#form_datetime").datetimepicker({
-                                format: 'yyyy-mm-dd hh:ii',
-                                autoclose: true,
-                                todayBtn: true,
-                                startDate: dateTime
-                            });
-                        });
-                        </script-->
-
                         <input type="datetime-local"
                         class="form-control" name="fechaLimite" id="fechaLimite">
                     </div>

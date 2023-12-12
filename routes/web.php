@@ -97,7 +97,7 @@ Route::post('/vacantes/registrar', [VacanteController::class, 'create']);
 
 Route::post('/vacantes/editar', [VacanteController::class, 'update']);
 
-Route::post('/vacantes/eliminar', [VacanteController::class, 'delete']);
+Route::delete('/vacantes/eliminar/{idVacante}', [VacanteController::class, 'delete']);
 
 Route::get('/vacantes/infovacante/{idVacante}', [VacanteController::class, 'info']);
 
