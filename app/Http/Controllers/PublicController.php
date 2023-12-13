@@ -16,28 +16,23 @@ class PublicController extends Controller
             fn ($query)=>$query->where('tituloVacante','like','%'.request('search').'%')
         )
         ->orWhere('descCorta','like','%'.request('search').'%')
-        ->paginate(5);
-        return view('principal.index', ['vacantes'=>$vacantes]);
+        ->paginate(1);
+        $catedras=Catedra::all();
+
+        return view('principal.index', ['vacantes'=>$vacantes,'catedras'=>$catedras]);
     }
 
 
     public function index(Request $request){
         if((Auth::check()) && (auth()->user()->privilegio==2)) {
             $universidad= Universidad::where('idUniversidad', session('universidad'))->select()->first();
-            $catedras=$universidad->catedras;
-            $vacantes=[];
-            foreach ($catedras as $c) {
-                $vac=$c->vacantes;
-                foreach($vac as $v){
-                    $vacantes[]=$v;
-                }
-            }
+            $vacantes = Vacantes::whereIn('fkIdCatedra',$universidad->catedras->pluck('idCatedra')->toArray())->paginate(1);
             return view('principal.index',
-            ['vacantes'=>$vacantes, 'universidad'=>$universidad, 'catedras'=>$catedras]);
+            ['vacantes'=>$vacantes, 'universidad'=>$universidad, 'catedras'=>$universidad->catedras]);
         }
-
-        $vacantes=Vacantes::paginate(5);
-        return view('principal.index', ['vacantes'=>$vacantes]);
+        $catedras=Catedra::all();
+        $vacantes=Vacantes::paginate(1);
+        return view('principal.index', ['vacantes'=>$vacantes,'catedras'=>$catedras]);
     }
 
 }

@@ -12,19 +12,11 @@
 
 @section('contenido')
     <!-- Search bar -->
-    @auth
-        @if (auth()->user()->privilegio != 2)
-            <x-barra-buscar />
-        @endif
-    @endauth
-    @guest
-        <x-barra-buscar />
-    @endguest
-
+    <x-barra-buscar />
     <!-- agregar filtro -->
 
     @auth
-        @if (auth()->user()->privilegio == 2)
+        @if (auth()->user()->privilegio != 1)
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId"
                 onclick="registrar()">
@@ -48,7 +40,7 @@
                     <th hidden>Acciones</th>
                     @endguest
                     @auth
-                        @if (auth()->user()->privilegio == 2)
+                        @if (auth()->user()->privilegio != 1)
                             <th>Vacantes</th>
                             <th>Meritos</th>
                             @if (auth()->user()->privilegio == 1 )
@@ -118,7 +110,7 @@
                                         Postularse <span class="badge badge-light">+Info</span>
                                         @endif
                                     </button>
-                                @elseif(auth()->user()->privilegio == 2)
+                                @elseif(auth()->user()->privilegio != 1)
                                     @if ($v->fechaLimite < \Carbon\Carbon::now())
                                         <button type="button" class="btn btn-primary" onclick="location.href='/orden/{{ $v->idVacante }}'">
                                             Ver méritos
@@ -133,10 +125,10 @@
                             @endauth
                         </td>
                         @auth
-                            @if (auth()->user()->privilegio == 2)
+                            @if (auth()->user()->privilegio != 1)
                                 <td>
                                     <button type="button" class="btn btn-primary"
-                                        onclick='editar({{ $v->idVacante }}, "{{ $v->tituloVacante }}", {{ $v->fkIdCatedra }}, "{{ $v->horarioJornada }}", "{{ $v->fechaLimite }}")'
+                                        onclick='editar({{$v}})'
                                         data-bs-toggle="modal" data-bs-target="#modalId">Editar</button>
                                 </td>
                                 <td>
@@ -154,27 +146,19 @@
     </div>
 
     <div class="d-flex justify-content-center">
-
-        @guest
-            {!! $vacantes->links() !!}
-        @endguest
-        @auth
-            @if (auth()->user()->privilegio != 2)
-                {!! $vacantes->links() !!}
-            @endif
-        @endauth
+        {!! $vacantes->appends($_GET)->links() !!}
     </div>
 
 
     @auth
-        @if (auth()->user()->privilegio == 2)
+        @if (auth()->user()->privilegio != 1)
             <!-- Modal -->
             <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
                 aria-hidden>
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Registar Vacante en {{ $universidad->nombreUniversidad }}
+                            <h5 class="modal-title" id="modalTitleId">Registar Vacante
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
                         </div>
@@ -193,7 +177,11 @@
                                         <label for="fkIdCatedra">Cátedra</label>
                                         <select class="form-select" name="fkIdCatedra" id="fkIdCatedra">
                                             @foreach ($catedras as $c)
-                                                <option value="{{ $c->idCatedra }}">{{ $c->nombreCatedra }}</option>
+                                                <option value="{{ $c->idCatedra }}">{{ $c->nombreCatedra }}
+                                                    @if(auth()->user()->privilegio == 3)
+                                                        ({{ $c->universidad->nombreUniversidad}})
+                                                    @endif 
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -267,7 +255,7 @@
 
 @section('scripts')
     @auth
-        @if (auth()->user()->privilegio == 2)
+        @if (auth()->user()->privilegio != 1)
             <script>
                 function fmin() {
                     //limitar las fechas elegibles
@@ -322,7 +310,9 @@
                     document.getElementById('send').innerHTML = "Guardar";
                 }
 
-                function editar(idVacante, tituloVacante, fkIdCatedra, horarioJornada, fechaLimite) {
+                function editar(vacante) {
+                    console.log(vacante.fechaLimite);
+                    let {idVacante,  fkIdCatedra, horarioJornada, tituloVacante} = vacante;
                     //valores que no se pueden pasar como parametro por ser texto largo
                     let descCorta = document.getElementById('corta' + idVacante).innerHTML;
                     let descCompleta = document.getElementById('larga' + idVacante).innerHTML;
@@ -343,7 +333,7 @@
                     document.getElementById('descCompleta').value = descCompleta;
                     document.getElementById('titulosRequeridos').value = titReq;
                     //probable error
-                    document.getElementById('fechaLimite').value = fechaLimite.replace(" 00:00:00", '');
+                    document.getElementById('fechaLimite').value = vacante.fechaLimite;
 
                     //modificar readonly
                     document.getElementById('tituloVacante').removeAttribute("readonly", false);

@@ -18,7 +18,7 @@ class PostulacionesController extends Controller
         if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para ver postulantes!");
         }
-        $postulaciones=Postulacion::where('fkIdVacante',$idVacante)->paginate(5);
+        $postulaciones=Postulacion::where('fkIdVacante',$idVacante)->paginate(1);
         $vacante=Vacantes::where('idVacante',$idVacante)->select()->first();
         return view('vacantes.postulaciones',
         ['postulaciones'=>$postulaciones, 'vacante'=>$vacante]);

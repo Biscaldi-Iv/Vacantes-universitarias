@@ -86,6 +86,9 @@
             </tfoot>
         </table>
     </div>
+    <div class="d-flex justify-content-center">
+        {!! $universidades->links() !!}
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="modalU" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden>

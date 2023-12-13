@@ -15,7 +15,7 @@ class UniversidadesController extends Controller
 {
     public function show(Request $request)
     {
-        $universidades=Universidad::all();
+        $universidades=Universidad::paginate(1);
         return view('universidades.listado', ['universidades'=>$universidades]);
     }
 

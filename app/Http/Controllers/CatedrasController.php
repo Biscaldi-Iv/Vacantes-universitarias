@@ -14,7 +14,7 @@ class CatedrasController extends Controller
         if((!Auth::check()) || (auth()->user()->privilegio==1)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para acceder a cátedras");
         }
-        $catedras = (auth()->user()->privilegio == 2) ? Catedra::where('fkIdUniversidad', session('universidad'))->get() : Catedra::all();
+        $catedras = (auth()->user()->privilegio == 2) ? Catedra::where('fkIdUniversidad', session('universidad'))->paginate(3) : Catedra::paginate(3);
         $universidad = (auth()->user()->privilegio == 2 )? Universidad::where('idUniversidad', session('universidad'))->select()->first() : Universidad::all();
         return view('universidades.catedrasU', ['catedras' => $catedras, 'universidad'=> $universidad]);
     }
@@ -51,7 +51,7 @@ class CatedrasController extends Controller
         if((!Auth::check()) || (auth()->user()->privilegio==1)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para acceder a cátedras");
         }
-        $universidad= Universidad::all()->with(['catedras']);
+        $universidad= Universidad::paginate(3)->with(['catedras']);
         return view('universidades.catedrasU', ['universidad'=> $universidad]);
     }
 }

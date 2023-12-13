@@ -74,6 +74,9 @@
             </tfoot>
     </table>
 </div>
+<div class="d-flex justify-content-center">
+    {!! $catedras->links() !!}
+</div>
 
 <!-- Modal -->
 <div class="modal face" id="modalC" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden>
