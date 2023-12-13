@@ -110,7 +110,7 @@
                                         Postularse <span class="badge badge-light">+Info</span>
                                         @endif
                                     </button>
-                                @elseif(auth()->user()->privilegio != 1)
+                                @else()
                                     @if ($v->fechaLimite < \Carbon\Carbon::now())
                                         <button type="button" class="btn btn-primary" onclick="location.href='/orden/{{ $v->idVacante }}'">
                                             Ver méritos
@@ -311,8 +311,8 @@
                 }
 
                 function editar(vacante) {
-                    console.log(vacante.fechaLimite);
-                    let {idVacante,  fkIdCatedra, horarioJornada, tituloVacante} = vacante;
+                    let {idVacante,  fkIdCatedra, horarioJornada, fechaLimite, tituloVacante} = vacante;
+                    console.log(fechaLimite,fechaLimite.substr(0,10))
                     //valores que no se pueden pasar como parametro por ser texto largo
                     let descCorta = document.getElementById('corta' + idVacante).innerHTML;
                     let descCompleta = document.getElementById('larga' + idVacante).innerHTML;
@@ -328,13 +328,13 @@
                             break;
                         }
                     }
-                    document.getElementById('horarioJornada').value = horarioJornada;
-                    document.getElementById('descCorta').value = descCorta;
-                    document.getElementById('descCompleta').value = descCompleta;
-                    document.getElementById('titulosRequeridos').value = titReq;
+                    document.getElementById('horarioJornada').value = horarioJornada.trim();
+                    document.getElementById('descCorta').value = descCorta.trim();
+                    document.getElementById('descCompleta').value = descCompleta.trim();
+                    document.getElementById('titulosRequeridos').value = titReq.trim();
                     //probable error
-                    document.getElementById('fechaLimite').value = vacante.fechaLimite;
-
+                    document.getElementById('fechaLimite').value = fechaLimite.substr(0,10);
+                    console.log(document.getElementById('fechaLimite').value )
                     //modificar readonly
                     document.getElementById('tituloVacante').removeAttribute("readonly", false);
                     //document.getElementById('fkIdUniversidad').removeAttribute("readonly" , false);
