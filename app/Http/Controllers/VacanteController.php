@@ -16,7 +16,7 @@ class VacanteController extends Controller
 
     public function create(VacanteRequest $request)
     {
-        if ((!Auth::check()) || (auth()->user()->privilegio != 2)) {
+        if ((!Auth::check()) || (auth()->user()->privilegio == 1)) {
             return redirect()->route('principal')->with('error', "No tiene permiso para registrar vacantes");
         }
         Vacantes::create($request->validated());
@@ -25,7 +25,7 @@ class VacanteController extends Controller
 
     public function update(VacanteRequest $request)
     {
-        if ((!Auth::check()) || (auth()->user()->privilegio != 2)) {
+        if ((!Auth::check()) || (auth()->user()->privilegio == 1)) {
             return redirect()->route('principal')->with('error', "No tiene permiso para modificar vacantes");
         }
         $idV = $request->validate(['idVacante' => 'required|integer|min:1']);
@@ -35,7 +35,7 @@ class VacanteController extends Controller
     }
 
     public function delete(int $idV) {
-        if((!Auth::check()) || (auth()->user()->privilegio!=2)) {
+        if((!Auth::check()) || (auth()->user()->privilegio==1)) {
             return redirect()->route('principal')->with('error',"No tiene permiso para eliminar vacantes");
         }
         $vacante = Vacantes::where('idVacante', $idV)->with(['postulaciones'])->first();
