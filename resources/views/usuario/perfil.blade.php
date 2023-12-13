@@ -75,6 +75,7 @@
                             <th>Informacion de vacante</th>
                             <th>Estado de vacante</th>
                             <th>Puntuación</th>
+                            <th></th>
                         </thead>
                         <tbody class="table-group-divider">
                             @foreach ($postulaciones as $p)
@@ -97,6 +98,18 @@
                                     <td class="text-center">
                                         <h4>{{ $p->puntuacion_total() }}</h4>
                                     </td>
+                                    <td>
+                                        @if (
+                                            $vacante->fechaLimite > \Carbon\Carbon::now() &&
+                                                auth()->user()->privilegio != 2 &&
+                                                (auth()->user()->id == $user->id || auth()->user()->privilegio == 3))
+                                            <button type="button" class="btn btn-danger" aria-pressed="false"
+                                                autocomplete="off" data-bs-toggle="modal" data-bs-target="#modalP"
+                                                onClick="eliminar({{ $p }})">
+                                                Despostular
+                                            </button>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -110,7 +123,7 @@
         @endif
     </div>
 
-
+    <!-- Modal Usuario -->
     <div class="modal fade" id="modalU" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -125,9 +138,36 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="sumbit" id="send" class="btn btn-success">Guardar</button>
+                        <button type="sumbit" id="fomrUsend" class="btn btn-success">Guardar</button>
                     </div>
 
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Postulación -->
+    <div class="modal fade" id="modalP" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">¿Desea eliminar la postulación de la siguiente vacante?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
+                </div>
+                <form action="/vacantes/despostular" id="formP" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <h1 id="tituloVacante"></h1>
+                        <p id="descCorta"></p>
+                        <input type="number" readonly class="form-control" name="idUser" id="idUser"
+                            value="{{ $user->id }}" hidden>
+                        <input type="number" readonly class="form-control" name="idPostulacion" id="idPostulacion" hidden>
+                        <input type="number" readonly class="form-control" name="idUsuario" id="idUsuario" hidden>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="sumbit" id="formPsend" class="btn btn-danger">Eliminar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -221,8 +261,8 @@
             document.getElementById('password_confirmacion').removeAttribute("readonly", false);
 
             document.getElementById('formU').setAttribute('action', '/usuario/actualizar', false);
-            document.getElementById('send').setAttribute('class', 'btn btn-success', false);
-            document.getElementById('send').innerHTML = "Guardar";
+            document.getElementById('formUsend').setAttribute('class', 'btn btn-success', false);
+            document.getElementById('formUsend').innerHTML = "Guardar";
         }
 
         function togglePasswordVisibility(passwordField, toggleButton) {
@@ -250,6 +290,24 @@
                 document.getElementById('password_confirmacion').setAttribute("readonly", "readonly", false);
             }
             document.getElementById("claves").hidden = !b;
+        }
+
+        function eliminar(p) {
+            const {
+                idPostulacion,
+                fkIdUsuario,
+                vacante
+            } = p;
+            const {
+                tituloVacante,
+                descCorta
+            } = vacante;
+            document.getElementById('idPostulacion').value = idPostulacion;
+            document.getElementById('idUsuario').value = fkIdUsuario;
+            document.getElementById('tituloVacante').innerHTML = tituloVacante;
+            document.getElementById('descCorta').innerHTML = descCorta;
+
+
         }
     </script>
 @endsection
