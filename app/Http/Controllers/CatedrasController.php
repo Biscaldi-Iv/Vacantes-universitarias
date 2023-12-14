@@ -32,7 +32,7 @@ class CatedrasController extends Controller
             return redirect()->route('principal')->with('error',"No tiene permiso para modificar cátedras");
         }
         $idc=$request->validate(['idCatedra'=>'required|integer|min:1']);
-        Catedra::where('idCatedra', $idc)->update($request->validated());
+        Catedra::where('idCatedra', $idc['idCatedra'])->update($request->validated());
         return redirect()->route('catedrasU')
         ->with('success',"Se modificaron los datos de la cátedra $request->nombreCatedra!");
     }
