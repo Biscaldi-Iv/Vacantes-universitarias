@@ -80,8 +80,10 @@ class PostulacionesController extends Controller
         }
         $idVacante = $request->validate(['idVacante' => 'required|integer|min:1']);
         $idUsuario = $request->validate(['idUsuario' => 'required|integer|min:1']);
-        Postulacion::where(['fkIdVacante' => $idVacante, 'fkIdUsuario' => $idUsuario])->update($request->validated());
-        return redirect()->route('userProfile', ['id' => $request->idUser])
+
+        $postulacion = Postulacion::where(['fkIdVacante' => $idVacante, 'fkIdUsuario' => $idUsuario])->update($request->validated());
+
+        return back()
             ->with('success', "¡Se actualizaron los datos del usuario!");
     }
 
