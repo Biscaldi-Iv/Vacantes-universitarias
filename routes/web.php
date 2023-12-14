@@ -110,7 +110,7 @@ Route::delete('/vacantes/despostular', [PostulacionesController::class, 'delete'
 
 Route::post('/vacantes/puntuar', [PostulacionesController::class, 'update']);
 
-Route::get('/postulaciones', [PostulacionesController::class, 'infoUsuario']);
+Route::get('/postulaciones', [PostulacionesController::class, 'puntuacion']);
 // Postulante
 
 

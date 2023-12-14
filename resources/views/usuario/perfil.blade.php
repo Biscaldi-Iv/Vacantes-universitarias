@@ -103,6 +103,14 @@
                                             $vacante->fechaLimite > \Carbon\Carbon::now() &&
                                                 auth()->user()->privilegio != 2 &&
                                                 (auth()->user()->id == $user->id || auth()->user()->privilegio == 3))
+                                            <form action="/postulaciones" method="get">
+                                                @csrf
+                                                <input type="number" name="idVacante" id="idVacante" value="{{ $vacante->idVacante }}" hidden>
+                                                <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden>
+                                                <div style="text-align:end;">
+                                                    <button type="sumbit" class="btn btn-primary my-2">Ver postulación</button>
+                                                </div>
+                                            </form>
                                             <button type="button" class="btn btn-danger" aria-pressed="false"
                                                 autocomplete="off" data-bs-toggle="modal" data-bs-target="#modalP"
                                                 onClick="eliminar({{ $p }})">

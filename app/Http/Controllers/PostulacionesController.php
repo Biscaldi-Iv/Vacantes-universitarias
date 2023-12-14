@@ -89,18 +89,18 @@ class PostulacionesController extends Controller
 
 
 
-    public function infoUsuario(Request $request)
+    public function puntuacion(Request $request)
     {
-        if ((!Auth::check()) || (auth()->user()->privilegio != 2)) {
+        $idUsuario = $request->validate(['idUsuario' => 'required|integer|min:1'])['idUsuario'];
+        if ((!Auth::check()) || (auth()->user()->privilegio == 1 && auth()->user()->usuario->id != $idUsuario)) {
             return redirect()->route('principal')->with('error', "No tiene permiso para puntuar candidatos");
         }
         $idVacante = $request->validate(['idVacante' => 'required|integer|min:1']);
         $vacante = Vacantes::where('idVacante', $idVacante)->select()->first();
-        if ($vacante->catedra->universidad->idUniversidad != session('universidad')) {
+        if (auth()->user()->privilegio==2 && $vacante->catedra->universidad->idUniversidad != session('universidad')) {
             return redirect()->route('principal')->with('error', "No tiene permiso para puntuar candidatos
             debido a que la vacante no pertenece a su universidad");
         }
-        $idUsuario = $request->validate(['idUsuario' => 'required|integer|min:1']);
         $usuario = Usuario::where('id', $idUsuario)->select()->first();
         $postulacion = Postulacion::where([
             'fkIdVacante' => $idVacante,

@@ -191,17 +191,11 @@
         }
 
 
-        @if ($vacante->fechaLimite < \Carbon\Carbon::now())
-            document.getElementById("titulo").setAttribute("disabled", "true");
-            document.getElementById("experiencia").setAttribute("disabled", "true");
-            document.getElementById("con_asignatura").setAttribute("disabled", "true");
-            document.getElementById("con_profesionales").setAttribute("disabled", "true");
-            document.getElementById("publicaciones").setAttribute("disabled", "true");
-            document.getElementById("congresos").setAttribute("disabled", "true");
-            document.getElementById("actitud").setAttribute("disabled", "true");
-            document.getElementById("disponibilidad").setAttribute("disabled", "true");
-            document.getElementById("entrevista").setAttribute("disabled", "true");
-            document.getElementById("investigaciones").setAttribute("disabled", "true");
+        @if ($vacante->fechaLimite < \Carbon\Carbon::now() || auth()->user()->privilegio == 1)
+            let all = document.getElementsByTagName("input");
+            for (let i=0, max=all.length; i < max; i++) {
+                all[i].setAttribute("readonly", "true");
+            }
             document.getElementById("btn").setAttribute("hidden", "true");
         @endif
     </script>

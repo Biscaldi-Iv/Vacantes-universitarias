@@ -69,8 +69,9 @@
 
 @section('scripts')
     <script>
-        document.all.tags("textarea").forEach(element => {
-            element.value = element.value.trim();
-        });
+        let all = document.getElementsByTagName("textarea");
+        for (let i=0, max=all.length; i < max; i++) {
+            all[i].value = all[i].value.trim();
+        }
     </script>
 @endsection
