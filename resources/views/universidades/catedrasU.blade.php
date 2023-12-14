@@ -101,13 +101,12 @@
                             id="fkIdUniversidad" placeholder="Id de la universidad a la que pertenece la cátedra"
                             value="{{ $universidad->idUniversidad }}">
                             @else
-                            <select class="form-select form-select-lg" name="fkIdUni" id="fkIdUni">
+                            <select class="form-select form-select-lg" name="fkIdUniversidad" id="fkIdUniversidad">
                                 @foreach ($universidad as $u)
                                     <option value="{{ $u->idUniversidad }}">{{ $u->nombreUniversidad }}</option>
                                 @endforeach
                             </select>
                             @endif
-                        </div>
                         </div>
                         <div class="mb-3">
                           <label for="nombreCatedra" class="form-label">Nombre de catedra</label>
