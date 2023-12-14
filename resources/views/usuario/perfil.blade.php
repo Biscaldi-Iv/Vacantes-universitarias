@@ -155,6 +155,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
                 </div>
                 <form action="/vacantes/despostular" id="formP" method="POST">
+                    @method('DELETE')
                     @csrf
                     <div class="modal-body">
                         <h1 id="tituloVacante"></h1>

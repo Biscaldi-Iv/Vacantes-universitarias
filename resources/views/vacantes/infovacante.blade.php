@@ -16,6 +16,10 @@
     <div class="col-xl-8 p-2">
         <h1 class="fw-bold text-left my-3">{{ $vacante->tituloVacante }}</h1>
     </div>
+    <div style="text-align:end;">
+        <button type="button" class="btn btn-primary my-2" onclick="location.href='{{ URL::previous() }}'"
+            id="btn_back">Volver</button>
+    </div>
     <hr>
     <div class="row p-5">
         <h3>Informacion de la vacante</h3>
@@ -83,17 +87,22 @@
                             <input type="number" class="form-control" name="id" id="id"
                                 placeholder="Id del usuario" value="{{ $usuario->id }}">
                         </div>
-                        @if (in_array($vacante->idVacante, $usuario->postulacion->pluck('fkIdVacante')->toArray()))
-                            <div style="text-align:end;">
-                                <button type="button" class="btn btn-primary my-2" onclick="location.href='/'"
-                                    id="btn_back">Volver</button>
-                            </div>
-                        @else
+                        @if (!in_array($vacante->idVacante, $usuario->postulacion->pluck('fkIdVacante')->toArray()))
                             <div style="text-align:end;">
                                 <button type="submit" class="btn btn-primary" id="btn_pos">Postularse</button>
                             </div>
                         @endif
                     </form>
+                    @if (in_array($vacante->idVacante, $usuario->postulacion->pluck('fkIdVacante')->toArray()))
+                        <form action="/postulaciones" method="get">
+                            @csrf
+                            <input type="number" name="idVacante" id="idVacante" value="{{ $vacante->idVacante }}" hidden>
+                            <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden>
+                            <div style="text-align:end;">
+                                <button type="sumbit" class="btn btn-primary my-2">Ver postulación</button>
+                            </div>
+                        </form>
+                    @endif
                 @elseif(auth()->user()->privilegio == 2)
                     <div style="text-align:end;">
                         @if ($vacante->fechaLimite < \Carbon\Carbon::now())

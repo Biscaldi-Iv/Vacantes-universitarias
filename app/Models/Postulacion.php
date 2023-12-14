@@ -29,6 +29,8 @@ class Postulacion extends Model
         'investigaciones'
     ];
 
+    protected $primaryKey= 'idPostulacion';
+
     protected $attributes=[
         'titulo'=>0,
         'experiencia'=>0,

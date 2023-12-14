@@ -54,14 +54,14 @@ class PostulacionesController extends Controller
     {
         if ((!Auth::check()) || (auth()->user()->privilegio == 2)) {
             return redirect()->route('principal')->with('error', "No tiene permiso para eliminar Postulaciones");
-        } else if (auth()->user()->privilegio == 1) {
+        } elseif (auth()->user()->privilegio == 1) {
             $idUsuario = $request->validate(['idUsuario' => 'required|integer|min:1'])["idUsuario"];
             $usuario = Usuario::where('fkiduser', auth()->user()->id)->first();
             if ($idUsuario != $usuario->id) {
                 return redirect()->route('principal')->with('error', "No tiene permiso para eliminar Postulaciones de otro Usuario");
             }
         }
-        $idPostulacion = $request->validate(['idPostulacion' => 'required|integer|min:1']);
+        $idPostulacion = $request->validate(['idPostulacion' => 'required|integer|min:1'])['idPostulacion'];
         $postulacion = Postulacion::where('idPostulacion', $idPostulacion)->with(['vacante'])->first();
 
         if ($postulacion->vacante->fechaLimite < \Carbon\Carbon::now()) {
