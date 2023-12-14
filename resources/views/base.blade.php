@@ -141,7 +141,6 @@
                             <li >. <a href="/contact" class="links">Contacto</a></li>
                             <li >. <a href="/terms" class="links">Terminos de uso</a></li>
                             <li >. <a href="/privacy" class="links">Política de privacidad</a></li>
-                            <li >. <a href="/map" class="links">Mapa del sitio</a></li>
                         </ul>
                     </div>
                 </div>
