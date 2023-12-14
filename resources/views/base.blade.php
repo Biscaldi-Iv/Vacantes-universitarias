@@ -112,21 +112,42 @@
         <footer class="footer bg-light mt-auto py-3 mb-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="/about" class="links">Acerca de</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="/contact" class="links">Contacto</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="/terms" class="links">Terminos de uso</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="/privacy" class="links">Política de privacidad</a></li>
-                            <li class="list-inline-item"><a href="/map" class="links">Mapa del sitio</a></li>
+                    <div class="col-md-3">
+                        <h6>Acceso rápido</h6>
+                        <ul>
+                            <li><a class="enlace" href="/">Pagina principal</a></li>
+                            <li><a class="enlace" href="/login">Inicio de sesion</a></li>
+                            <li><a class="enlace" href="/registrarse">Registrarse</a></li>
+                            <li><a class="enlace" href="/universidades">Universidades</a></li>
                         </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">
-                            &copy; AcademyHub 2022. Todos los derechos reservados.
-                        </p>
                     </div>
+                    <div class="col-md-3">
+                        <br>
+                        <ul>
+                            @auth
+                                <li><a class="enlace" href="/datospostulante">Perfil profesional</a></li>
+                                @if(auth()->user()->privilegio !== 1)
+                                    <li><a class="enlace" href="/catedrasU">Cátedras</a></li>
+                                @elseif(auth()->user()->privilegio == 3)
+                                    <li><a class="enlace" href="/admin/usuarios">Usuarios</a></li>
+                                @endif
+                            @endauth
+                        </ul>
+                    </div>
+                    <div class="col-md-6 h-100 text-center text-lg-start my-auto">
+                    <h6>Sobre el sitio</h6>
+                        <ul class="list-inline mb-2">
+                            <li >. <a href="/about" class="links">Acerca de</a></li>
+                            <li >. <a href="/contact" class="links">Contacto</a></li>
+                            <li >. <a href="/terms" class="links">Terminos de uso</a></li>
+                            <li >. <a href="/privacy" class="links">Política de privacidad</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-muted small mb-4 mb-lg-0">
+                        &copy; AcademyHub 2022. Todos los derechos reservados.
+                    </p>
                 </div>
             </div>
         </footer>
