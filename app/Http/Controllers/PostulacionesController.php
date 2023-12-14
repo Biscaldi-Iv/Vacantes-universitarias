@@ -16,7 +16,7 @@ class PostulacionesController extends Controller
 {
     public function show(int $idVacante, Request $request)
     {
-        if ((!Auth::check()) || (auth()->user()->privilegio != 2)) {
+        if ((!Auth::check()) || (auth()->user()->privilegio == 1)) {
             return redirect()->route('principal')->with('error', "No tiene permiso para ver postulantes!");
         }
         $postulaciones = Postulacion::where('fkIdVacante', $idVacante)->paginate(1);

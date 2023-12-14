@@ -27,6 +27,7 @@ class PuntuacionRequest extends FormRequest
             'titulo'=>'nullable|integer',
             'experiencia'=>'nullable|integer',
             'con_asignatura'=>'nullable|integer',
+            'con_profesionales'=>'nullable|integer',
             'publicaciones'=>'nullable|integer',
             'congresos'=>'nullable|integer',
             'actitud'=>'nullable|integer',

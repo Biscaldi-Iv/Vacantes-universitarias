@@ -49,7 +49,7 @@
                                         <h5>Puntuación: {{$p->puntuacion_total()}}</h5>
                                     </div>
                                     <div class="col-md-auto p-2">
-                                        <form action="/vacantes/infoUsuario" method="post">
+                                        <form action="/postulaciones" method="get">
                                             @csrf
                                             <input type="number" name="idVacante" id="idVacante" value="{{ $p->fkIdVacante }}" hidden>
                                             <input type="number" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}" hidden>

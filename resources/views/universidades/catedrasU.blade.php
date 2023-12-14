@@ -95,8 +95,8 @@
                             <input type="number" readonly class="form-control" name="idCatedra"
                             id="idCatedra" placeholder="Id de la cátedra">
                         </div>
+                        @if(auth()->user()->privilegio==2)
                         <div class="mb-3" hidden>
-                            @if(auth()->user()->privilegio==2)
                             <input type="number" readonly class="form-control" name="fkIdUniversidad"
                             id="fkIdUniversidad" placeholder="Id de la universidad a la que pertenece la cátedra"
                             value="{{ $universidad->idUniversidad }}">
@@ -106,6 +106,7 @@
                                     <option value="{{ $u->idUniversidad }}">{{ $u->nombreUniversidad }}</option>
                                 @endforeach
                             </select>
+                        </div>
                             @endif
                         </div>
                         <div class="mb-3">
