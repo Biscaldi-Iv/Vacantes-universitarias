@@ -103,7 +103,7 @@
                             </div>
                         </form>
                     @endif
-                @elseif(auth()->user()->privilegio == 2)
+                @elseif(auth()->user()->privilegio != 1)
                     <div style="text-align:end;">
                         @if ($vacante->fechaLimite < \Carbon\Carbon::now())
                             <button type="button" onclick="location.href='/orden/{{ $vacante->idVacante }}'"

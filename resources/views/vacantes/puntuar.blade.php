@@ -191,7 +191,7 @@
         }
 
 
-        @if ($vacante->fechaLimite < \Carbon\Carbon::now() || auth()->user()->privilegio == 1)
+        @if ($vacante->fechaLimite < \Carbon\Carbon::now() || auth()->user()->privilegio != 2)
             let all = document.getElementsByTagName("input");
             for (let i=0, max=all.length; i < max; i++) {
                 all[i].setAttribute("readonly", "true");
